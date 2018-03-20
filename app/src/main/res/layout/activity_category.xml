@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@android:color/white"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context="com.example.ducvietho.moki.screen.activities.category.CategoryActivity">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dip_40"
+        android:orientation="horizontal">
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/imgLeft"
+                android:layout_width="@dimen/dip_40"
+                android:layout_height="fill_parent"
+                android:background="@drawable/icon_back"
+                android:scaleType="centerCrop"
+                app:civ_border_color="@color/red_dark"
+                app:civ_border_width="1.0dip" />
+
+                <com.example.ducvietho.moki.utils.customview.FontTextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text="Danh mục"
+                    android:layout_gravity="center"
+                    android:textAllCaps="false"
+                    android:textColor="@color/red_dark"
+                    android:textSize="@dimen/ts_16" />
+            </LinearLayout>
+    <include layout="@layout/view_line_red"/>
+    <android.support.v7.widget.RecyclerView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/rec_category"/>
+</LinearLayout>

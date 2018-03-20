@@ -1,0 +1,131 @@
+<resources>
+	<!-- Default screen margins, per the Android Design guidelines. -->
+	<dimen name="activity_horizontal_margin">16dp</dimen>
+	<dimen name="activity_vertical_margin">16dp</dimen>
+	<dimen name="spacing_large">16dp</dimen>
+	<dimen name="spacing_large_s">24dp</dimen>
+	<dimen name="spacing_large_x">32dp</dimen>
+	<dimen name="spacing_large_xs">40dp</dimen>
+	<dimen name="spacing_large_xx">64dp</dimen>
+	<dimen name="spacing_medium">12dp</dimen>
+	<dimen name="spacing_normal">8dp</dimen>
+	<dimen name="spacing_small">4dp</dimen>
+	<dimen name="spacing_mini">2dp</dimen>
+	<dimen name="common_text_size_ex_small">10.0dip</dimen>
+	<dimen name="common_text_size_large">18.0dip</dimen>
+	<dimen name="common_text_size_medium">16.0dip</dimen>
+	<dimen name="common_text_size_normal">14.0dip</dimen>
+	<dimen name="common_text_size_small">13.0dip</dimen>
+	<dimen name="user_avatar_size_small_1">40.0dip</dimen>
+	<dimen name="clock_size">13.0dp</dimen>
+	<dimen name="small_square_size">20.0dip</dimen>
+	<dimen name="navi_bar_height">44dp</dimen>
+	<!-- Global -->
+	<dimen name="dip_1">1dip</dimen>
+	<dimen name="dip_2">2dip</dimen>
+	<dimen name="dip_3">3dip</dimen>
+	<dimen name="dip_4">4dip</dimen>
+	<dimen name="dip_5">5dip</dimen>
+	<dimen name="dip_6">6dip</dimen>
+	<dimen name="dip_8">8dip</dimen>
+	<dimen name="dip_10">10dip</dimen>
+	<dimen name="dip_12">12dip</dimen>
+	<dimen name="dip_14">14dip</dimen>
+	<dimen name="dip_16">16dip</dimen>
+	<dimen name="dip_18">18dip</dimen>
+	<dimen name="dip_20">20dip</dimen>
+	<dimen name="dip_22">22dip</dimen>
+	<dimen name="dip_24">24dip</dimen>
+	<dimen name="dip_26">26dip</dimen>
+	<dimen name="dip_28">28dip</dimen>
+	<dimen name="dip_30">30dip</dimen>
+	<dimen name="dip_32">32dip</dimen>
+	<dimen name="dip_35">35dip</dimen>
+	<dimen name="dip_36">36dip</dimen>
+	<dimen name="dip_38">38dip</dimen>
+	<dimen name="dip_40">40dip</dimen>
+	<dimen name="dip_45">45dip</dimen>
+	<dimen name="dip_46">46dip</dimen>
+	<dimen name="dip_48">48dip</dimen>
+	<dimen name="dip_56">56dip</dimen>
+	<dimen name="dip_60">60dip</dimen>
+	<dimen name="dip_64">64dip</dimen>
+	<dimen name="dip_80">80dip</dimen>
+	<dimen name="dip_90">90dip</dimen>
+	<dimen name="dip_130">130dip</dimen>
+	<dimen name="dip_135">135dip</dimen>
+	<dimen name="dip_140">140dip</dimen>
+	<dimen name="dip_160">160dip</dimen>
+	<dimen name="dip_180">180dip</dimen>
+	<dimen name="dip_150">150dip</dimen>
+	<dimen name="dip_200">200dip</dimen>
+	<dimen name="dip_250">250dip</dimen>
+	<dimen name="dip_300">300dip</dimen>
+	<dimen name="dip_350">350dip</dimen>
+	<dimen name="dip_400">400dp</dimen>
+	<dimen name="padding_global">12dp</dimen>
+	<dimen name="padding_normal">10dp</dimen>
+	<dimen name="edittext_corner_radius">4dp</dimen>
+	<dimen name="button_corner_radius">7dp</dimen>
+	<dimen name="dialog_success_message_text">22sp</dimen>
+	<dimen name="text_size">22sp</dimen>
+
+	<dimen name="height_image_cropper">320dp</dimen>
+	<dimen name="home_feed_image_height">250dp</dimen>
+
+	<!-- Menu -->
+	<dimen name="menu_width">240dp</dimen>
+
+	<!-- Navigation Bar -->
+	<dimen name="nav_bar_height">48dp</dimen>
+	<dimen name="tail_bar_height">48dp</dimen>
+	<dimen name="text_size_main_tab">14sp</dimen>
+	<dimen name="padding_icon">3dp</dimen>
+
+	<!-- HomeScreen -->
+	<dimen name="lv_homefeed_margin_right">0dp</dimen>
+	<dimen name="lv_homefeed_margin_left">0dp</dimen>
+
+	<!--Text size-->
+	<dimen name="ts_6">10sp</dimen>
+	<dimen name="ts_10">10sp</dimen>
+	<dimen name="ts_12">12sp</dimen>
+	<dimen name="ts_14">14sp</dimen>
+	<dimen name="ts_16">16sp</dimen>
+	<dimen name="ts_18">18sp</dimen>
+	<dimen name="ts_20">20sp</dimen>
+	<dimen name="ts_24">24sp</dimen>
+	<dimen name="ts_28">28sp</dimen>
+	<dimen name="ts_32">32sp</dimen>
+	<dimen name="ts_48">48sp</dimen>
+	<dimen name="size_small_avatar">48dp</dimen>
+
+
+	<!-- Segmented -->
+	<dimen name="segmented_horizontal_padding">4dp</dimen>
+	<dimen name="brand_product_size">100dp</dimen>
+	<dimen name="brand_width">148dp</dimen>
+	<dimen name="follow_button_size">80dp</dimen>
+	<dimen name="card_frame_width">240dp</dimen>
+	<dimen name="scroll_list_acction_class">200dp</dimen>
+	<dimen name="card_frame_height">150dp</dimen>
+	<dimen name="progress_frame">80dp</dimen>
+	<dimen name="height_item_invite">80dp</dimen>
+
+	<dimen name="common_padding_large">15.0dip</dimen>
+	<dimen name="common_padding_medium">10.0dip</dimen>
+	<dimen name="common_padding_small">5.0dip</dimen>
+	<dimen name="icon_size">20dp</dimen>
+    <dimen name="dip_100">100dp</dimen>
+    <dimen name="dip_50">50dp</dimen>
+
+	<dimen name="notification_right_side_padding_top">4dp</dimen>
+	<dimen name="abc_switch_padding">3dp</dimen>
+	<dimen name="notification_content_margin_start">8dp</dimen>
+	<dimen name="notification_main_column_padding_top">10dp</dimen>
+	<dimen name="notification_media_narrow_margin">12dp</dimen>
+    <dimen name="size_150dp">150dp</dimen>
+    <dimen name="size_75dp">75dp</dimen>
+	<dimen name="dip_15">15dp</dimen>
+    <dimen name="dip_120">120dp</dimen>
+</resources>

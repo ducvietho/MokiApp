@@ -1,0 +1,224 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context="com.example.ducvietho.moki.screen.activities.product_seller.ProductSellerActivity">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@android:color/white"
+        android:paddingRight="10.0dip">
+
+        <RelativeLayout
+            android:layout_width="40.0dip"
+            android:layout_height="40.0dip">
+
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/imgLeft"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:background="@drawable/icon_back"
+                android:scaleType="centerCrop"
+                app:civ_border_color="@color/red_dark"
+                app:civ_border_width="1.0dip" />
+
+            <LinearLayout
+                android:id="@+id/left_avatar_view"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:orientation="vertical" />
+        </RelativeLayout>
+
+        <LinearLayout
+            android:id="@+id/llMessage"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:orientation="horizontal"
+            android:padding="10dip"
+           >
+
+            <com.example.ducvietho.moki.utils.customview.FontTextView
+                android:id="@+id/tv_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:textAllCaps="false"
+                android:textColor="@color/red_dark"
+                android:textSize="@dimen/ts_16" />
+
+        </LinearLayout>
+    </RelativeLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp"
+        android:background="@color/red_dark" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dip_160"
+       >
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dip_140"
+            android:background="@drawable/prof_bg" />
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dip_140"
+            android:alpha="0.3"
+            android:background="@android:color/black" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center_horizontal"
+            android:orientation="vertical">
+
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/img_avatar"
+                android:layout_width="@dimen/dip_60"
+                android:layout_height="@dimen/dip_60"
+                android:src="@drawable/icon_no_avatar"
+                android:layout_marginTop="@dimen/dip_15"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dip_40"
+                android:orientation="horizontal"
+                android:layout_marginTop="@dimen/dip_5">
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:gravity="right"
+                    android:orientation="vertical"
+                   >
+
+                    <com.example.ducvietho.moki.utils.customview.FontTextView
+                        android:id="@+id/tv_products"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/dip_20"
+                        android:layout_marginRight="@dimen/dip_26"
+                        android:gravity="right"
+                        android:textColor="@android:color/white"
+                        android:textSize="@dimen/ts_14" />
+
+                    <com.example.ducvietho.moki.utils.customview.FontTextView
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/dip_20"
+                        android:layout_marginRight="@dimen/dip_10"
+                        android:gravity="right"
+                        android:text="Sản phẩm"
+                        android:textColor="@android:color/white"
+                        android:textSize="@dimen/ts_14" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+
+                    <com.example.ducvietho.moki.utils.customview.FontTextView
+                        android:id="@+id/tv_point"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/dip_20"
+                        android:layout_marginLeft="@dimen/dip_20"
+                        android:gravity="left"
+
+                        android:textColor="@android:color/white"
+                        android:textSize="@dimen/ts_14" />
+
+                    <com.example.ducvietho.moki.utils.customview.FontTextView
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/dip_20"
+                        android:layout_marginLeft="@dimen/dip_10"
+                        android:gravity="left"
+                        android:text="Điểm"
+                        android:textColor="@android:color/white"
+                        android:textSize="@dimen/ts_14" />
+                </LinearLayout>
+
+            </LinearLayout>
+            <ImageView
+                android:layout_width="@dimen/dip_160"
+                android:layout_height="@dimen/dip_30"
+                android:layout_alignParentBottom="true"
+                android:background="@drawable/bg_unfollow"
+                android:layout_marginTop="@dimen/dip_5"/>
+        </LinearLayout>
+
+    </RelativeLayout>
+    <com.example.ducvietho.moki.utils.customview.FontTextView
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dip_50"
+        android:layout_marginRight="@dimen/dip_20"
+        android:layout_marginLeft="@dimen/dip_20"
+        android:textColor="@android:color/darker_gray"
+        android:paddingLeft="@dimen/dip_15"
+        android:layout_marginTop="@dimen/dip_15"
+        android:gravity="center_vertical"
+        android:text="Chưa có thông tin "
+        android:background="@drawable/border_background_textview"/>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dip_30"
+        android:background="@drawable/border_background_red"
+        android:layout_marginLeft="@dimen/dip_10"
+        android:layout_marginRight="@dimen/dip_10"
+        android:layout_marginTop="@dimen/dip_20"
+        android:orientation="horizontal">
+        <com.example.ducvietho.moki.utils.customview.FontTextView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:text="Sản phẩm"
+            android:gravity="center"
+            android:textColor="@color/white"
+            android:id="@+id/tv_product"
+            android:textSize="@dimen/ts_14"
+            android:background="@drawable/background_textview"/>
+        <View
+            android:layout_width="1dp"
+            android:layout_height="match_parent"
+            android:background="@color/app_color"/>
+        <com.example.ducvietho.moki.utils.customview.FontTextView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:textSize="@dimen/ts_14"
+            android:text="Đang theo dõi"
+            android:id="@+id/tv_following"
+            android:textColor="@android:color/black"
+            android:gravity="center"/>
+        <View
+            android:layout_width="1dp"
+            android:layout_height="match_parent"
+            android:background="@color/app_color"/>
+        <com.example.ducvietho.moki.utils.customview.FontTextView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:textSize="@dimen/ts_14"
+            android:text="Người theo dõi"
+            android:id="@+id/tv_follower"
+            android:textColor="@android:color/black"
+            android:gravity="center"/>
+
+
+    </LinearLayout>
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="@dimen/dip_10"
+        android:id="@+id/frame_layout"/>
+</LinearLayout>

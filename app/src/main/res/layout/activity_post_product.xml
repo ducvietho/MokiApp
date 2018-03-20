@@ -1,0 +1,496 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:tools="http://schemas.android.com/tools"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              xmlns:app="http://schemas.android.com/apk/res-auto"
+              android:orientation="vertical"
+              android:background="@android:color/white"
+              tools:context="com.example.ducvietho.moki.screen.activities.postproduct.PostProductActivity">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dip_40"
+            android:orientation="horizontal">
+            <ImageView
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:id="@+id/imgLeft"
+                android:src="@drawable/icon_back_left"/>
+            <com.example.ducvietho.moki.utils.customview.FontTextView
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="6"
+                android:text="Thêm sản phẩm"
+                android:gravity="center"
+                android:textColor="@color/red"
+                android:textSize="@dimen/ts_16"/>
+            <ImageView
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:src="@drawable/btn_delete"/>
+        </LinearLayout>
+
+    <include layout="@layout/view_line_red"/>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dip_120"
+                android:orientation="horizontal">
+                <android.support.v7.widget.RecyclerView
+                    android:id="@+id/rec_image"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    />
+                <ImageView
+                    android:layout_width="@dimen/dip_80"
+                    android:layout_height="@dimen/dip_80"
+                    android:background="@drawable/img_camera_trigger"
+                    android:layout_marginLeft="@dimen/dip_8"
+                    android:layout_marginTop="@dimen/dip_20"
+                    android:id="@+id/img_camera"/>
+
+            </LinearLayout>
+
+            <include layout="@layout/view_line_gray" />
+
+            <com.example.ducvietho.moki.utils.customview.FontTextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="@dimen/spacing_medium"
+                android:text="Mô tả sản phẩm"
+
+                android:textColor="@color/black" />
+
+            <include layout="@layout/view_line_gray" />
+
+            <EditText
+                android:id="@+id/edtProductName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@null"
+                android:hint="Tên sản phẩm (Yêu cầu)"
+                android:imeOptions="actionNext"
+                android:maxLength="15"
+                android:padding="@dimen/spacing_medium"
+                android:textSize="@dimen/ts_14" />
+
+            <include layout="@layout/view_line_gray" />
+
+            <EditText
+                android:id="@+id/edtDescription"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@null"
+                android:gravity="top"
+                android:hint="Mô tả về sản phầm (Yêu cầu)"
+                android:inputType="textMultiLine"
+                android:minLines="3"
+                android:padding="@dimen/spacing_medium"
+                android:textSize="@dimen/ts_14" />
+
+            <include layout="@layout/view_line_gray" />
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="@dimen/spacing_medium">
+
+                <Switch
+                    android:id="@+id/swSellFast"
+                    android:layout_width="70dp"
+                    android:layout_height="50dp"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:checked="true"
+                    android:theme="@style/CustomSwitch" />
+
+                <com.example.ducvietho.moki.utils.customview.FontTextView
+                    android:id="@+id/tvSellFast"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Bán nhanh"
+                    android:textColor="@color/black"
+                    android:textStyle="bold" />
+
+                <com.example.ducvietho.moki.utils.customview.FontTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/tvSellFast"
+                    android:layout_toLeftOf="@id/swSellFast"
+                    android:text="Tự động bán khi có yêu cầu mua hoặc không" />
+            </RelativeLayout>
+
+            <include layout="@layout/view_line_gray" />
+
+            <RelativeLayout
+                android:id="@+id/layoutBargain"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="@dimen/spacing_medium">
+
+                <Switch
+                    android:id="@+id/swBargain"
+                    android:layout_width="70dp"
+                    android:layout_height="50dp"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:checked="false"
+                    android:theme="@style/CustomSwitch" />
+
+                <com.example.ducvietho.moki.utils.customview.FontTextView
+                    android:id="@+id/tvBargain"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Mặc cả"
+                    android:textColor="@color/black"
+                    android:textStyle="bold" />
+
+                <com.example.ducvietho.moki.utils.customview.FontTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/tvBargain"
+                    android:layout_toLeftOf="@id/swBargain"
+                    android:text="Cho phép người mua mặc cả giá hoặc không" />
+            </RelativeLayout>
+
+            <include layout="@layout/view_line_gray" />
+
+            <com.example.ducvietho.moki.utils.customview.FontTextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="@dimen/spacing_medium"
+                android:text="Chi tiết sản phẩm"
+                android:textColor="@color/black"
+                android:textStyle="bold" />
+
+            <include layout="@layout/view_line_gray" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:padding="@dimen/spacing_medium">
+
+                <ImageView
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:src="@drawable/category_icon" />
+
+                <com.example.ducvietho.moki.utils.customview.FontTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/spacing_normal"
+                    android:text="Danh mục"
+                    android:textColor="@color/black" />
+
+                <com.example.ducvietho.moki.utils.customview.FontTextView
+                    android:id="@+id/tvCategory"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/spacing_large"
+                    android:gravity="right"
+                    android:hint="Yêu cầu"
+                    android:textColor="@color/red" />
+
+            </LinearLayout>
+
+            <include layout="@layout/view_line_gray" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:padding="@dimen/spacing_medium">
+
+                <ImageView
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:src="@drawable/status_product_icon" />
+
+                <com.example.ducvietho.moki.utils.customview.FontTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/spacing_normal"
+                    android:text="Trạng thái"
+                    android:textColor="@color/black" />
+
+                <com.example.ducvietho.moki.utils.customview.FontTextView
+                    android:id="@+id/tvStatus"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/spacing_large"
+                    android:gravity="right"
+                    android:hint="Yêu cầu"
+                    android:textColor="@color/red" />
+
+            </LinearLayout>
+
+
+            <include layout="@layout/view_line_gray" />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:padding="@dimen/spacing_medium">
+
+                <ImageView
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:src="@drawable/weight_icon" />
+
+                <com.example.ducvietho.moki.utils.customview.FontTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/spacing_normal"
+                    android:text="Khối lượng"
+                    android:textColor="@color/black" />
+
+                <com.example.ducvietho.moki.utils.customview.FontTextView
+                    android:id="@+id/tvWeight"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/spacing_large"
+                    android:gravity="right"
+                    android:hint="Yêu cầu"
+                    android:textColor="@color/red" />
+
+            </LinearLayout>
+
+
+            <include layout="@layout/view_line_gray" />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:padding="@dimen/spacing_medium">
+
+                <ImageView
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:src="@drawable/size" />
+
+                <com.example.ducvietho.moki.utils.customview.FontTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/spacing_normal"
+                    android:text="Kích thước"
+                    android:textColor="@color/black" />
+
+                <com.example.ducvietho.moki.utils.customview.FontTextView
+                    android:id="@+id/tvSize"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/spacing_large"
+                    android:gravity="right"
+                    android:hint="Yêu cầu"
+                    android:textColor="@color/red" />
+
+            </LinearLayout>
+
+
+            <include layout="@layout/view_line_gray" />
+
+
+            <com.example.ducvietho.moki.utils.customview.FontTextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="@dimen/spacing_medium"
+                android:text="Vận chuyển"
+                android:textColor="@color/black"
+                android:textStyle="bold" />
+
+            <include layout="@layout/view_line_gray" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:padding="@dimen/spacing_medium">
+
+                <ImageView
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:src="@drawable/location_icon" />
+
+                <com.example.ducvietho.moki.utils.customview.FontTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/spacing_normal"
+                    android:text="Nơi bán"
+                    android:textColor="@color/black" />
+
+                <com.example.ducvietho.moki.utils.customview.FontTextView
+                    android:id="@+id/tvSellAddress"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/spacing_large"
+                    android:gravity="right"
+                    android:hint="Yêu cầu"
+                    android:textColor="@color/red" />
+
+            </LinearLayout>
+
+
+            <include layout="@layout/view_line_gray" />
+
+            <com.example.ducvietho.moki.utils.customview.FontTextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="@dimen/spacing_medium"
+                android:text="Giá"
+                android:textColor="@color/black"
+                android:textStyle="bold" />
+
+            <include layout="@layout/view_line_gray" />
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:padding="@dimen/spacing_medium">
+
+                <ImageView
+                    android:layout_width="22dp"
+                    android:layout_height="22dp"
+                    android:src="@drawable/product_new_price" />
+
+                <com.example.ducvietho.moki.utils.customview.FontTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/spacing_normal"
+                    android:text="Giá bán (VNĐ)"
+                    android:textColor="@color/black" />
+
+                <EditText
+                    android:id="@+id/edtPrice"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/spacing_large"
+                    android:background="@null"
+                    android:gravity="right"
+                    android:hint="Giá không tính vận chuyển"
+                    android:inputType="number"
+                    android:maxLength="15"
+                    android:imeOptions="actionDone"
+                    android:textColor="@color/red"
+                    android:textSize="@dimen/ts_14" />
+
+            </LinearLayout>
+
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/spacing_large"
+                android:background="@color/gray" />
+
+
+            <LinearLayout
+                android:id="@+id/layoutShip"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:padding="@dimen/spacing_medium">
+
+                <ImageView
+                    android:layout_width="22dp"
+                    android:layout_height="22dp"
+                    android:src="@drawable/product_price_total" />
+
+                <com.example.ducvietho.moki.utils.customview.FontTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/spacing_normal"
+                    android:text="Phí dịch vụ"
+                    android:textColor="@color/black" />
+
+                <com.example.ducvietho.moki.utils.customview.FontTextView
+                    android:id="@+id/edtShip"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/spacing_large"
+                    android:background="@null"
+                    android:gravity="right"
+                    android:hint="Miễn phí với bản beta"
+                    android:inputType="number"
+                    android:maxLength="15"
+                    android:textColor="@color/red"
+                    android:textSize="@dimen/ts_14" />
+
+            </LinearLayout>
+
+            <include layout="@layout/view_line_gray" />
+
+            <LinearLayout
+                android:id="@+id/layoutTotal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:padding="@dimen/spacing_medium">
+
+                <ImageView
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:src="@drawable/product_price_total" />
+
+                <com.example.ducvietho.moki.utils.customview.FontTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/spacing_normal"
+                    android:text="Tổng tiền (VNĐ)"
+                    android:textColor="@color/black" />
+
+                <com.example.ducvietho.moki.utils.customview.FontTextView
+                    android:id="@+id/tvTotalPrice"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/spacing_large"
+                    android:gravity="right"
+                    android:textColor="@color/red" />
+
+            </LinearLayout>
+
+            <include layout="@layout/view_line_gray" />
+
+            <com.example.ducvietho.moki.utils.customview.FontTextView
+                android:id="@+id/tvTerm"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="@dimen/spacing_medium"
+                android:text="Bạn hãy chắc chắn đọc Các điều khoản sử dụng của MOKI. Chúng tôi không cho phép mua bán những mặt hàng nằm trong danh mục mà pháp luật cấm"
+                android:textColor="@color/black"
+                android:textSize="@dimen/ts_14" />
+
+
+            <com.example.ducvietho.moki.utils.customview.AutoHighLightTextview
+                android:id="@+id/tvPostProduct"
+                android:layout_width="match_parent"
+                android:layout_height="45dp"
+                android:layout_marginBottom="@dimen/spacing_large_x"
+                android:layout_marginLeft="@dimen/spacing_large_x"
+                android:layout_marginRight="@dimen/spacing_large_x"
+                android:layout_marginTop="@dimen/spacing_medium"
+                android:textSize="@dimen/ts_14"
+                android:background="@drawable/background_red_dark"
+                android:gravity="center"
+                android:text="Đăng sản phẩm"
+                android:textColor="@color/white" />
+
+        </LinearLayout>
+
+
+    </ScrollView>
+
+</LinearLayout>

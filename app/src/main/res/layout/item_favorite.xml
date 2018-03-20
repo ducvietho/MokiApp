@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dip_80"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:layout_width="@dimen/dip_60"
+            android:layout_height="@dimen/dip_60"
+            android:layout_marginLeft="@dimen/dip_10"
+            android:layout_marginTop="@dimen/dip_10"
+            android:id="@+id/img_product"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal">
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="@dimen/dip_16"
+                android:layout_weight="8"
+                android:orientation="vertical">
+
+                <com.example.ducvietho.moki.utils.customview.FontTextView
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/dip_40"
+                    android:gravity="center_vertical"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/ts_14"
+                    android:id="@+id/tv_name"/>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal">
+                    <com.example.ducvietho.moki.utils.customview.FontTextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:textSize="@dimen/ts_14"
+                        android:id="@+id/tv_price"
+                        android:textColor="@color/app_color"
+                        android:gravity="center_vertical"/>
+                    <com.example.ducvietho.moki.utils.customview.FontTextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:textSize="@dimen/ts_14"
+                        android:text="VNĐ"
+                        android:layout_marginLeft="@dimen/dip_4"
+                        android:textColor="@color/app_color"
+                        android:gravity="center_vertical"/>
+                </LinearLayout>
+            </LinearLayout>
+
+            <ImageView
+                android:layout_width="@dimen/dip_12"
+                android:layout_height="@dimen/dip_20"
+                android:layout_gravity="center"
+                android:layout_marginRight="@dimen/dip_16"
+                android:background="@drawable/icon_nextarrow_normal" />
+        </LinearLayout>
+    </LinearLayout>
+    <include layout="@layout/view_line_gray"/>
+
+</LinearLayout>

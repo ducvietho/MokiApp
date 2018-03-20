@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:paddingBottom="@dimen/common_padding_small">
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/img_avatar"
+            android:layout_width="@dimen/user_avatar_size_small_1"
+            android:layout_height="@dimen/user_avatar_size_small_1"
+            android:src="@drawable/icon_no_avatar"
+            app:civ_border_color="@color/app_color"
+            app:civ_border_width="@dimen/dip_1"/>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/user_avatar_size_small_1"
+            android:layout_toRightOf="@id/img_avatar"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/tv_message"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dip"
+                android:layout_marginRight="8dp"
+                android:background="@drawable/background_message_chat"
+                android:padding="5dip"
+                android:text="Demo"
+                android:textColor="@color/black"
+                android:textSize="@dimen/common_text_size_normal" />
+        </LinearLayout>
+    </LinearLayout>
+
+</RelativeLayout>

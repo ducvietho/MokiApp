@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="45dp"
+    android:background="@drawable/tutorial_background_white">
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_alignParentBottom="true"
+        android:background="@color/red_dark"
+        android:scaleY="0.6" />
+
+    <com.example.ducvietho.moki.utils.customview.AutoHighLightImageview
+        android:id="@+id/imgMenu"
+        android:layout_width="45dp"
+        android:layout_height="match_parent"
+        android:padding="@dimen/padding_icon"
+        android:src="@drawable/icon_menu" />
+
+    <RelativeLayout
+        android:id="@+id/layoutHome"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_toRightOf="@id/imgMenu"
+        android:visibility="visible">
+
+
+        <ImageView
+            android:id="@+id/imgAppName"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:padding="@dimen/padding_icon"
+            android:src="@drawable/icon_app_name" />
+
+        <com.example.ducvietho.moki.utils.customview.AutoHighLightImageview
+            android:id="@+id/imgChangeView"
+            android:layout_width="45dp"
+            android:layout_height="match_parent"
+            android:layout_alignParentRight="true"
+            android:padding="@dimen/padding_icon"
+            android:src="@drawable/tutorial_change_viewmode" />
+
+        <com.example.ducvietho.moki.utils.customview.AutoHighLightImageview
+            android:id="@+id/imgNotify"
+            android:layout_width="45dp"
+            android:layout_height="match_parent"
+            android:layout_toLeftOf="@id/imgChangeView"
+            android:padding="@dimen/padding_icon"
+            android:src="@drawable/icon_alert" />
+
+        <com.example.ducvietho.moki.utils.customview.FontTextView
+            android:id="@+id/tvBadgeNotification"
+            android:layout_width="@dimen/dip_22"
+            android:layout_height="@dimen/dip_22"
+            android:layout_marginLeft="-28dp"
+            android:layout_marginTop="@dimen/dip_4"
+            android:layout_toRightOf="@id/imgNotify"
+            android:background="@drawable/red_radius"
+            android:gravity="center"
+            android:text="0"
+            android:textColor="@color/white"
+            android:textSize="12sp"
+            android:visibility="gone"/>
+
+        <com.example.ducvietho.moki.utils.customview.AutoHighLightImageview
+            android:id="@+id/imgMessage"
+            android:layout_width="45dp"
+            android:layout_height="match_parent"
+            android:layout_toLeftOf="@id/imgNotify"
+            android:padding="@dimen/padding_icon"
+            android:src="@drawable/ic_icon_message" />
+
+        <com.example.ducvietho.moki.utils.customview.FontTextView
+            android:id="@+id/tvBadgeMessage"
+            android:layout_width="@dimen/dip_22"
+            android:layout_height="@dimen/dip_22"
+            android:layout_marginLeft="-28dp"
+            android:layout_marginTop="@dimen/dip_4"
+            android:layout_toRightOf="@id/imgMessage"
+            android:background="@drawable/red_radius"
+            android:gravity="center"
+            android:text="0"
+            android:textColor="@color/white"
+            android:textSize="12sp"
+            android:visibility="gone"/>
+
+        <com.example.ducvietho.moki.utils.customview.AutoHighLightImageview
+            android:id="@+id/imgSearch"
+            android:layout_width="45dp"
+            android:layout_height="match_parent"
+            android:layout_toLeftOf="@id/imgMessage"
+            android:padding="@dimen/padding_icon"
+            android:src="@drawable/icon_search_on_bar" />
+    </RelativeLayout>
+
+
+    <com.example.ducvietho.moki.utils.customview.AutoHighLightImageview
+        android:id="@+id/imgMore"
+        android:layout_width="45dp"
+        android:layout_height="match_parent"
+        android:layout_alignParentRight="true"
+        android:padding="@dimen/padding_icon"
+        android:visibility="invisible"
+        android:src="@drawable/icon_more" />
+
+
+    <com.example.ducvietho.moki.utils.customview.FontTextView
+        android:id="@+id/tvTitle"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_toRightOf="@id/imgMenu"
+        android:layout_toLeftOf="@id/imgMore"
+        android:gravity="center"
+        android:text="Moki"
+        android:textColor="@color/red_dark"
+        android:textSize="@dimen/ts_18"
+        android:visibility="gone" />
+</RelativeLayout>

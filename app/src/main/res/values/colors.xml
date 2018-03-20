@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#3F51B5</color>
+    <color name="colorPrimaryDark">#42221f1f</color>
+    <color name="colorAccent">#FF4081</color>
+    <color name="btn_background">#1c1c1c</color>
+    <color name="gray_light">#ffefeff4</color>
+    <color name="textBtn">#4a4a4a</color>
+    <color name="colorDark">#3c3c3c</color>
+    <color name="default_title_indicator_text_color">#bbffffff</color>
+    <!-- App Theme -->
+    <color name="zk_black">#000000</color>
+    <color name="zk_white">#ffffff</color>
+    <color name="zk_blue">#51bbeb</color>
+    <color name="zk_main">#2b7bfc</color>
+    <color name="primary_dark">#ffdddddd</color>
+    <!-- App's Colors -->
+    <color name="bg_navigation_bar">#0092ff</color>
+    <color name="bg_navigation_bottom">#11ffffff</color>
+    <color name="bg_navigation_bottom_selected">#131313</color>
+
+    <color name="white">#FFFFFF</color>
+    <color name="black">#000000</color>
+    <color name="red_1">#c11c1c</color>
+
+
+    <color name="black_03">#0D000000</color>
+    <color name="black_10">#19000000</color>
+    <color name="black_30">#4C000000</color>
+    <color name="black_40">#66000000</color>
+    <color name="black_50">#80000000</color>
+    <color name="black_60">#99000000</color>
+    <color name="black_80">#C8000000</color>
+
+    <color name="transparent">#00000000</color>
+    <color name="border_rounded">#e0e0e0</color>
+    <color name="background_white">#F7F7F7</color>
+
+    <color name="black_overlay">#66000000</color>
+
+    <color name="gray">#efeff4</color>
+    <color name="green">#7cd97c</color>
+    <color name="red_dark">#ffd8202a</color>
+    <color name="pink">#FFCCFF</color>
+    <color name="blue_10">#6699CC</color>
+    <color name="green_10">#00ff66</color>
+    <color name="shadow">#2a868080</color>
+    <color name="app_color">#ffd8202a</color>
+    <color name="orange">#fffea702</color>
+    <color name="red">#f32828</color>
+    <color name="red_btn_bg_color">#dd6b55</color>
+    <color name="red_btn_bg_pressed_color">#cd5b55</color>
+    <color name="red_light">#ff513b</color>
+
+    <color name="blue_btn_bg_color">#aedef4</color>
+    <color name="blue_btn_bg_pressed_color">#96bfd2</color>
+    <color name="blue_status">#93c4d8</color>
+
+    <color name="gray_light_transparency">#ccefeff4</color>
+    <color name="gray_main">#ff4b5165</color>
+    <color name="gray_status">#8b8b8b</color>
+</resources>

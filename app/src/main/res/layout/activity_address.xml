@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@android:color/white"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context="com.example.ducvietho.moki.screen.activities.address.AddressActivity">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dip_40"
+            android:orientation="horizontal">
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/imgLeft"
+                android:layout_width="@dimen/dip_40"
+                android:layout_height="fill_parent"
+                android:background="@drawable/icon_back"
+                android:scaleType="centerCrop"
+                app:civ_border_color="@color/red_dark"
+                app:civ_border_width="1.0dip" />
+
+            <com.example.ducvietho.moki.utils.customview.FontTextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="Địa Chỉ"
+                android:layout_gravity="center"
+                android:textAllCaps="false"
+                android:textColor="@color/red_dark"
+                android:textSize="@dimen/ts_16" />
+        </LinearLayout>
+        <include layout="@layout/view_line_red"/>
+        <android.support.v7.widget.RecyclerView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/rec_address"
+            android:layout_marginBottom="@dimen/dip_60"/>
+    </LinearLayout>
+    <com.example.ducvietho.moki.utils.customview.AutoHighLightTextview
+        android:id="@+id/tvPostProduct"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dip_45"
+        android:layout_marginBottom="@dimen/dip_10"
+        android:layout_marginLeft="@dimen/dip_15"
+        android:layout_marginRight="@dimen/dip_15"
+        android:textSize="@dimen/ts_16"
+        android:background="@drawable/background_red_dark"
+        android:gravity="center"
+        android:text="Thêm địa chỉ mới"
+        android:textColor="@color/white"
+        android:layout_alignParentBottom="true"/>
+
+</RelativeLayout>

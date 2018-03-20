@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              xmlns:app="http://schemas.android.com/apk/res-auto"
+              android:gravity="bottom"
+              >
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+
+        android:layout_alignParentBottom="true">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/gray_light"
+            android:orientation="horizontal">
+            <TextView
+                android:layout_width="0.0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="2.0"
+                android:id="@+id/tvSize"/>
+            <Button
+                android:id="@+id/btComplete"
+                android:layout_width="0.0dip"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="@dimen/common_padding_medium"
+                android:layout_weight="1.0"
+                android:background="@android:color/transparent"
+                android:gravity="center|right"
+                android:padding="@dimen/common_padding_small"
+                android:text="Xong"
+                android:textAllCaps="false"
+                android:textColor="@color/red_dark"
+                android:textStyle="bold" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:background="@android:color/white">
+
+            <io.blackbox_vision.wheelview.view.WheelView
+                android:id="@+id/wheelWide"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/dip_160"
+                android:layout_weight="1.0"
+                app:canLoop="true"
+                app:centerTextColor="#ff000000"
+                app:drawItemCount="7"
+                app:initPosition="3"
+                app:lineColor="@color/app_color"
+                app:textSize="@dimen/ts_16"
+                app:topBottomTextColor="@android:color/black" />
+
+            <io.blackbox_vision.wheelview.view.WheelView
+                android:id="@+id/wheelLong"
+                android:layout_width="0.0dip"
+                android:layout_height="@dimen/dip_160"
+                android:layout_weight="1.0"
+                app:canLoop="true"
+                app:centerTextColor="#ff000000"
+                app:drawItemCount="7"
+                app:initPosition="3"
+                app:lineColor="@color/app_color"
+                app:textSize="@dimen/ts_16"
+                app:topBottomTextColor="@android:color/black" />
+
+            <io.blackbox_vision.wheelview.view.WheelView
+                android:id="@+id/wheelHigh"
+                android:layout_width="0.0dip"
+                android:layout_height="@dimen/dip_160"
+                android:layout_weight="1.0"
+                app:canLoop="true"
+                app:centerTextColor="#ff000000"
+                app:drawItemCount="7"
+                app:initPosition="3"
+                app:lineColor="@color/app_color"
+                app:textSize="@dimen/ts_16"
+                app:topBottomTextColor="@android:color/black" />
+        </LinearLayout>
+    </LinearLayout>
+
+
+</RelativeLayout>

@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "1045334137229",
+    "firebase_url": "https://camera-59d82.firebaseio.com",
+    "project_id": "camera-59d82",
+    "storage_bucket": "camera-59d82.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1045334137229:android:91bbeb51f3c396d3",
+        "android_client_info": {
+          "package_name": "com.example.ducvietho.moki"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1045334137229-7soaeiolrsnigtp1nnuksnj7c95f702s.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.ducvietho.moki",
+            "certificate_hash": "01eec3128bd164880f9acbd4f18e04ca61bcbca3"
+          }
+        },
+        {
+          "client_id": "1045334137229-cfim3gnd5m0av7ci8qmm7619tqgedr7b.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyArzcoB74I0ETnsqBYBwkjA1Z-NRm_1_8o"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1045334137229-cfim3gnd5m0av7ci8qmm7619tqgedr7b.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

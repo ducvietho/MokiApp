@@ -1,0 +1,49 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+             xmlns:tools="http://schemas.android.com/tools"
+             android:layout_width="match_parent"
+             android:layout_height="match_parent"
+             xmlns:app="http://schemas.android.com/apk/res-auto"
+    >
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+            <android.support.v4.widget.SwipeRefreshLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:id="@+id/swipe_refresh">
+                <android.support.v7.widget.RecyclerView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:id="@+id/rec_catagory" />
+            </android.support.v4.widget.SwipeRefreshLayout>
+
+        </LinearLayout>
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:id="@+id/layout_no_product"
+    android:orientation="vertical"
+    android:gravity="center"
+    android:visibility="gone">
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:layout_width="@dimen/dip_80"
+        android:layout_height="@dimen/dip_80"
+        android:src="@drawable/no_image"
+        />
+    <com.example.ducvietho.moki.utils.customview.FontTextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="Danh sách trống"
+        android:layout_marginTop="@dimen/dip_10"
+        android:textSize="@dimen/ts_14"/>
+
+</LinearLayout>
+    </RelativeLayout>
+
+
+</FrameLayout>

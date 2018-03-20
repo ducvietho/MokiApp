@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/dip_50"
+    android:orientation="vertical">
+
+
+    <LinearLayout
+        android:id="@+id/layoutTop"
+        android:layout_width="match_parent"
+        android:layout_centerVertical="true"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:id="@+id/imgIconMenu"
+            android:layout_width="@dimen/dip_40"
+            android:layout_height="match_parent"
+            android:padding="@dimen/dip_10"
+            android:src="@drawable/sidemenu_icon_store_normal"
+           />
+
+        <com.example.ducvietho.moki.utils.customview.FontTextView
+            android:id="@+id/tvTitle"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center_vertical"
+            android:padding="@dimen/dip_10"
+            android:text="Trang chủ"
+            android:textColor="@color/black"
+            android:textSize="@dimen/ts_14" />
+
+        <ImageView
+            android:id="@+id/imgNextArrow"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginRight="@dimen/dip_10"
+            android:src="@drawable/ic_next" />
+    </LinearLayout>
+
+
+    <include
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/layoutTop"
+        layout="@layout/view_line_gray" />
+
+</RelativeLayout>

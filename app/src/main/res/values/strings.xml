@@ -1,0 +1,67 @@
+<resources>
+    <string name="app_name">Moki</string>
+    <string name="startup_tutorial_page1">"Phù hợp với thói quen mua bán của mẹ
+trong thời gian mang thai, nuôi con nhỏ"</string>
+    <string name="startup_tutorial_page2">"Tiện lợi - Không lo tìm người vận chuyển,
+thu tiền, xác nhận đơn hàng."</string>
+    <string name="startup_tutorial_page3">"Đảm bảo thanh toán.
+Giảm thiểu rủi ro lừa đảo."</string>
+    <string name="choose">Chọn</string>
+    <string name="exit">Thoát</string>
+    <string name="error">Lỗi</string>
+    <string name="connect_timeout">Kết nối không thành công. Bạn muốn thử lại</string>
+    <string name="error_msg_internet_not_connect">Kiểm tra kết nối Internet</string>
+    <string name="invalid_token">Có ai đó đăng nhập vào tài khoản của bạn từ một thiết bị khác</string>
+
+    <string name="see_all">Xem tất cả đánh giá</string>
+    <string name="following">Đang theo dõi</string>
+    <string name="nguoi_theo_doi">Người theo dõi</string>
+
+
+    <string name="open">Open</string>
+    <string name="title_activity_register">Đăng Ký MOKI</string>
+    <string name="register_desc">MOKI cần được kích hoạt bằng số điện thoại (Số điện thoại của bạn sẽ được bảo mật)</string>
+    <string name="phone_number_hint">Số điện thoại</string>
+    <string name="password_hint">Mật khẩu</string>
+    <string name="register_button_text">Đăng ký</string>
+    <string name="register_eula">Bằng việc ấn nút Đăng ký, bạn đã đồng ý với các điều khoản sử dụng của MOKI</string>
+    <string name="button_had_acc">Đã có tài khoản</string>
+    <string name="button_cancel_signup">Bỏ qua</string>
+    <string name="buy_product">Mua</string>
+    <string name="edit_post">Sửa</string>
+    <string name="favorites">Danh Sách Yêu Thích</string>
+    <string name="comment_slogan">Hãy bình luận một các văn minh!\n
+    Tất cả các bình luận của bạn đều đang được theo dõi</string>
+    <string name="message">Tin nhắn</string>
+    <string name="just_now">vừa xong</string>
+    <string name="minutes_ago">phút trước</string>
+    <string name="a_hour_ago">1 tiếng trước</string>
+    <string name="hours_ago">tiếng trước</string>
+    <string name="yesterday">hôm qua</string>
+    <string name="days_ago">ngày trước</string>
+    <string name="week_ago">1 tuần trước</string>
+    <string name="weeks_ago">tuần trước</string>
+    <string name="month_ago">1 tháng trước</string>
+    <string name="months_ago">tháng trước</string>
+    <string name="year_ago">1 năm trước</string>
+    <string name="years_ago">năm trước</string>
+    <string name="list_sell">Danh Sách Bán</string>
+    <string name="list_buy">Danh Sách Mua</string>
+    <string name="down_price">Trả giá</string>
+    <string name="buy_now">Mua ngay</string>
+    <string name="no_comment">Trở thành người bình luận đầu tiên</string>
+    <string name="commented">Xem và viết bình luận</string>
+    <string name="_typing">%s đang nhập văn bản</string>
+    <string name="sending">đang gửi</string>
+    <string name="nothing_notification">Không có thông báo nào</string>
+    <string name="not_login">Bạn cần đăng nhập để sử dụng chức năng\n này</string>
+    <string name="close">Đóng</string>
+    <string name="purchase_news">Tin Giao Dịch</string>
+    <string name="notification">Thông Báo</string>
+    <string name="free">\"Miễn phí\"</string>
+    <string name="comment">Hãy bình luận một cách văn minh!\n Tất cả bình luận của bạn đều đang được theo dõi</string>
+    <string name="mess_instruct">"Ấn vào Mua ngay để mua sản phẩm này\nhoặc \nTrả giá với người bán để có giá tốt hơn"</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+</resources>

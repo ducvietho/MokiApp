@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              android:layout_marginLeft="@dimen/dip_20"
+              android:layout_marginRight="@dimen/dip_20"
+              android:background="@android:color/white"
+              android:orientation="vertical"
+              >
+
+    <ImageView
+        android:layout_marginTop="@dimen/dip_10"
+        android:layout_width="@dimen/dip_40"
+        android:layout_height="@dimen/dip_40"
+        android:layout_gravity="center"
+        android:src="@drawable/close_icon"
+        android:tint="@color/red" />
+
+    <android.support.v7.widget.AppCompatTextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:paddingTop="@dimen/dip_10"
+        android:text="Cảnh Báo"
+        android:textColor="@color/black"
+        android:textSize="@dimen/ts_20" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="Tài khoản không chính xác"
+        android:textSize="@dimen/ts_14" />
+
+    <Button
+        android:id="@+id/btn_close"
+        android:layout_width="wrap_content"
+        android:layout_height="@dimen/dip_35"
+        android:layout_gravity="center"
+        android:layout_margin="@dimen/dip_10"
+        android:background="@drawable/blue_button_background"
+        android:text="Đóng"
+        android:textColor="@color/white" />
+</LinearLayout>
