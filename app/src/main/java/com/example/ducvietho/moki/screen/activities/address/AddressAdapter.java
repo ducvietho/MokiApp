@@ -70,7 +70,7 @@ public class AddressAdapter extends RecyclerView.Adapter<AddressAdapter.ViewHold
 
         public void bind(final OrderAddress address, int position) {
             SharedPreferences preferences = ((Activity) itemView.getContext()).getSharedPreferences(Constants.PREF_ADDRESS, Context.MODE_PRIVATE);
-            int choice = preferences.getInt(Constants.EXTRA_ADDRESS, -1);
+            int choice = preferences.getInt(Constants.EXTRA_ADDRESS_POS, -1);
             if (choice > -1) {
                 if (choice == position) {
                     mImgTick.setVisibility(View.VISIBLE);

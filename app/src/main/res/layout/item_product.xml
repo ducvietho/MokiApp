@@ -2,16 +2,15 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:orientation="vertical"
-    android:layout_marginLeft="@dimen/dip_4"
-    android:layout_marginRight="@dimen/dip_4">
+    android:orientation="vertical">
 
     <LinearLayout
         android:id="@+id/product_left"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_weight="1"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="@dimen/dip_5"
+        android:layout_marginRight="@dimen/dip_5"
         android:layout_marginLeft="@dimen/dip_5"
         android:background="@color/white"
         android:orientation="vertical"
@@ -23,20 +22,19 @@
         <ImageView
             android:id="@+id/img_product"
             android:layout_width="match_parent"
-            android:layout_height="150dp"
+            android:layout_height="@dimen/dip_170"
             android:scaleType="centerCrop"
 
             android:src="@drawable/no_image" />
 
-        <TextView
+        <com.example.ducvietho.moki.utils.customview.FontTextView
             android:id="@+id/title"
             android:layout_width="match_parent"
             android:layout_height="40dp"
             android:layout_gravity="center"
             android:gravity="center"
             android:textColor="@color/black"
-
-            android:textSize="15sp" />
+            android:textSize="@dimen/ts_14" />
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -56,7 +54,7 @@
                     android:padding="3dp"
                     android:src="@drawable/grid_heart_off" />
 
-                <TextView
+                <com.example.ducvietho.moki.utils.customview.FontTextView
                     android:id="@+id/like"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -69,7 +67,7 @@
                     android:padding="3dp"
                     android:src="@drawable/grid_comment" />
 
-                <TextView
+                <com.example.ducvietho.moki.utils.customview.FontTextView
                     android:id="@+id/comment"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -83,7 +81,7 @@
                 android:layout_weight="1"
                 android:gravity="end">
 
-                <TextView
+                <com.example.ducvietho.moki.utils.customview.FontTextView
                     android:id="@+id/price"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"

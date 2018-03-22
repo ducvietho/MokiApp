@@ -2,6 +2,7 @@ package com.example.ducvietho.moki.screen.activities.category;
 
 import android.content.Context;
 import android.content.Intent;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.GridLayoutManager;
@@ -30,6 +31,8 @@ public class CategoryActivity extends AppCompatActivity implements View.OnClickL
     CircleImageView back;
     @BindView(R.id.rec_category)
     RecyclerView mRecyclerView;
+    @BindView(R.id.swipe_refresh)
+    SwipeRefreshLayout mRefreshLayout;
     private CategoryDataRepository mRepository;
     private CompositeDisposable mDisposable;
     public static Intent getIntent(Context context){
@@ -45,6 +48,12 @@ public class CategoryActivity extends AppCompatActivity implements View.OnClickL
         mDisposable = new CompositeDisposable();
         getCategory();
         back.setOnClickListener(this);
+        mRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                getCategory();
+            }
+        });
     }
 
     @Override
@@ -62,6 +71,7 @@ public class CategoryActivity extends AppCompatActivity implements View.OnClickL
                 .mainThread()).subscribeWith(new DisposableObserver<List<Category>>() {
             @Override
             public void onNext(List<Category> value) {
+                mRefreshLayout.setRefreshing(false);
                 GridLayoutManager manager = new GridLayoutManager(CategoryActivity.this,1);
                 mRecyclerView.setLayoutManager(manager);
                 CatagoryRecyclerAdapter adapter = new CatagoryRecyclerAdapter(value,CategoryActivity.this);

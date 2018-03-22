@@ -68,6 +68,12 @@
         </activity>
         <activity android:name=".screen.activities.address.AddressActivity">
         </activity>
+        <activity android:name=".screen.activities.insert_address.InsertAddressActivity">
+        </activity>
+        <activity android:name=".screen.activities.district.DistrictActivity">
+        </activity>
+        <activity android:name=".screen.activities.village.VillageActivity">
+        </activity>
     </application>
 
 </manifest>

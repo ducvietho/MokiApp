@@ -80,7 +80,6 @@
             app:scrollable_defaultCloseUp="true"
             app:scrollable_friction="0.075"
             app:scrollable_scrollerFlywheel="false">
-
             <LinearLayout
                 android:id="@+id/header"
                 android:layout_width="match_parent"
@@ -159,7 +158,7 @@
                 android:id="@+id/recycle_chat"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                />
+                android:layout_marginBottom="@dimen/dip_56"/>
 
         </ru.noties.scrollable.ScrollableLayout>
 

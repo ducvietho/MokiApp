@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.GridLayoutManager;
@@ -16,10 +17,12 @@ import com.example.ducvietho.moki.data.model.OrderAddress;
 import com.example.ducvietho.moki.data.resource.remote.AddressDataRepository;
 import com.example.ducvietho.moki.data.resource.remote.api.AddressRemoteDataResource;
 import com.example.ducvietho.moki.data.resource.remote.api.service.MokiServiceClient;
+import com.example.ducvietho.moki.screen.activities.insert_address.InsertAddressActivity;
 import com.example.ducvietho.moki.screen.activities.postproduct.PostProductActivity;
 import com.example.ducvietho.moki.utils.Constants;
 import com.example.ducvietho.moki.utils.OnItemtClick;
 import com.example.ducvietho.moki.utils.UserSession;
+import com.example.ducvietho.moki.utils.customview.AutoHighLightTextview;
 import com.example.ducvietho.moki.utils.dialog.DialogLoading;
 import com.google.gson.Gson;
 
@@ -35,10 +38,15 @@ import io.reactivex.observers.DisposableObserver;
 import io.reactivex.schedulers.Schedulers;
 
 public class AddressActivity extends AppCompatActivity implements View.OnClickListener, OnItemtClick<OrderAddress> {
+    private static final int REQUEST_CODE_ADD = 1;
     @BindView(R.id.imgLeft)
     CircleImageView mImageView;
     @BindView(R.id.rec_address)
     RecyclerView mRecyclerView;
+    @BindView(R.id.tvAdd)
+    AutoHighLightTextview mTextview;
+    @BindView(R.id.swipe_refresh)
+    SwipeRefreshLayout mRefreshLayout;
     private AddressAdapter mAdapter;
     private List<OrderAddress> mAddresses = new ArrayList<>();
     private UserSession mUserSession;
@@ -57,7 +65,27 @@ public class AddressActivity extends AppCompatActivity implements View.OnClickLi
         mDataRepository = new AddressDataRepository(new AddressRemoteDataResource(MokiServiceClient.getInstance()));
         mDisposable = new CompositeDisposable();
         mImageView.setOnClickListener(this);
+        mTextview.setOnClickListener(this);
         getAddress(mUserSession.getUserDetail().getId());
+        mRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                getAddress(mUserSession.getUserDetail().getId());
+            }
+        });
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if(requestCode==REQUEST_CODE_ADD){
+            if(resultCode==Activity.RESULT_OK){
+                String infor = data.getStringExtra(Constants.EXTRA_ADDRESS_ÌNFOR);
+                OrderAddress address = new Gson().fromJson(infor,OrderAddress.class);
+                mAddresses.add(address);
+                mAdapter.notifyDataSetChanged();
+            }
+        }
     }
 
     @Override
@@ -66,18 +94,22 @@ public class AddressActivity extends AppCompatActivity implements View.OnClickLi
             case R.id.imgLeft:
                 finish();
                 break;
+            case R.id.tvAdd:
+                startActivityForResult(new InsertAddressActivity().getIntent(AddressActivity.this),REQUEST_CODE_ADD);
+                break;
         }
 
     }
 
     @Override
     public void onClick(OrderAddress address) {
+        String add = new Gson().toJson(address);
         int position = mAddresses.indexOf(address);
         SharedPreferences.Editor editor = getSharedPreferences(Constants.PREF_ADDRESS,MODE_PRIVATE).edit();
-        editor.putInt(Constants.EXTRA_ADDRESS,position);
+        editor.putInt(Constants.EXTRA_ADDRESS_POS,position);
+        editor.putString(Constants.EXTRA_ADDRESS_ÌNFOR,add);
         editor.apply();
         Intent intent = getIntent();
-        String add = new Gson().toJson(address);
         intent.putExtra("address",add);
         setResult(Activity.RESULT_OK,intent);
         finish();
@@ -92,6 +124,7 @@ public class AddressActivity extends AppCompatActivity implements View.OnClickLi
             @Override
             public void onNext(List<OrderAddress> value) {
                 loading.cancelDialog();
+                mRefreshLayout.setRefreshing(false);
                 GridLayoutManager manager = new GridLayoutManager(AddressActivity.this, 1);
                 mRecyclerView.setLayoutManager(manager);
                 mAddresses = value;

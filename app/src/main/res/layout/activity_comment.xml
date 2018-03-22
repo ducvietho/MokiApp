@@ -69,14 +69,19 @@
             android:background="@android:color/white"
             android:gravity="center"
             android:text="@string/comment_slogan" />
-
-        <android.support.v7.widget.RecyclerView
-            android:id="@+id/rec_comment"
+        <android.support.v4.widget.SwipeRefreshLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:id="@+id/swipe_refresh"
             android:layout_marginBottom="50dp">
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/rec_comment"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
 
-        </android.support.v7.widget.RecyclerView>
+            </android.support.v7.widget.RecyclerView>
+        </android.support.v4.widget.SwipeRefreshLayout>
+
     </LinearLayout>
 
     <LinearLayout

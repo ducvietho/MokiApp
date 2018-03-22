@@ -2,6 +2,7 @@ package com.example.ducvietho.moki.screen.activities.comment;
 
 import android.content.Context;
 import android.content.Intent;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.GridLayoutManager;
@@ -46,6 +47,8 @@ public class CommentActivity extends AppCompatActivity implements View.OnClickLi
     RecyclerView mRecyclerComment;
     @BindView(R.id.btnSent)
     Button btnSend;
+    @BindView(R.id.swipe_refresh)
+    SwipeRefreshLayout mRefreshLayout;
     private int lastId;
     int idProduct;
     private UserSession mUserSession;
@@ -74,6 +77,12 @@ public class CommentActivity extends AppCompatActivity implements View.OnClickLi
         mUserSession = new UserSession(CommentActivity.this);
         init();
         initComment(idProduct);
+        mRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                initComment(idProduct);
+            }
+        });
     }
     @Override
     public void onClick(View v) {
@@ -107,6 +116,7 @@ public class CommentActivity extends AppCompatActivity implements View.OnClickLi
                 .newThread()).observeOn(AndroidSchedulers.mainThread()).subscribeWith(new DisposableObserver<Comments>() {
             @Override
             public void onNext(Comments value) {
+                mRefreshLayout.setRefreshing(false);
                 lastId = value.getLastId();
                 mList.addAll(0,value.getComments());
                 adapter.notifyDataSetChanged();

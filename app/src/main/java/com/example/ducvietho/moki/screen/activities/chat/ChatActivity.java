@@ -15,6 +15,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 import com.example.ducvietho.moki.R;
 import com.example.ducvietho.moki.data.model.Message;
@@ -26,10 +27,17 @@ import com.example.ducvietho.moki.data.resource.remote.ProductDataRepository;
 import com.example.ducvietho.moki.data.resource.remote.api.ConversationRemoteDataResource;
 import com.example.ducvietho.moki.data.resource.remote.api.ProductRemoteDataResource;
 import com.example.ducvietho.moki.data.resource.remote.api.service.MokiServiceClient;
+import com.example.ducvietho.moki.utils.Constants;
+import com.example.ducvietho.moki.utils.UserSession;
 import com.example.ducvietho.moki.utils.customview.FontTextView;
 import com.example.ducvietho.moki.utils.dialog.DialogLoading;
+import com.google.gson.Gson;
 import com.squareup.picasso.Picasso;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.net.URISyntaxException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -39,6 +47,9 @@ import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.CompositeDisposable;
 import io.reactivex.observers.DisposableObserver;
 import io.reactivex.schedulers.Schedulers;
+import io.socket.client.IO;
+import io.socket.client.Socket;
+import io.socket.emitter.Emitter;
 import ru.noties.scrollable.ScrollableLayout;
 
 public class ChatActivity extends AppCompatActivity implements View.OnClickListener {
@@ -76,7 +87,13 @@ public class ChatActivity extends AppCompatActivity implements View.OnClickListe
     private CompositeDisposable mDisposable;
     private ChatRecyclerAdapter adapter;
     int idCustomer, idSeller, idProduct,idConversation;
-
+    private UserSession mUserSession;
+    private Socket mSocket;
+    {
+        try {
+            mSocket = IO.socket(Constants.URL_SOCKET);
+        } catch (URISyntaxException e) {}
+    }
     public static Intent getIntent(Context context, int idSeller, int idCustomer, int idProduct) {
         Intent intent = new Intent(context, ChatActivity.class);
         intent.putExtra(EXTRA_ID_SELLER, idSeller);
@@ -90,6 +107,9 @@ public class ChatActivity extends AppCompatActivity implements View.OnClickListe
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_chat);
         ButterKnife.bind(ChatActivity.this);
+        mSocket.on("message_response", onNewMessage);
+        mSocket.connect();
+        mUserSession = new UserSession(ChatActivity.this);
         mRepository = new ProductDataRepository(new ProductRemoteDataResource(MokiServiceClient.getInstance()));
         mDisposable = new CompositeDisposable();
         mConversationDataRepository = new ConversationDataRepository(new ConversationRemoteDataResource
@@ -148,7 +168,25 @@ public class ChatActivity extends AppCompatActivity implements View.OnClickListe
             }
         });
     }
+    private Emitter.Listener onNewMessage = new Emitter.Listener() {
+        @Override
+        public void call(final Object... args) {
+            ChatActivity.this.runOnUiThread(new Runnable() {
+                @Override
+                public void run() {
+                    //Toast.makeText(ChatActivity.this,"Resposne :"+args[0].toString(),Toast.LENGTH_LONG).show();
+                    Message message = new Gson().fromJson(args[0].toString(),Message.class);
+                    if(message.getIdConversation()==idConversation){
+                        mList.add(message);
+                        adapter.notifyDataSetChanged();
+                    }
 
+                }
+            });
+        }
+
+
+    };
     @Override
     public void onClick(View v) {
         switch(v.getId()){
@@ -201,16 +239,17 @@ public class ChatActivity extends AppCompatActivity implements View.OnClickListe
                 (Schedulers.newThread()).observeOn(AndroidSchedulers.mainThread()).subscribeWith(new DisposableObserver<Messages>() {
             @Override
             public void onNext(Messages value) {
-                if(value.getList().size()>0){
+                idConversation = value.getIdConver();
+                if(value.getList()!=null){
                     mMessInstruct.setVisibility(View.GONE);
                     GridLayoutManager manager = new GridLayoutManager(ChatActivity.this,1);
                     mRecyclerView.setLayoutManager(manager);
                     mList = value.getList();
-                    idConversation = value.getIdConver();
                     adapter = new ChatRecyclerAdapter(mList,ChatActivity.this);
                     mRecyclerView.setAdapter(adapter);
-                }
+                }else {
 
+                }
             }
 
             @Override
@@ -225,7 +264,7 @@ public class ChatActivity extends AppCompatActivity implements View.OnClickListe
         }));
 
     }
-    private void sendMessageConversation(int idUser,String message){
+    private void sendMessageConversation(final int idUser, final String message){
         edtChat.setText("");
         final DialogLoading loading = new DialogLoading(ChatActivity.this);
         loading.showDialog();
@@ -235,6 +274,12 @@ public class ChatActivity extends AppCompatActivity implements View.OnClickListe
                     @Override
                     public void onNext(MessageResponse value) {
                         loading.cancelDialog();
+                        Message messa = new Message();
+                        messa.setIdConversation(idConversation);
+                        messa.setSender(mUserSession.getUserDetail());
+                        messa.setMessage(message);
+                        String msg = new Gson().toJson(messa);
+                        mSocket.emit("message",msg);
                     }
 
                     @Override

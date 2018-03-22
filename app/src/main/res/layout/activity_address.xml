@@ -36,14 +36,19 @@
                 android:textSize="@dimen/ts_16" />
         </LinearLayout>
         <include layout="@layout/view_line_red"/>
+        <android.support.v4.widget.SwipeRefreshLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/swipe_refresh">
         <android.support.v7.widget.RecyclerView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:id="@+id/rec_address"
             android:layout_marginBottom="@dimen/dip_60"/>
+        </android.support.v4.widget.SwipeRefreshLayout>
     </LinearLayout>
     <com.example.ducvietho.moki.utils.customview.AutoHighLightTextview
-        android:id="@+id/tvPostProduct"
+        android:id="@+id/tvAdd"
         android:layout_width="match_parent"
         android:layout_height="@dimen/dip_45"
         android:layout_marginBottom="@dimen/dip_10"

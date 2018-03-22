@@ -9,15 +9,17 @@ Giảm thiểu rủi ro lừa đảo."</string>
     <string name="choose">Chọn</string>
     <string name="exit">Thoát</string>
     <string name="error">Lỗi</string>
+    <string name="search">Tìm kiếm</string>
     <string name="connect_timeout">Kết nối không thành công. Bạn muốn thử lại</string>
     <string name="error_msg_internet_not_connect">Kiểm tra kết nối Internet</string>
     <string name="invalid_token">Có ai đó đăng nhập vào tài khoản của bạn từ một thiết bị khác</string>
-
+    <string name="address_notifi">Chọn địa chỉ theo thứ tự Tỉnh/Thành Phố, Quận/Huyện, Phường/Xã/Thị Trấn</string>
     <string name="see_all">Xem tất cả đánh giá</string>
     <string name="following">Đang theo dõi</string>
     <string name="nguoi_theo_doi">Người theo dõi</string>
 
-
+    <string name="true_address">Hãy chắc chắn rằng địa chỉ này là chính xác để bạn có thể giao/nhận hàng đúng
+        thời hạn</string>
     <string name="open">Open</string>
     <string name="title_activity_register">Đăng Ký MOKI</string>
     <string name="register_desc">MOKI cần được kích hoạt bằng số điện thoại (Số điện thoại của bạn sẽ được bảo mật)</string>

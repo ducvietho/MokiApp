@@ -249,7 +249,7 @@ public class ProductDetailActivity extends AppCompatActivity implements View.OnC
             mBuy.setVisibility(View.GONE);
         }
         if (mili == 0) {
-            mPrice.setText(String.valueOf(thousand) + ",000");
+            mPrice.setText(String.valueOf(thousand) + ",000"+" VNĐ");
         } else {
 
         }

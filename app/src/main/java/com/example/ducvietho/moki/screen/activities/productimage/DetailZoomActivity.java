@@ -86,6 +86,12 @@ public class DetailZoomActivity extends AppCompatActivity {
         }));
     }
 
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        overridePendingTransition(R.anim.no_change, R.anim.slide_down_info);
+    }
+
     private void setupViewPager(ViewPager viewPager, List<String> strings) {
         ViewPagerAdapter adapter = new ViewPagerAdapter(getSupportFragmentManager());
         for (int i = 0; i < strings.size(); i++) {

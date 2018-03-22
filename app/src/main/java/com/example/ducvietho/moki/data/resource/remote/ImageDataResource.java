@@ -11,4 +11,5 @@ import okhttp3.MultipartBody;
 
 public interface ImageDataResource {
     Observable<BaseResponse> uploadImageProduct(MultipartBody.Part file);
+    Observable<BaseResponse> uploadImageUser(MultipartBody.Part file);
 }

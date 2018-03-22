@@ -20,4 +20,9 @@ public class ImageDataRepository implements ImageDataResource {
     public Observable<BaseResponse> uploadImageProduct(MultipartBody.Part file) {
         return mDataResource.uploadImageProduct(file) ;
     }
+
+    @Override
+    public Observable<BaseResponse> uploadImageUser(MultipartBody.Part file) {
+        return mDataResource.uploadImageUser(file);
+    }
 }

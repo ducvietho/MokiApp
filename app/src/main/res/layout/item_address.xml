@@ -14,8 +14,8 @@
             android:layout_weight="1"
             android:gravity="center">
             <ImageView
-                android:layout_height="@dimen/dip_30"
-                android:layout_width="@dimen/dip_30"
+                android:layout_height="@dimen/dip_26"
+                android:layout_width="@dimen/dip_26"
                 android:src="@drawable/tick_box_icon"
                 android:id="@+id/img_tick"
                 android:visibility="gone"/>

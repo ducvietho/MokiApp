@@ -9,6 +9,8 @@ import com.google.gson.annotations.SerializedName;
 public class Message {
     @SerializedName("id")
     private int mId;
+    @SerializedName("conversation_id")
+    private int idConversation;
     @SerializedName("message")
     private String mMessage;
     @SerializedName("read")
@@ -17,6 +19,14 @@ public class Message {
     private String mCreated;
     @SerializedName("sender")
     private User mSender;
+
+    public int getIdConversation() {
+        return idConversation;
+    }
+
+    public void setIdConversation(int idConversation) {
+        this.idConversation = idConversation;
+    }
 
     public User getSender() {
         return mSender;

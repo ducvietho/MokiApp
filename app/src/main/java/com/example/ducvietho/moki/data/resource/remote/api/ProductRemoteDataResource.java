@@ -1,5 +1,6 @@
 package com.example.ducvietho.moki.data.resource.remote.api;
 
+import com.example.ducvietho.moki.data.model.BaseResponse;
 import com.example.ducvietho.moki.data.model.Product;
 import com.example.ducvietho.moki.data.model.ProductDetail;
 import com.example.ducvietho.moki.data.model.ProductResponse;
@@ -58,5 +59,12 @@ public class ProductRemoteDataResource extends BaseRemoteDataResource implements
                 return productResponse.getProducts().getmProducts();
             }
         });
+    }
+
+    @Override
+    public Observable<BaseResponse> createProduct(int idUser, String name, int price, String described, int idCate,
+                                                  String image, String address, String dimension, String weight,
+                                                  String status) {
+        return mApi.createProduct(idUser,name,price,described,idCate,image,address,dimension,weight,status);
     }
 }

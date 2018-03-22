@@ -12,19 +12,19 @@ public class BaseResponse {
     @SerializedName("message")
     private String mMessage;
 
-    public int getmCode() {
+    public int getCode() {
         return mCode;
     }
 
-    public void setmCode(int mCode) {
-        this.mCode = mCode;
+    public void setCode(int code) {
+        mCode = code;
     }
 
-    public String getmMessage() {
+    public String getMessage() {
         return mMessage;
     }
 
-    public void setmMessage(String mMessage) {
-        this.mMessage = mMessage;
+    public void setMessage(String message) {
+        mMessage = message;
     }
 }

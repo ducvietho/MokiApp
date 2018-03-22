@@ -3,6 +3,7 @@ package com.example.ducvietho.moki.screen.activities.postproduct;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.net.Uri;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
@@ -29,9 +30,14 @@ import com.example.ducvietho.moki.data.resource.remote.api.service.MokiServiceCl
 import com.example.ducvietho.moki.screen.activities.address.AddressActivity;
 import com.example.ducvietho.moki.screen.activities.camera.CameraActivity;
 import com.example.ducvietho.moki.screen.activities.category.CategoryActivity;
+import com.example.ducvietho.moki.screen.activities.home.HomeActivity;
 import com.example.ducvietho.moki.screen.activities.status.StatusActivity;
+import com.example.ducvietho.moki.utils.Constants;
+import com.example.ducvietho.moki.utils.UserSession;
 import com.example.ducvietho.moki.utils.customview.AutoHighLightTextview;
 import com.example.ducvietho.moki.utils.customview.FontTextView;
+import com.example.ducvietho.moki.utils.dialog.DialogLoading;
+import com.example.ducvietho.moki.utils.dialog.DialogNotInfor;
 import com.example.ducvietho.moki.utils.dialog.DialogSize;
 import com.example.ducvietho.moki.utils.dialog.DialogWeight;
 import com.google.android.gms.tasks.OnFailureListener;
@@ -99,6 +105,7 @@ public class PostProductActivity extends AppCompatActivity implements View.OnCli
     private ProductDataRepository mProductDataRepository;
     private FirebaseStorage mStorage;
     private StorageReference mReference;
+    private UserSession mUserSession;
     private boolean isUploaded;
 
     public static Intent getIntent(Context context, String path) {
@@ -114,6 +121,7 @@ public class PostProductActivity extends AppCompatActivity implements View.OnCli
         ButterKnife.bind(PostProductActivity.this);
         mStorage = FirebaseStorage.getInstance();
         mReference = mStorage.getReference();
+        mUserSession = new UserSession(PostProductActivity.this);
         mDataRepository = new ImageDataRepository(new ImageRemoteDataResource(MokiServiceClient.getInstance()));
         mDisposable = new CompositeDisposable();
         mProductDataRepository = new ProductDataRepository(new ProductRemoteDataResource(MokiServiceClient
@@ -124,6 +132,13 @@ public class PostProductActivity extends AppCompatActivity implements View.OnCli
         mStrings.add(url);
         mAdapter = new ImageProductRecyclerAdapter(mStrings, PostProductActivity.this);
         mRecyclerView.setAdapter(mAdapter);
+        SharedPreferences sharedPreferences = getSharedPreferences(Constants.PREF_ADDRESS,MODE_PRIVATE);
+        String addressInfor = sharedPreferences.getString(Constants.EXTRA_ADDRESS_ÌNFOR,"");
+        if(!addressInfor.matches("")){
+            OrderAddress address = new Gson().fromJson(addressInfor,OrderAddress.class);
+            tvAddress.setText(address.getStreet() + ", " + address.getVillage() + ", " + address.getDistrict() + ", " + "" + address.getProvince());
+
+        }
         mImageView.setOnClickListener(this);
         mCamera.setOnClickListener(this);
         tvCategory.setOnClickListener(this);
@@ -170,11 +185,7 @@ public class PostProductActivity extends AppCompatActivity implements View.OnCli
                 startActivityForResult(new AddressActivity().getIntent(PostProductActivity.this), REQUEST_CODE_ADDRESS);
                 break;
             case R.id.tvPostProduct:
-                for (int i=0;i<mStrings.size();i++){
-                    uploadImageProduct(mStrings.get(i));
-                }
-
-
+                postProduct();
                 break;
             default:
                 break;
@@ -224,7 +235,7 @@ public class PostProductActivity extends AppCompatActivity implements View.OnCli
         }
 
     }
-
+    //upload image Firebase storage
     public void uploadImage(String url) {
 
         File file = new File(url);
@@ -262,7 +273,7 @@ public class PostProductActivity extends AppCompatActivity implements View.OnCli
                     .observeOn(AndroidSchedulers.mainThread()).subscribeWith(new DisposableObserver<BaseResponse>() {
                         @Override
                         public void onNext(BaseResponse value) {
-                            if(value.getmCode()==200){
+                            if(value.getCode()==200){
                                 Toast.makeText(PostProductActivity.this,"Upload success",Toast.LENGTH_LONG).show();
                             }else {
                                 Toast.makeText(PostProductActivity.this,"Upload failure",Toast.LENGTH_LONG).show();
@@ -280,6 +291,77 @@ public class PostProductActivity extends AppCompatActivity implements View.OnCli
                         }
                     }));
 
+        }
+    }
+    private void postProduct(){
+
+        String image = "";
+
+        if(edProductName.getText().toString().matches("")){
+            new DialogNotInfor(PostProductActivity.this).showDialog("Bạn chưa nhập Tên sản phẩm");
+        } else{
+            if(edDescription.getText().toString().matches("")){
+                new DialogNotInfor(PostProductActivity.this).showDialog("Bạn chưa nhập Mô tả sản phẩm");
+            }else{
+                if(tvCategory.getText().toString().matches("")){
+                    new DialogNotInfor(PostProductActivity.this).showDialog("Bạn chưa chọn Danh mục");
+                }else{
+                    if(tvStatus.getText().toString().matches("")){
+                        new DialogNotInfor(PostProductActivity.this).showDialog("Bạn chưa chọn Trạng thái");
+                    }else{
+                        if(tvWeight.getText().toString().matches("")){
+                            new DialogNotInfor(PostProductActivity.this).showDialog("Bạn chưa chọn Khối lượng");
+                        }else{
+                            if(tvSize.getText().toString().matches("")){
+                                new DialogNotInfor(PostProductActivity.this).showDialog("Bạn chưa chọn Kích thước");
+                            }else {
+                                if(tvAddress.getText().toString().matches("")){
+                                    new DialogNotInfor(PostProductActivity.this).showDialog("Bạn chưa chọn Nơi bán");
+                                }else{
+                                    if(tvPrice.getText().toString().matches("")){
+                                        new DialogNotInfor(PostProductActivity.this)
+                                                .showDialog("Bạn chưa nhập Giá bán");
+                                    }else{
+                                        for(int i=0;i<mStrings.size();i++){
+                                            File file = new File(mStrings.get(i));
+                                            uploadImageProduct(mStrings.get(i));
+                                            image = image+Constants.URL_IMAGE+file.getName()+",";
+                                        }
+                                        final DialogLoading loading = new DialogLoading(PostProductActivity.this);
+                                        loading.showDialog();
+                                        mDisposable.add(mProductDataRepository.createProduct(mUserSession
+                                                .getUserDetail().getId(),edProductName.getText().toString(),Integer
+                                                .parseInt(tvPrice.getText().toString()),edDescription.getText().toString(),
+                                                idCate,image,tvAddress.getText().toString(),tvSize.getText().toString(),
+                                                tvWeight.getText().toString(),tvStatus.getText().toString())
+                                                .subscribeOn(Schedulers.newThread()).observeOn(AndroidSchedulers.mainThread())
+                                                .subscribeWith(new DisposableObserver<BaseResponse>() {
+                                                    @Override
+                                                    public void onNext(BaseResponse value) {
+                                                        loading.cancelDialog();
+                                                        if(value.getCode()==200){
+                                                            startActivity(new HomeActivity().getIntent(PostProductActivity.this));
+                                                        }
+                                                    }
+
+                                                    @Override
+                                                    public void onError(Throwable e) {
+
+                                                    }
+
+                                                    @Override
+                                                    public void onComplete() {
+
+                                                    }
+                                                }));
+                                    }
+
+                                }
+                            }
+                        }
+                    }
+                }
+            }
         }
     }
 }

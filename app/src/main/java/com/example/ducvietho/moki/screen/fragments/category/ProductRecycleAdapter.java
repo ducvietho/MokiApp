@@ -12,6 +12,7 @@ import android.widget.TextView;
 import com.example.ducvietho.moki.R;
 import com.example.ducvietho.moki.data.model.Product;
 import com.example.ducvietho.moki.screen.activities.productdetail.ProductDetailActivity;
+import com.example.ducvietho.moki.utils.customview.FontTextView;
 import com.squareup.picasso.Picasso;
 
 import java.util.List;
@@ -72,13 +73,13 @@ public class ProductRecycleAdapter extends RecyclerView.Adapter<RecyclerView.Vie
         @BindView(R.id.img_product)
         ImageView mImageView;
         @BindView(R.id.title)
-        TextView mName;
+        FontTextView mName;
         @BindView(R.id.price)
-        TextView mPrice;
+        FontTextView mPrice;
         @BindView(R.id.comment)
-        TextView mNumberComment;
+        FontTextView mNumberComment;
         @BindView(R.id.like)
-        TextView mNumberLike;
+        FontTextView mNumberLike;
         @BindView(R.id.img_like)
         ImageView mImageViewLike;
         public ViewHolder(View itemView) {

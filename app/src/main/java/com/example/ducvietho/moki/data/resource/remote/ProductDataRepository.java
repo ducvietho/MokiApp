@@ -1,5 +1,6 @@
 package com.example.ducvietho.moki.data.resource.remote;
 
+import com.example.ducvietho.moki.data.model.BaseResponse;
 import com.example.ducvietho.moki.data.model.Product;
 import com.example.ducvietho.moki.data.model.ProductResponse;
 
@@ -41,5 +42,12 @@ public class ProductDataRepository implements ProductDataResource {
     @Override
     public Observable<List<Product>> getProductsByUser(int idSeller,int idUser) {
         return mDataResource.getProductsByUser(idSeller,idUser);
+    }
+
+    @Override
+    public Observable<BaseResponse> createProduct(int idUser, String name, int price, String described, int idCate,
+                                                  String image, String address, String dimension, String weight,
+                                                  String status) {
+        return mDataResource.createProduct(idUser,name,price,described,idCate,image,address,dimension,weight,status);
     }
 }

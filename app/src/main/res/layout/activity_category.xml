@@ -32,8 +32,13 @@
                     android:textSize="@dimen/ts_16" />
             </LinearLayout>
     <include layout="@layout/view_line_red"/>
+    <android.support.v4.widget.SwipeRefreshLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/swipe_refresh">
     <android.support.v7.widget.RecyclerView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:id="@+id/rec_category"/>
+    </android.support.v4.widget.SwipeRefreshLayout>
 </LinearLayout>

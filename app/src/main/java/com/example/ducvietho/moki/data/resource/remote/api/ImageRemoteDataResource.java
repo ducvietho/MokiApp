@@ -20,4 +20,9 @@ public class ImageRemoteDataResource extends BaseRemoteDataResource implements I
     public Observable<BaseResponse> uploadImageProduct(MultipartBody.Part file) {
         return mApi.uploadImageProduct(file);
     }
+
+    @Override
+    public Observable<BaseResponse> uploadImageUser(MultipartBody.Part file) {
+        return mApi.uploadImageUser(file);
+    }
 }

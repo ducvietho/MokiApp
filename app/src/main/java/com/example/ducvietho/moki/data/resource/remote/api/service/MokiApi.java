@@ -4,12 +4,14 @@ package com.example.ducvietho.moki.data.resource.remote.api.service;
 import com.example.ducvietho.moki.data.model.BaseResponse;
 import com.example.ducvietho.moki.data.model.CategoryResponse;
 import com.example.ducvietho.moki.data.model.CommentResponse;
+import com.example.ducvietho.moki.data.model.DistrictResponse;
 import com.example.ducvietho.moki.data.model.LikeReponse;
 import com.example.ducvietho.moki.data.model.MessageResponse;
 import com.example.ducvietho.moki.data.model.OrderAddressResponse;
 import com.example.ducvietho.moki.data.model.ProductDetail;
 import com.example.ducvietho.moki.data.model.ProductResponse;
 import com.example.ducvietho.moki.data.model.UserResponse;
+import com.example.ducvietho.moki.data.model.VillageResponse;
 
 import io.reactivex.Observable;
 import okhttp3.MultipartBody;
@@ -76,4 +78,30 @@ public interface MokiApi {
     @Multipart
     @POST("upload/image/product")
     Observable<BaseResponse> uploadImageProduct(@Part MultipartBody.Part file);
+    @Multipart
+    @POST("upload/image/user")
+    Observable<BaseResponse> uploadImageUser(@Part MultipartBody.Part file);
+    @FormUrlEncoded
+    @POST("product/create")
+    Observable<BaseResponse> createProduct(@Field("user_id") int idUser,@Field("name") String name,
+                                           @Field("price") int price,@Field("described") String described,
+                                           @Field("category_id") int idCate,@Field("image") String image,
+                                           @Field("address")String address,@Field("dimension")String dimension,
+                                           @Field("weight") String weight,@Field("status")String status);
+    @POST("address/district")
+    Observable<DistrictResponse> getDistricts();
+    @FormUrlEncoded
+    @POST("address/village")
+    Observable<VillageResponse> getVillages(@Field("district_id") int idDistrict);
+    @FormUrlEncoded
+    @POST("address/insert")
+    Observable<BaseResponse> insertAddress(@Field("user_id") int idUser,@Field("province")String province,
+                                           @Field("district") String district,@Field("village")String village,
+                                           @Field("street")String street);
+    @FormUrlEncoded
+    @POST("address/district/search")
+    Observable<DistrictResponse> searchDistricts(@Field("district") String district);
+    @FormUrlEncoded
+    @POST("address/village/search")
+    Observable<VillageResponse> searchVillages(@Field("village") String village,@Field("district_id")int idDistrict);
 }

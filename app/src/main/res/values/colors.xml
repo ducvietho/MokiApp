@@ -2,9 +2,10 @@
 <resources>
     <color name="colorPrimary">#3F51B5</color>
     <color name="colorPrimaryDark">#42221f1f</color>
-    <color name="colorAccent">#FF4081</color>
+    <color name="colorAccent">#ffd8202a</color>
     <color name="btn_background">#1c1c1c</color>
     <color name="gray_light">#ffefeff4</color>
+    <color name="gray_hint">#D8E1E8</color>
     <color name="textBtn">#4a4a4a</color>
     <color name="colorDark">#3c3c3c</color>
     <color name="default_title_indicator_text_color">#bbffffff</color>

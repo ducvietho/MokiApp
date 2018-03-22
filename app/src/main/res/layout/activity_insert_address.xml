@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@android:color/white"
+    android:focusableInTouchMode="true"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context="com.example.ducvietho.moki.screen.activities.insert_address.InsertAddressActivity">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dip_40"
+        android:orientation="horizontal">
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/imgLeft"
+            android:layout_width="@dimen/dip_40"
+            android:layout_height="fill_parent"
+            android:background="@drawable/icon_back"
+            android:scaleType="centerCrop"
+            app:civ_border_color="@color/red_dark"
+            app:civ_border_width="1.0dip" />
+
+        <com.example.ducvietho.moki.utils.customview.FontTextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="Địa Chỉ Mới"
+            android:layout_gravity="center"
+            android:textAllCaps="false"
+            android:textColor="@color/red_dark"
+            android:textSize="@dimen/ts_16" />
+    </LinearLayout>
+    <include layout="@layout/view_line_red"/>
+    <com.example.ducvietho.moki.utils.customview.FontTextView
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dip_40"
+        android:text="Hà Nội"
+        android:paddingLeft="@dimen/dip_15"
+        android:gravity="center_vertical"
+        android:textColor="@android:color/black"
+        android:textSize="@dimen/ts_14"
+        android:id="@+id/tvProvince"/>
+    <include layout="@layout/view_line_gray"/>
+    <com.example.ducvietho.moki.utils.customview.FontTextView
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dip_40"
+        android:hint="Quận, Huyện"
+        android:paddingLeft="@dimen/dip_15"
+        android:gravity="center_vertical"
+        android:textColor="@android:color/black"
+        android:id="@+id/tvDistrict"
+        android:textSize="@dimen/ts_14"
+      />
+    <include layout="@layout/view_line_gray"
+        />
+    <com.example.ducvietho.moki.utils.customview.FontTextView
+        android:id="@+id/tvVillage"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dip_40"
+        android:hint="Phường, Xã, Thị trấn"
+        android:paddingLeft="@dimen/dip_15"
+        android:gravity="center_vertical"
+        android:textColor="@android:color/black"
+        android:textSize="@dimen/ts_14"
+        />
+    <include layout="@layout/view_line_gray"/>
+    <com.example.ducvietho.moki.utils.customview.FontEditText
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dip_40"
+        android:background="@android:color/white"
+        android:hint="Số Nhà, Xóm, Tổ ..v.v.."
+        android:paddingLeft="@dimen/dip_15"
+        android:textSize="@dimen/ts_14"
+        android:id="@+id/edStreet"
+        android:textColorHint="@android:color/darker_gray"/>
+    <include layout="@layout/view_line_gray" />
+    <com.example.ducvietho.moki.utils.customview.FontTextView
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dip_60"
+        android:text="@string/true_address"
+        android:paddingLeft="@dimen/dip_15"
+        android:gravity="center_vertical"
+        android:textColor="@android:color/black"
+        android:textSize="@dimen/ts_14"
+        android:paddingRight="@dimen/dip_15"
+        />
+    <include layout="@layout/view_line_gray" />
+    <com.example.ducvietho.moki.utils.customview.AutoHighLightTextview
+        android:id="@+id/tvAddAddress"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dip_36"
+        android:layout_marginTop="@dimen/dip_15"
+        android:layout_marginLeft="@dimen/dip_15"
+        android:layout_marginRight="@dimen/dip_15"
+        android:textSize="@dimen/ts_14"
+        android:background="@drawable/background_red_dark"
+        android:gravity="center"
+        android:text="Thêm địa chỉ mới"
+        android:textColor="@color/white"
+        android:layout_alignParentBottom="true"/>
+</LinearLayout>

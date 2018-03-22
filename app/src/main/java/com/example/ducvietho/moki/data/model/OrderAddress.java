@@ -22,6 +22,16 @@ public class OrderAddress {
     @SerializedName("default")
     private int mDefault;
 
+    public OrderAddress( int idUSer, String province, String district, String village, String street) {
+
+        this.idUSer = idUSer;
+        mProvince = province;
+        mDistrict = district;
+        mVillage = village;
+        mStreet = street;
+
+    }
+
     public int getDefault() {
         return mDefault;
     }
