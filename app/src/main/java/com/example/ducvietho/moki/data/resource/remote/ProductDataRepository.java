@@ -50,4 +50,44 @@ public class ProductDataRepository implements ProductDataResource {
                                                   String status) {
         return mDataResource.createProduct(idUser,name,price,described,idCate,image,address,dimension,weight,status);
     }
+
+    @Override
+    public Observable<List<Product>> getProductBuyProcessing(int idCustomer) {
+        return mDataResource.getProductBuyProcessing(idCustomer);
+    }
+
+    @Override
+    public Observable<List<Product>> getProductBuySuccess(int idCustomer) {
+        return mDataResource.getProductBuySuccess(idCustomer);
+    }
+
+    @Override
+    public Observable<List<Product>> getProductSellProcessing(int idUser) {
+        return mDataResource.getProductSellProcessing(idUser);
+    }
+
+    @Override
+    public Observable<List<Product>> getProductSellSuccess(int idUser) {
+        return mDataResource.getProductSellSuccess(idUser);
+    }
+
+    @Override
+    public Observable<BaseResponse> acceptSellProduct(int idProduct) {
+        return mDataResource.acceptSellProduct(idProduct);
+    }
+
+    @Override
+    public Observable<BaseResponse> buyProduct(int idProduct, int idCustomer, String shipAddress) {
+        return mDataResource.buyProduct(idProduct,idCustomer,shipAddress);
+    }
+
+    @Override
+    public Observable<BaseResponse> cancelSellProduct(int idProduct) {
+        return mDataResource.cancelSellProduct(idProduct);
+    }
+
+    @Override
+    public Observable<List<Product>> searchProducts(int idUser, String nameProduct, String price) {
+        return mDataResource.searchProducts(idUser,nameProduct,price);
+    }
 }

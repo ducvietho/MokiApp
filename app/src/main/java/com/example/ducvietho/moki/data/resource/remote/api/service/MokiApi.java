@@ -7,6 +7,7 @@ import com.example.ducvietho.moki.data.model.CommentResponse;
 import com.example.ducvietho.moki.data.model.DistrictResponse;
 import com.example.ducvietho.moki.data.model.LikeReponse;
 import com.example.ducvietho.moki.data.model.MessageResponse;
+import com.example.ducvietho.moki.data.model.NewsResponse;
 import com.example.ducvietho.moki.data.model.OrderAddressResponse;
 import com.example.ducvietho.moki.data.model.ProductDetail;
 import com.example.ducvietho.moki.data.model.ProductResponse;
@@ -70,6 +71,32 @@ public interface MokiApi {
     Observable<MessageResponse> setMessageConversation(@Field("conversation_id") int idConver,@Field("user_id") int idUser,
                                                  @Field("message") String message);
     @FormUrlEncoded
+    @POST("product/sell/processing")
+    Observable<ProductResponse> getProductSellProcessing(@Field("user_id") int idUser);
+    @FormUrlEncoded
+    @POST("product/sell/success")
+    Observable<ProductResponse> getProductSellSuccess(@Field("user_id") int idUser);
+    @FormUrlEncoded
+    @POST("product/buy/processing")
+    Observable<ProductResponse> getProductBuyProcessing(@Field("customer_id") int idCustomer);
+    @FormUrlEncoded
+    @POST("product/buy/success")
+    Observable<ProductResponse> getProductBuySuccess(@Field("customer_id") int idCustomer);
+    @FormUrlEncoded
+    @POST("product/sell")
+    Observable<BaseResponse> acceptSellProdct(@Field("product_id") int idProduct);
+    @FormUrlEncoded
+    @POST("product/buy")
+    Observable<BaseResponse> buyProdct(@Field("product_id") int idProduct,@Field("customer_id") int idCustomer,
+                                       @Field("ship_address")String shipAddress);
+    @FormUrlEncoded
+    @POST("product/cancel/sell")
+    Observable<BaseResponse> cancelSellProdct(@Field("product_id") int idProduct);
+    @FormUrlEncoded
+    @POST("product/search")
+    Observable<ProductResponse> searchProducts(@Field("user_id") int idUser,@Field("name_product") String nameProduct,
+                                               @Field("price") String price);
+    @FormUrlEncoded
     @POST("user/get_user_info")
     Observable<UserResponse> getUserInfor(@Field("user_id") int idUser);
     @FormUrlEncoded
@@ -104,4 +131,10 @@ public interface MokiApi {
     @FormUrlEncoded
     @POST("address/village/search")
     Observable<VillageResponse> searchVillages(@Field("village") String village,@Field("district_id")int idDistrict);
+    @POST("news/get")
+    Observable<NewsResponse> getNews();
+    @FormUrlEncoded
+    @POST("news/detail")
+    Observable<NewsResponse> getNewsDetail(@Field("news_id") int id);
+
 }

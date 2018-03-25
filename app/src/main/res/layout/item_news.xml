@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:orientation="vertical"
+              android:background="@android:color/white"
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content">
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:src="@android:drawable/ic_menu_recent_history" />
+
+        <com.example.ducvietho.moki.utils.customview.FontTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="9 giờ trước"
+            android:textSize="@dimen/ts_14"
+            android:id="@+id/tv_time"
+            android:textColor="@android:color/black"
+            android:gravity="center_vertical"
+            android:paddingLeft="@dimen/dip_5"
+           />
+    </LinearLayout>
+    <com.example.ducvietho.moki.utils.customview.FontTextView
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dip_40"
+        android:layout_marginTop="@dimen/dip_10"
+        android:textColor="@android:color/black"
+        android:textSize="@dimen/ts_16"
+        android:paddingLeft="@dimen/dip_20"
+        android:id="@+id/tv_title"/>
+    <include layout="@layout/view_line_gray"/>
+</LinearLayout>

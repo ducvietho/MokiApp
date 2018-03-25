@@ -1,11 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
               android:layout_width="match_parent"
-              android:layout_height="match_parent"
+              android:layout_height="wrap_content"
               xmlns:app="http://schemas.android.com/apk/res-auto"
               android:gravity="bottom"
-              android:orientation="vertical">
-
+             >
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:layout_alignParentBottom="true">
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -18,7 +22,7 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="@dimen/common_padding_medium"
             android:layout_weight="1.0"
-            android:background="@android:color/transparent"
+            android:background="@color/gray_light"
             android:gravity="center|left"
             android:padding="@dimen/common_padding_small"
             android:text="@string/exit"
@@ -32,7 +36,7 @@
             android:layout_height="wrap_content"
             android:layout_marginRight="@dimen/common_padding_medium"
             android:layout_weight="1.0"
-            android:background="@android:color/transparent"
+            android:background="@color/gray_light"
             android:gravity="center|right"
             android:padding="@dimen/common_padding_small"
             android:text="@string/choose"
@@ -45,7 +49,7 @@
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        android:background="@android:color/transparent"
+        android:background="@android:color/white"
         android:orientation="horizontal">
 
         <io.blackbox_vision.wheelview.view.WheelView
@@ -55,10 +59,11 @@
             app:centerTextColor="#ff000000"
             app:drawItemCount="7"
             app:initPosition="3"
-            app:lineColor="@color/gray_light"
-            app:textSize="@dimen/ts_24"
-            app:topBottomTextColor="@android:color/white"
-            android:layout_height="wrap_content"
+            android:overScrollMode="never"
+            app:lineColor="@color/red"
+            app:textSize="@dimen/ts_14"
+            app:topBottomTextColor="@android:color/black"
+            android:layout_height="@dimen/dip_160"
             android:layout_weight="1.0" />
 
         <io.blackbox_vision.wheelview.view.WheelView
@@ -68,10 +73,13 @@
             app:centerTextColor="#ff000000"
             app:drawItemCount="7"
             app:initPosition="3"
-            app:lineColor="@color/gray_light"
-            app:textSize="@dimen/ts_24"
-            app:topBottomTextColor="@android:color/white"
-            android:layout_height="wrap_content"
+            app:lineColor="@color/red"
+            app:textSize="@dimen/ts_14"
+            android:overScrollMode="never"
+            app:topBottomTextColor="@android:color/black"
+            android:layout_height="@dimen/dip_160"
             android:layout_weight="1.0" />
     </LinearLayout>
 </LinearLayout>
+
+</RelativeLayout>

@@ -1,4 +1,4 @@
-package com.example.ducvietho.moki.screen.fragments.product;
+package com.example.ducvietho.moki.screen.fragments.product_sell;
 
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -9,7 +9,9 @@ import android.widget.TextView;
 
 import com.example.ducvietho.moki.R;
 import com.example.ducvietho.moki.data.model.Product;
-import com.example.ducvietho.moki.utils.OnClickItemProduct;
+import com.example.ducvietho.moki.data.resource.remote.ProductDataRepository;
+import com.example.ducvietho.moki.utils.OnClickProcessProduct;
+import com.example.ducvietho.moki.utils.customview.FontTextView;
 import com.squareup.picasso.Picasso;
 
 import java.util.List;
@@ -18,21 +20,21 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 
 /**
- * Created by ducvietho on 15/03/2018.
+ * Created by ducvietho on 23/03/2018.
  */
 
-public class ProductAdapterUser extends RecyclerView.Adapter<ProductAdapterUser.ViewHolder> {
+public class ProductSellProccessingAdapter extends RecyclerView.Adapter<ProductSellProccessingAdapter.ViewHolder> {
     private List<Product> mProducts;
-    private OnClickItemProduct mOnClick;
+    private OnClickProcessProduct mClickProcessProduct;
 
-    public ProductAdapterUser(List<Product> products, OnClickItemProduct onClick) {
+    public ProductSellProccessingAdapter(List<Product> products, OnClickProcessProduct clickProcessProduct) {
         mProducts = products;
-        mOnClick = onClick;
+        mClickProcessProduct = clickProcessProduct;
     }
 
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_product_user, parent, false);
+        View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_product_sell_processing, parent, false);
         return new ViewHolder(v);
     }
 
@@ -53,6 +55,10 @@ public class ProductAdapterUser extends RecyclerView.Adapter<ProductAdapterUser.
         TextView mTitle;
         @BindView(R.id.tv_price)
         TextView mPrice;
+        @BindView(R.id.tvAccept)
+        FontTextView mAccept;
+        @BindView(R.id.tvCancel)
+        FontTextView mCancel;
 
         public ViewHolder(View itemView) {
             super(itemView);
@@ -64,23 +70,28 @@ public class ProductAdapterUser extends RecyclerView.Adapter<ProductAdapterUser.
             Picasso.with(itemView.getContext()).load(images[0]).placeholder(R.drawable.no_image).into(mImageView);
             mTitle.setText(product.getName());
             String price = String.valueOf(product.getPrice());
-            if(price.length()<=6){
-                price = new StringBuilder(price).insert(price.length()-3,",")
-                        .toString();
+            if (price.length() <= 6) {
+                price = new StringBuilder(price).insert(price.length() - 3, ",").toString();
                 mPrice.setText(price);
-            }else{
-                price = new StringBuilder(price).insert(price.length()-3,",")
-                        .toString();
-                price = new StringBuilder(price).insert(price.length()-7,",")
-                        .toString();
+            } else {
+                price = new StringBuilder(price).insert(price.length() - 3, ",").toString();
+                price = new StringBuilder(price).insert(price.length() - 7, ",").toString();
                 mPrice.setText(price);
             }
-            itemView.setOnClickListener(new View.OnClickListener() {
+            mAccept.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    mOnClick.onClick(product);
+                    mClickProcessProduct.acceptSell(product);
+
                 }
             });
+            mCancel.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    mClickProcessProduct.cancelSell(product);
+                }
+            });
+
         }
     }
 }

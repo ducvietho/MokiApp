@@ -67,4 +67,70 @@ public class ProductRemoteDataResource extends BaseRemoteDataResource implements
                                                   String status) {
         return mApi.createProduct(idUser,name,price,described,idCate,image,address,dimension,weight,status);
     }
+
+    @Override
+    public Observable<List<Product>> getProductBuyProcessing(int idCustomer) {
+        return mApi.getProductBuyProcessing(idCustomer).map(new Function<ProductResponse, List<Product>>() {
+            @Override
+            public List<Product> apply(ProductResponse productResponse) throws Exception {
+                return productResponse.getProducts().getmProducts();
+            }
+        });
+    }
+
+    @Override
+    public Observable<List<Product>> getProductBuySuccess(int idCustomer) {
+        return mApi.getProductBuySuccess(idCustomer).map(new Function<ProductResponse, List<Product>>() {
+            @Override
+            public List<Product> apply(ProductResponse productResponse) throws Exception {
+                return productResponse.getProducts().getmProducts();
+            }
+        });
+    }
+
+    @Override
+    public Observable<List<Product>> getProductSellProcessing(int idUser) {
+
+        return mApi.getProductSellProcessing(idUser).map(new Function<ProductResponse, List<Product>>() {
+            @Override
+            public List<Product> apply(ProductResponse productResponse) throws Exception {
+                return productResponse.getProducts().getmProducts();
+            }
+        });
+    }
+
+    @Override
+    public Observable<List<Product>> getProductSellSuccess(int idUser) {
+        return mApi.getProductSellSuccess(idUser).map(new Function<ProductResponse, List<Product>>() {
+            @Override
+            public List<Product> apply(ProductResponse productResponse) throws Exception {
+                return productResponse.getProducts().getmProducts();
+            }
+        });
+    }
+
+    @Override
+    public Observable<BaseResponse> acceptSellProduct(int idProduct) {
+        return mApi.acceptSellProdct(idProduct);
+    }
+
+    @Override
+    public Observable<BaseResponse> buyProduct(int idProduct, int idCustomer, String shipAddress) {
+        return mApi.buyProdct(idProduct,idCustomer,shipAddress);
+    }
+
+    @Override
+    public Observable<BaseResponse> cancelSellProduct(int idProduct) {
+        return mApi.cancelSellProdct(idProduct);
+    }
+
+    @Override
+    public Observable<List<Product>> searchProducts(int idUser, String nameProduct, final String price) {
+        return mApi.searchProducts(idUser,nameProduct,price).map(new Function<ProductResponse, List<Product>>() {
+            @Override
+            public List<Product> apply(ProductResponse productResponse) throws Exception {
+                return productResponse.getProducts().getmProducts();
+            }
+        });
+    }
 }

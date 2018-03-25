@@ -27,6 +27,7 @@ import com.example.ducvietho.moki.data.resource.remote.ProductDataRepository;
 import com.example.ducvietho.moki.data.resource.remote.api.ConversationRemoteDataResource;
 import com.example.ducvietho.moki.data.resource.remote.api.ProductRemoteDataResource;
 import com.example.ducvietho.moki.data.resource.remote.api.service.MokiServiceClient;
+import com.example.ducvietho.moki.screen.activities.buy.BuyActivity;
 import com.example.ducvietho.moki.utils.Constants;
 import com.example.ducvietho.moki.utils.UserSession;
 import com.example.ducvietho.moki.utils.customview.FontTextView;
@@ -118,6 +119,7 @@ public class ChatActivity extends AppCompatActivity implements View.OnClickListe
         mBtnBack.setOnClickListener(this);
         delete.setOnClickListener(this);
         mBtnSend.setOnClickListener(this);
+        mBuy.setOnClickListener(this);
         idCustomer = getIntent().getIntExtra(EXTRA_ID_CUSTOMER, 0);
         idSeller = getIntent().getIntExtra(EXTRA_ID_SELLER, 0);
         idProduct = getIntent().getIntExtra(EXTRA_ID_PRODUCT, 0);
@@ -201,6 +203,9 @@ public class ChatActivity extends AppCompatActivity implements View.OnClickListe
                     sendMessageConversation(idCustomer,edtChat.getText().toString());
                 }
                 break;
+            case R.id.btnBuyNow:
+                startActivity(new BuyActivity().getIntent(ChatActivity.this,idProduct));
+                break;
             default:
                 break;
         }
@@ -240,7 +245,7 @@ public class ChatActivity extends AppCompatActivity implements View.OnClickListe
             @Override
             public void onNext(Messages value) {
                 idConversation = value.getIdConver();
-                if(value.getList()!=null){
+                if(value.getList().size()>0){
                     mMessInstruct.setVisibility(View.GONE);
                     GridLayoutManager manager = new GridLayoutManager(ChatActivity.this,1);
                     mRecyclerView.setLayoutManager(manager);

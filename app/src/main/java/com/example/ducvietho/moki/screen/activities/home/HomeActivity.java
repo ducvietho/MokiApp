@@ -26,9 +26,11 @@ import com.example.ducvietho.moki.R;
 import com.example.ducvietho.moki.data.model.Menu;
 import com.example.ducvietho.moki.data.model.User;
 import com.example.ducvietho.moki.screen.activities.product_seller.ProductSellerActivity;
+import com.example.ducvietho.moki.screen.activities.search.SearchActivity;
 import com.example.ducvietho.moki.screen.fragments.buy.BuyFragment;
 import com.example.ducvietho.moki.screen.fragments.favorite.FavoriteFragment;
 import com.example.ducvietho.moki.screen.fragments.home.HomeFragment;
+import com.example.ducvietho.moki.screen.fragments.news.NewsFragment;
 import com.example.ducvietho.moki.screen.fragments.sell.SellFragment;
 import com.example.ducvietho.moki.utils.Constants;
 import com.example.ducvietho.moki.utils.UserSession;
@@ -103,6 +105,7 @@ public class HomeActivity extends AppCompatActivity implements MenuAdapter.OnIte
         }
         Picasso.with(HomeActivity.this).load(session.getUserDetail().getAvatar()).placeholder(R.drawable.icon_no_avatar).into(mImgAvatar);
         mImgAvatar.setOnClickListener(this);
+        imgSearch.setOnClickListener(this);
         rcvMenuOption.setHasFixedSize(true);
         rcvMenuOption.setNestedScrollingEnabled(false);
         rcvMenuOption.setLayoutManager(new LinearLayoutManager(this));
@@ -186,6 +189,10 @@ public class HomeActivity extends AppCompatActivity implements MenuAdapter.OnIte
                 } else {
                     startActivity(new ProductSellerActivity().getIntent(HomeActivity.this, session.getUserDetail().getId()));
                 }
+                break;
+            case R.id.imgSearch:
+                startActivity(new SearchActivity().getIntent(HomeActivity.this));
+                break;
         }
     }
 
@@ -205,7 +212,14 @@ public class HomeActivity extends AppCompatActivity implements MenuAdapter.OnIte
                 startFragment(new HomeFragment());
                 break;
             case Constants.ITEM_NEWS:
-
+                imgChange.setVisibility(View.GONE);
+                imgMessage.setVisibility(View.GONE);
+                imgNotify.setVisibility(View.GONE);
+                imgSearch.setVisibility(View.GONE);
+                imgApp.setVisibility(View.GONE);
+                mTitle.setVisibility(View.VISIBLE);
+                mTitle.setText(getResources().getString(R.string.news));
+                startFragment(new NewsFragment());
                 break;
             case Constants.ITEM_SELL:
                 if (session.getUserDetail().getToken() == null) {

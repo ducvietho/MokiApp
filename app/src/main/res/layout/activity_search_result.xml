@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:orientation="vertical"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context="com.example.ducvietho.moki.screen.activities.search_result.SearchResultActivity">
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dip_40"
+        android:background="@android:color/white">
+
+        <com.example.ducvietho.moki.utils.customview.FontTextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:ellipsize="end"
+            android:gravity="center"
+            android:maxLines="1"
+            android:id="@+id/tvName"
+            android:paddingLeft="@dimen/navi_bar_height"
+            android:paddingRight="@dimen/navi_bar_height"
+            android:textColor="@color/red_dark"
+            android:textSize="@dimen/ts_16"
+            android:visibility="visible"
+            />
+
+        <ImageView
+            android:id="@+id/btnNavLeft"
+            android:layout_width="@dimen/dip_40"
+            android:layout_height="@dimen/dip_40"
+            android:layout_alignParentStart="true"
+            android:adjustViewBounds="true"
+            android:background="@android:color/white"
+            android:scaleType="fitXY"
+            android:src="@drawable/icon_back"
+            android:visibility="visible"
+            tools:ignore="RtlCompat" />
+
+        <View
+            android:id="@+id/separatorLine"
+            android:layout_width="match_parent"
+            android:layout_height="0.5dip"
+            android:layout_alignParentBottom="true"
+            android:background="@color/red_dark" />
+    </RelativeLayout>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <android.support.v7.widget.RecyclerView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/rec_result_search"
+           />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:id="@+id/layout_no_item"
+            android:orientation="vertical"
+            android:visibility="gone">
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:layout_width="@dimen/dip_80"
+                android:layout_height="@dimen/dip_80"
+                android:src="@drawable/no_image"/>
+            <com.example.ducvietho.moki.utils.customview.FontTextView
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dip_40"
+                android:textSize="@dimen/ts_16"
+                android:textColor="@android:color/black"
+                android:text="Không tìm thấy sản phẩm nào."
+                android:gravity="center"/>
+        </LinearLayout>
+    </RelativeLayout>
+</LinearLayout>

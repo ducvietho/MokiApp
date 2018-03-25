@@ -3,11 +3,51 @@
              android:layout_width="match_parent"
              android:layout_height="match_parent"
              tools:context="com.example.ducvietho.moki.screen.fragments.buy.BuyFragment">
-
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:orientation="vertical"
+        android:background="@android:color/white">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dip_30"
+            android:background="@drawable/border_background_red"
+            android:layout_marginLeft="@dimen/dip_10"
+            android:layout_marginRight="@dimen/dip_10"
+            android:layout_marginTop="@dimen/dip_10"
+            android:orientation="horizontal">
+
+            <com.example.ducvietho.moki.utils.customview.FontTextView
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:textSize="@dimen/ts_14"
+                android:text="Đang xử lý"
+                android:id="@+id/tv_processing"
+                android:textColor="@android:color/white"
+                android:gravity="center"
+                android:background="@drawable/background_textview"/>
+            <View
+                android:layout_width="1dp"
+                android:layout_height="match_parent"
+                android:background="@color/app_color"/>
+            <com.example.ducvietho.moki.utils.customview.FontTextView
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:textSize="@dimen/ts_14"
+                android:text="Thành công"
+                android:id="@+id/tv_success"
+                android:textColor="@android:color/black"
+                android:gravity="center"/>
+
+        </LinearLayout>
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="@dimen/dip_10"
+            android:id="@+id/frame_layout"/>
+    </LinearLayout>
+
 
 </FrameLayout>

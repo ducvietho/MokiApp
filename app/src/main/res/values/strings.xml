@@ -7,6 +7,8 @@ thu tiền, xác nhận đơn hàng."</string>
     <string name="startup_tutorial_page3">"Đảm bảo thanh toán.
 Giảm thiểu rủi ro lừa đảo."</string>
     <string name="choose">Chọn</string>
+    <string name="accept">Đồng ý</string>
+    <string name="cancel">Bỏ qua</string>
     <string name="exit">Thoát</string>
     <string name="error">Lỗi</string>
     <string name="search">Tìm kiếm</string>
@@ -60,6 +62,7 @@ Giảm thiểu rủi ro lừa đảo."</string>
     <string name="close">Đóng</string>
     <string name="purchase_news">Tin Giao Dịch</string>
     <string name="notification">Thông Báo</string>
+    <string name="news">Tin tức</string>
     <string name="free">\"Miễn phí\"</string>
     <string name="comment">Hãy bình luận một cách văn minh!\n Tất cả bình luận của bạn đều đang được theo dõi</string>
     <string name="mess_instruct">"Ấn vào Mua ngay để mua sản phẩm này\nhoặc \nTrả giá với người bán để có giá tốt hơn"</string>

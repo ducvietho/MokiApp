@@ -82,7 +82,7 @@ public class VillageActivity extends AppCompatActivity implements View.OnClickLi
         mRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
-                getVillages(idDistrict);
+                getVillagesRefresh(idDistrict);
             }
         });
     }
@@ -113,6 +113,28 @@ public class VillageActivity extends AppCompatActivity implements View.OnClickLi
             public void onNext(List<Village> value) {
                 mRefreshLayout.setRefreshing(false);
                 loading.cancelDialog();
+                mAdapter = new VillageAdapter(VillageActivity.this,VillageActivity.this,value);
+                mListView.setAdapter(mAdapter);
+            }
+
+            @Override
+            public void onError(Throwable e) {
+
+            }
+
+            @Override
+            public void onComplete() {
+
+            }
+        }));
+    }
+    public void getVillagesRefresh(int idDistrict){
+
+        mDisposable.add(mRepository.getVillages(idDistrict).subscribeOn(Schedulers.newThread()).observeOn
+                (AndroidSchedulers.mainThread()).subscribeWith(new DisposableObserver<List<Village>>() {
+            @Override
+            public void onNext(List<Village> value) {
+                mRefreshLayout.setRefreshing(false);
                 mAdapter = new VillageAdapter(VillageActivity.this,VillageActivity.this,value);
                 mListView.setAdapter(mAdapter);
             }

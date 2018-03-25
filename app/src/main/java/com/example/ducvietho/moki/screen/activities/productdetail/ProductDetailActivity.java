@@ -15,6 +15,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.example.ducvietho.moki.R;
@@ -109,6 +110,8 @@ public class ProductDetailActivity extends AppCompatActivity implements View.OnC
     LinearLayout mShare;
     @BindView(R.id.layout_seller)
     LinearLayout mSeller;
+    @BindView(R.id.layout_product)
+    RelativeLayout mLayout;
     private List<String> mStringList = new ArrayList<>();
     private CateRecycleAdapter mAdapter;
     private UserSession mUserSession;
@@ -242,16 +245,25 @@ public class ProductDetailActivity extends AppCompatActivity implements View.OnC
     }
 
     private void initProduct(final Product product) {
-        int thousand = product.getPrice() / 1000;
-        int mili = thousand / 1000;
         if (product.getUser().getId() == mUserSession.getUserDetail().getId()) {
-            mEdit.setVisibility(View.VISIBLE);
             mBuy.setVisibility(View.GONE);
+            mEdit.setVisibility(View.VISIBLE);
+        }else{
+            if(product.getIsSold()>0){
+                mLayout.setVisibility(View.GONE);
+            }
         }
-        if (mili == 0) {
-            mPrice.setText(String.valueOf(thousand) + ",000"+" VNĐ");
-        } else {
-
+        String price = String.valueOf(product.getPrice());
+        if(price.length()<=6){
+            price = new StringBuilder(price).insert(price.length()-3,",")
+                    .toString();
+            mPrice.setText(price+" VNĐ");
+        }else{
+            price = new StringBuilder(price).insert(price.length()-3,",")
+                    .toString();
+            price = new StringBuilder(price).insert(price.length()-7,",")
+                    .toString();
+            mPrice.setText(price+" VNĐ");
         }
         if (product.getComment() == 0) {
             mBtnComent.setText(getResources().getString(R.string.no_comment));
@@ -259,6 +271,7 @@ public class ProductDetailActivity extends AppCompatActivity implements View.OnC
             mBtnComent.setText(getResources().getString(R.string.commented));
         }
         mToolbar.setTitle(product.getName());
+        mToolbar.setTitleTextColor(R.color.app_color);
         setSupportActionBar(mToolbar);
         mToolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
@@ -282,7 +295,7 @@ public class ProductDetailActivity extends AppCompatActivity implements View.OnC
         mWeight.setText(product.getWeight());
         mDimen.setText(product.getDimension());
         mStatus.setText(product.getStatus());
-        mAddress.setText(product.getShips_from());
+        mAddress.setText(product.getAddress());
         String[] images = product.getImage().split(",");
         ViewPagerAdapter adapter = new ViewPagerAdapter(getSupportFragmentManager());
         for (int i = 0; i < images.length; i++) {

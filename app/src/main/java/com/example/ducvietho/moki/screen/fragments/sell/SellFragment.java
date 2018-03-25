@@ -10,6 +10,7 @@ import android.view.ViewGroup;
 
 import com.example.ducvietho.moki.R;
 import com.example.ducvietho.moki.screen.fragments.product.ProductFragment;
+import com.example.ducvietho.moki.screen.fragments.product_sell.ProductSellFragment;
 import com.example.ducvietho.moki.utils.UserSession;
 import com.example.ducvietho.moki.utils.customview.FontTextView;
 
@@ -63,7 +64,7 @@ public class SellFragment extends Fragment implements View.OnClickListener{
                 mProduct.setBackgroundResource(R.drawable.background_textview);
                 break;
             case R.id.tv_processing:
-
+                startFragment(ProductSellFragment.getInstance(1));
                 mSuccess.setTextColor(Color.BLACK);
                 mSuccess.setBackgroundColor(0xFFFFFF);
                 mProduct.setTextColor(Color.BLACK);
@@ -72,7 +73,7 @@ public class SellFragment extends Fragment implements View.OnClickListener{
                 mProcessing.setBackgroundResource(R.color.app_color);
                 break;
             case R.id.tv_success:
-
+                startFragment(ProductSellFragment.getInstance(2));
                 mProduct.setTextColor(Color.BLACK);
                 mProduct.setBackgroundColor(0xFFFFFF);
                 mProcessing.setTextColor(Color.BLACK);

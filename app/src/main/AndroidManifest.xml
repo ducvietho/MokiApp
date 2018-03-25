@@ -74,6 +74,14 @@
         </activity>
         <activity android:name=".screen.activities.village.VillageActivity">
         </activity>
+        <activity android:name=".screen.activities.buy.BuyActivity">
+        </activity>
+        <activity android:name=".screen.activities.news_detail.NewsDetailActivity">
+        </activity>
+        <activity android:name=".screen.activities.search.SearchActivity">
+        </activity>
+        <activity android:name=".screen.activities.search_result.SearchResultActivity">
+        </activity>
     </application>
 
 </manifest>

@@ -15,8 +15,8 @@ public class Product {
     private int price;
     @SerializedName("described")
     private String described;
-    @SerializedName("ships_from")
-    private String ships_from;
+    @SerializedName("address")
+    private String address;
 
     @SerializedName("condition")
     private int condition;
@@ -47,6 +47,24 @@ public class Product {
     private String weight;
     @SerializedName("status")
     private String mStatus;
+    @SerializedName("is_sold")
+    private int isSold;
+
+    public int getIsSold() {
+        return isSold;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
+    public void setIsSold(int isSold) {
+        this.isSold = isSold;
+    }
 
     public String getStatus() {
         return mStatus;
@@ -176,17 +194,6 @@ public class Product {
     public void setIs_blocked(int is_blocked) {
         this.is_blocked = is_blocked;
     }
-
-
-    public String getShips_from() {
-        return ships_from;
-    }
-
-    public void setShips_from(String ships_from) {
-        this.ships_from = ships_from;
-    }
-
-
 
     public String getImage() {
         return image;

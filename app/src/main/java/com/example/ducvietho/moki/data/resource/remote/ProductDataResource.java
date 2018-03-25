@@ -20,4 +20,12 @@ public interface ProductDataResource {
     Observable<List<Product>> getProductsByUser(int idSeller,int idUser);
     Observable<BaseResponse> createProduct(int idUser,String name,int price,String described,int idCate,String image,
                                            String address,String dimension,String weight,String status);
+    Observable<List<Product>> getProductBuyProcessing(int idCustomer);
+    Observable<List<Product>> getProductBuySuccess(int idCustomer);
+    Observable<List<Product>> getProductSellProcessing(int idUser);
+    Observable<List<Product>> getProductSellSuccess(int idUser);
+    Observable<BaseResponse> acceptSellProduct(int idProduct);
+    Observable<BaseResponse> buyProduct(int idProduct,int idCustomer,String shipAddress);
+    Observable<BaseResponse> cancelSellProduct(int idProduct);
+    Observable<List<Product>> searchProducts(int idUser,String nameProduct,String price);
 }

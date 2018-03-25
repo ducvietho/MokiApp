@@ -78,7 +78,7 @@ public class DistrictActivity extends AppCompatActivity implements View.OnClickL
         mRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
-                getDistricts();
+                getDistrictsRefresh();
             }
         });
     }
@@ -109,6 +109,28 @@ public class DistrictActivity extends AppCompatActivity implements View.OnClickL
                     public void onNext(List<District> value) {
                         mRefreshLayout.setRefreshing(false);
                         loading.cancelDialog();
+                        mAdapter = new DistrictAdapter(DistrictActivity.this,value,DistrictActivity.this);
+                        mListView.setAdapter(mAdapter);
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+
+                    }
+
+                    @Override
+                    public void onComplete() {
+
+                    }
+                }));
+    }
+    public void getDistrictsRefresh(){
+
+        mDisposable.add(mRepository.getDistricts().subscribeOn(Schedulers.newThread()).observeOn(AndroidSchedulers.mainThread())
+                .subscribeWith(new DisposableObserver<List<District>>() {
+                    @Override
+                    public void onNext(List<District> value) {
+                        mRefreshLayout.setRefreshing(false);
                         mAdapter = new DistrictAdapter(DistrictActivity.this,value,DistrictActivity.this);
                         mListView.setAdapter(mAdapter);
                     }

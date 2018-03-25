@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context="com.example.ducvietho.moki.screen.activities.news_detail.NewsDetailActivity">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dip_40"
+        android:orientation="horizontal">
+        <ImageView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:id="@+id/imgLeft"
+            android:src="@drawable/icon_back_left"/>
+        <com.example.ducvietho.moki.utils.customview.FontTextView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="6"
+            android:text="Chi Tiết Tin Tức"
+            android:gravity="center"
+            android:textColor="@color/red"
+            android:textSize="@dimen/ts_16"/>
+
+    </LinearLayout>
+    <include layout="@layout/view_line_red"/>
+    <android.support.v4.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+            <com.example.ducvietho.moki.utils.customview.FontTextView
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dip_60"
+                android:textSize="@dimen/ts_16"
+                android:textColor="@color/red"
+                android:id="@+id/tv_title"
+                android:paddingLeft="@dimen/dip_10"
+                android:gravity="center_vertical"/>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/dip_10"
+                android:layout_marginTop="@dimen/dip_10">
+
+                <ImageView
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:src="@android:drawable/ic_menu_recent_history" />
+
+                <com.example.ducvietho.moki.utils.customview.FontTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="9 giờ trước"
+                    android:textSize="@dimen/ts_14"
+                    android:id="@+id/tv_time"
+                    android:textColor="@android:color/black"
+                    android:gravity="center_vertical"
+                    android:paddingLeft="@dimen/dip_5"
+                    />
+            </LinearLayout>
+            <com.example.ducvietho.moki.utils.customview.FontTextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="@dimen/dip_10"
+                android:textColor="@android:color/black"
+                android:textSize="@dimen/ts_14"
+                android:id="@+id/tv_described"/>
+        </LinearLayout>
+    </android.support.v4.widget.NestedScrollView>
+
+
+</LinearLayout>

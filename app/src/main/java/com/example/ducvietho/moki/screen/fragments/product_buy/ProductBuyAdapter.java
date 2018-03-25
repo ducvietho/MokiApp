@@ -1,4 +1,4 @@
-package com.example.ducvietho.moki.screen.fragments.product;
+package com.example.ducvietho.moki.screen.fragments.product_buy;
 
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -18,21 +18,21 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 
 /**
- * Created by ducvietho on 15/03/2018.
+ * Created by ducvietho on 23/03/2018.
  */
 
-public class ProductAdapterUser extends RecyclerView.Adapter<ProductAdapterUser.ViewHolder> {
+public class ProductBuyAdapter extends RecyclerView.Adapter<ProductBuyAdapter.ViewHolder> {
     private List<Product> mProducts;
     private OnClickItemProduct mOnClick;
 
-    public ProductAdapterUser(List<Product> products, OnClickItemProduct onClick) {
+    public ProductBuyAdapter(List<Product> products, OnClickItemProduct onClick) {
         mProducts = products;
         mOnClick = onClick;
     }
 
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_product_user, parent, false);
+        View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_product_buy,parent,false);
         return new ViewHolder(v);
     }
 
@@ -43,7 +43,7 @@ public class ProductAdapterUser extends RecyclerView.Adapter<ProductAdapterUser.
 
     @Override
     public int getItemCount() {
-        return mProducts == null ? 0 : mProducts.size();
+        return mProducts.size();
     }
 
     class ViewHolder extends RecyclerView.ViewHolder {

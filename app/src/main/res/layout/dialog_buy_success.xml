@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:app="http://schemas.android.com/apk/res-auto"
+              android:orientation="vertical"
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              android:background="@drawable/border_textview2"
+              android:layout_marginLeft="@dimen/dip_40"
+              android:layout_marginRight="@dimen/dip_40">
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:layout_width="@dimen/dip_50"
+        android:layout_height="@dimen/dip_50"
+        android:src="@drawable/tick_box_icon"
+        android:layout_marginTop="@dimen/dip_10"
+        android:layout_gravity="center"
+        />
+    <com.example.ducvietho.moki.utils.customview.FontTextView
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dip_40"
+        android:text="@string/notification"
+        android:gravity="center"
+        android:textColor="@android:color/black"
+        android:textSize="@dimen/ts_16"
+        android:layout_marginTop="@dimen/dip_10"/>
+    <com.example.ducvietho.moki.utils.customview.FontTextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="@dimen/ts_14"
+        android:id="@+id/tv_notifi"
+        android:gravity="center"
+        android:text="Bạn đã mua hàng thành công!"
+        android:layout_marginBottom="@dimen/dip_10"/>
+    <Button
+        android:text="@string/close"
+        android:id="@+id/btn_close"
+        android:textAllCaps="false"
+        android:textSize="@dimen/ts_14"
+        android:layout_width="wrap_content"
+        android:layout_height="@dimen/dip_40"
+        android:background="@drawable/blue_button_background"
+        android:layout_gravity="center"
+        android:layout_marginBottom="@dimen/dip_10"/>
+
+</LinearLayout>
