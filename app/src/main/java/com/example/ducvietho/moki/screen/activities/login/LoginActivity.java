@@ -9,10 +9,13 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.example.ducvietho.moki.R;
+import com.example.ducvietho.moki.data.model.BaseResponse;
 import com.example.ducvietho.moki.data.model.User;
 import com.example.ducvietho.moki.data.model.UserResponse;
+import com.example.ducvietho.moki.data.resource.remote.FCMTokenDataRepository;
 import com.example.ducvietho.moki.data.resource.remote.UserDataRepository;
 import com.example.ducvietho.moki.data.resource.remote.UserDataResource;
+import com.example.ducvietho.moki.data.resource.remote.api.FCMTokenRemoteDataResource;
 import com.example.ducvietho.moki.data.resource.remote.api.UserRemoteDataResource;
 import com.example.ducvietho.moki.data.resource.remote.api.service.MokiServiceClient;
 import com.example.ducvietho.moki.screen.activities.home.HomeActivity;
@@ -21,6 +24,7 @@ import com.example.ducvietho.moki.utils.customview.AutoHighLightTextview;
 import com.example.ducvietho.moki.utils.dialog.DialogLoading;
 import com.example.ducvietho.moki.utils.dialog.DialogLoginFail;
 import com.example.ducvietho.moki.utils.dialog.DialogNoLogin;
+import com.google.firebase.iid.FirebaseInstanceId;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -111,7 +115,7 @@ public class LoginActivity extends AppCompatActivity {
                                 }else{
                                     startActivity(new HomeActivity().getIntent(LoginActivity.this));
                                 }
-//                                sendToken(value.getUser().getToken());
+                                sendToken(value.getUser().getId());
                             }else {
                                 loading.cancelDialog();
                                 new DialogLoginFail(LoginActivity.this).showdialog();
@@ -131,5 +135,29 @@ public class LoginActivity extends AppCompatActivity {
                     }));
         }
 
+    }
+    private void sendToken(int idUser){
+        String fcmToken = FirebaseInstanceId.getInstance().getToken();
+        FCMTokenDataRepository repository  = new FCMTokenDataRepository(new FCMTokenRemoteDataResource
+                (MokiServiceClient.getInstance()));
+        CompositeDisposable disposable = new CompositeDisposable();
+        disposable.add(repository.createFCMToken(idUser,fcmToken).subscribeOn(Schedulers.newThread())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribeWith(new DisposableObserver<BaseResponse>() {
+                    @Override
+                    public void onNext(BaseResponse value) {
+                        Toast.makeText(LoginActivity.this, value.getMessage(), Toast.LENGTH_LONG).show();
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+
+                    }
+
+                    @Override
+                    public void onComplete() {
+
+                    }
+                }));
     }
 }

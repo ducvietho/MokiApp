@@ -8,6 +8,8 @@ import com.example.ducvietho.moki.data.model.DistrictResponse;
 import com.example.ducvietho.moki.data.model.LikeReponse;
 import com.example.ducvietho.moki.data.model.MessageResponse;
 import com.example.ducvietho.moki.data.model.NewsResponse;
+import com.example.ducvietho.moki.data.model.Notification;
+import com.example.ducvietho.moki.data.model.NotificationResponse;
 import com.example.ducvietho.moki.data.model.OrderAddressResponse;
 import com.example.ducvietho.moki.data.model.ProductDetail;
 import com.example.ducvietho.moki.data.model.ProductResponse;
@@ -136,5 +138,13 @@ public interface MokiApi {
     @FormUrlEncoded
     @POST("news/detail")
     Observable<NewsResponse> getNewsDetail(@Field("news_id") int id);
-
+    @FormUrlEncoded
+    @POST("fcmtoken/create")
+    Observable<BaseResponse> createFCMToken(@Field("user_id") int idUser,@Field("token") String token);
+    @FormUrlEncoded
+    @POST("notification")
+    Observable<NotificationResponse> getNotification(@Field("user_id") int idUser);
+    @FormUrlEncoded
+    @POST("notification")
+    Observable<NotificationResponse> getMessageNotification(@Field("user_id") int idUser);
 }

@@ -25,6 +25,7 @@ import android.widget.RelativeLayout;
 import com.example.ducvietho.moki.R;
 import com.example.ducvietho.moki.data.model.Menu;
 import com.example.ducvietho.moki.data.model.User;
+import com.example.ducvietho.moki.screen.activities.notification.NotificationActivity;
 import com.example.ducvietho.moki.screen.activities.product_seller.ProductSellerActivity;
 import com.example.ducvietho.moki.screen.activities.search.SearchActivity;
 import com.example.ducvietho.moki.screen.fragments.buy.BuyFragment;
@@ -106,6 +107,7 @@ public class HomeActivity extends AppCompatActivity implements MenuAdapter.OnIte
         Picasso.with(HomeActivity.this).load(session.getUserDetail().getAvatar()).placeholder(R.drawable.icon_no_avatar).into(mImgAvatar);
         mImgAvatar.setOnClickListener(this);
         imgSearch.setOnClickListener(this);
+        imgNotify.setOnClickListener(this);
         rcvMenuOption.setHasFixedSize(true);
         rcvMenuOption.setNestedScrollingEnabled(false);
         rcvMenuOption.setLayoutManager(new LinearLayoutManager(this));
@@ -192,6 +194,9 @@ public class HomeActivity extends AppCompatActivity implements MenuAdapter.OnIte
                 break;
             case R.id.imgSearch:
                 startActivity(new SearchActivity().getIntent(HomeActivity.this));
+                break;
+            case R.id.imgNotify:
+                startActivity(new NotificationActivity().getIntent(HomeActivity.this));
                 break;
         }
     }

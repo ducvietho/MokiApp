@@ -8,6 +8,50 @@
   "client": [
     {
       "client_info": {
+        "mobilesdk_app_id": "1:1045334137229:android:d6fb070c47f3eabe",
+        "android_client_info": {
+          "package_name": "com.example.hoducviet.firebasedemo"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1045334137229-b5v5hbnvf6rj4odnuadni109pv5mtl57.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.hoducviet.firebasedemo",
+            "certificate_hash": "f12133adce051b9b0babe66c364c2371282853ae"
+          }
+        },
+        {
+          "client_id": "1045334137229-cfim3gnd5m0av7ci8qmm7619tqgedr7b.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyArzcoB74I0ETnsqBYBwkjA1Z-NRm_1_8o"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1045334137229-cfim3gnd5m0av7ci8qmm7619tqgedr7b.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    },
+    {
+      "client_info": {
         "mobilesdk_app_id": "1:1045334137229:android:91bbeb51f3c396d3",
         "android_client_info": {
           "package_name": "com.example.ducvietho.moki"
