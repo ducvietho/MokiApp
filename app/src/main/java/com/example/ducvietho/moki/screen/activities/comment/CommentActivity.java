@@ -35,8 +35,10 @@ import io.reactivex.disposables.CompositeDisposable;
 import io.reactivex.observers.DisposableObserver;
 import io.reactivex.schedulers.Schedulers;
 
+import static com.example.ducvietho.moki.utils.Constants.EXTRA_ID;
+
 public class CommentActivity extends AppCompatActivity implements View.OnClickListener,OnItemtClick<Comment> {
-    public static final String EXTRA_ID = "id";
+
     @BindView(R.id.imgLeft)
     CircleImageView back;
     @BindView(R.id.edtComment)

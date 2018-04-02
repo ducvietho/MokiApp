@@ -22,7 +22,10 @@ public class Constants {
 	public static final String EXTRA_ADDRESS_ÌNFOR ="address_infor";
     public static final int ITEM_INTRODUCTION = 6;
     public static final int ITEM_LOGOUT = 7;
-
+	public static final String EXTRA_ID_PRODUCT = "idProduct";
+	public static final String EXTRA_ID = "id";
+	public static final String EXTRA_ID_SELLER = "seller";
+	public static final String EXTRA_ID_CUSTOMER = "customer";
 	public static final int DEFAULT_LIMIT = 10;
 	public static final int CAMERA_REQUEST = 19999;
 	public static final int CAMERA_RESULT = 20000;

@@ -96,6 +96,8 @@
 
         <activity android:name=".screen.activities.notification.NotificationActivity">
         </activity>
+        <activity android:name=".screen.activities.sell_detail.SellDetailActivity">
+        </activity>
     </application>
 
 </manifest>

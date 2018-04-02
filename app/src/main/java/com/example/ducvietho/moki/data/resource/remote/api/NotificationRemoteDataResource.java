@@ -1,7 +1,9 @@
 package com.example.ducvietho.moki.data.resource.remote.api;
 
+import com.example.ducvietho.moki.data.model.BaseResponse;
 import com.example.ducvietho.moki.data.model.Notification;
 import com.example.ducvietho.moki.data.model.NotificationResponse;
+import com.example.ducvietho.moki.data.model.NotificationUnread;
 import com.example.ducvietho.moki.data.resource.remote.NotificationDataResource;
 import com.example.ducvietho.moki.data.resource.remote.api.service.MokiApi;
 
@@ -37,5 +39,25 @@ public class NotificationRemoteDataResource extends BaseRemoteDataResource imple
                 return notificationResponse.getNotifications();
             }
         });
+    }
+
+    @Override
+    public Observable<NotificationUnread> getMessageNotificationUnread(int idUser) {
+        return mApi.getMessageNotificationUnread(idUser);
+    }
+
+    @Override
+    public Observable<NotificationUnread> getNotificationUnread(int idUser) {
+        return mApi.getNotificationUnread(idUser);
+    }
+
+    @Override
+    public Observable<BaseResponse> setNotificationRead(int idUser) {
+        return mApi.setNotificationRead(idUser);
+    }
+
+    @Override
+    public Observable<BaseResponse> setMessageNotificationRead(int idNotifi) {
+        return mApi.setMessageNotificationRead(idNotifi);
     }
 }

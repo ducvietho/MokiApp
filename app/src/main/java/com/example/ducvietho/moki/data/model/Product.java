@@ -20,7 +20,7 @@ public class Product {
 
     @SerializedName("condition")
     private int condition;
-    @SerializedName("created")
+    @SerializedName("created_at")
     private String created;
     @SerializedName("like")
     private int like;

@@ -45,7 +45,11 @@ import com.example.ducvietho.moki.utils.dialog.DialogLoading;
 import com.nirhart.parallaxscroll.views.ParallaxScrollView;
 import com.squareup.picasso.Picasso;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 import butterknife.BindView;
@@ -56,14 +60,18 @@ import io.reactivex.disposables.CompositeDisposable;
 import io.reactivex.observers.DisposableObserver;
 import io.reactivex.schedulers.Schedulers;
 
+import static com.example.ducvietho.moki.utils.Constants.EXTRA_ID_PRODUCT;
+
 public class ProductDetailActivity extends AppCompatActivity implements View.OnClickListener ,OnItemtClick<Comment> {
-    public static final String EXTRA_ID_PRODUCT = "idProduct";
+
     @BindView(R.id.product_scroll)
     ParallaxScrollView productScroll;
     @BindView(R.id.product_image_slider)
     ViewPager viewPager;
-    @BindView(R.id.detail_toolbar)
-    Toolbar mToolbar;
+    @BindView(R.id.imgLeft)
+    ImageView mImgBack;
+    @BindView(R.id.tvTitle)
+    FontTextView mTitle;
     @BindView(R.id.prev_btn)
     View mViewLeft;
     @BindView(R.id.next_btn)
@@ -112,6 +120,8 @@ public class ProductDetailActivity extends AppCompatActivity implements View.OnC
     LinearLayout mSeller;
     @BindView(R.id.layout_product)
     RelativeLayout mLayout;
+    @BindView(R.id.tv_time)
+    FontTextView mTime;
     private List<String> mStringList = new ArrayList<>();
     private CateRecycleAdapter mAdapter;
     private UserSession mUserSession;
@@ -122,6 +132,8 @@ public class ProductDetailActivity extends AppCompatActivity implements View.OnC
     int idProduct;
     public static Intent getIntent(Context context, int idProduct) {
         Intent intent = new Intent(context, ProductDetailActivity.class);
+//        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+//        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
         intent.putExtra(EXTRA_ID_PRODUCT, idProduct);
         return intent;
     }
@@ -245,6 +257,55 @@ public class ProductDetailActivity extends AppCompatActivity implements View.OnC
     }
 
     private void initProduct(final Product product) {
+        Date date;
+        Date current = Calendar.getInstance().getTime();
+        SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        try {
+            date = df.parse(product.getCreated());
+
+        } catch (ParseException e) {
+            throw new RuntimeException("Failed to parse date: ", e);
+        }
+        long minute = (current.getTime() - date.getTime())
+                / ( 60 * 1000);
+        long hours = (current.getTime() - date.getTime())
+                / ( 3600 * 1000);
+        long days = hours/24;
+        long weeks = days/7;
+        long months = days/30;
+        long years = months/12;
+        if(years>0){
+            mTime.setText(String.valueOf(years)+" "+getResources().getString(R.string.years_ago));
+        }else{
+            if(months>0){
+                mTime.setText(String.valueOf(months)+" "+getResources().getString(R.string
+                        .months_ago));
+            }else {
+                if(weeks>0){
+                    mTime.setText(String.valueOf(weeks)+" "
+                            +getResources().getString(R.string.weeks_ago));
+                }else {
+                    if(days>0){
+                        mTime.setText(String.valueOf(days)+" "
+                                +getResources().getString(R.string.days_ago));
+                    }else {
+                        if(hours>0){
+                            mTime.setText(String.valueOf(hours)+" "
+                                    +getResources().getString(R.string.hours_ago));
+                        }else {
+                            if(minute>0){
+                                mTime.setText(String.valueOf(minute)+" "
+                                        +getResources().getString(R.string.minutes_ago));
+                            }else {
+                                mTime.setText(getResources().getString(R.string.just_now));
+                            }
+
+                        }
+
+                    }
+                }
+            }
+        }
         if (product.getUser().getId() == mUserSession.getUserDetail().getId()) {
             mBuy.setVisibility(View.GONE);
             mEdit.setVisibility(View.VISIBLE);
@@ -270,10 +331,8 @@ public class ProductDetailActivity extends AppCompatActivity implements View.OnC
         } else {
             mBtnComent.setText(getResources().getString(R.string.commented));
         }
-        mToolbar.setTitle(product.getName());
-        mToolbar.setTitleTextColor(R.color.app_color);
-        setSupportActionBar(mToolbar);
-        mToolbar.setNavigationOnClickListener(new View.OnClickListener() {
+        mTitle.setText(product.getName());
+        mImgBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 finish();

@@ -53,10 +53,13 @@ import io.socket.client.Socket;
 import io.socket.emitter.Emitter;
 import ru.noties.scrollable.ScrollableLayout;
 
+import static com.example.ducvietho.moki.utils.Constants.EXTRA_ID_CUSTOMER;
+import static com.example.ducvietho.moki.utils.Constants.EXTRA_ID_PRODUCT;
+import static com.example.ducvietho.moki.utils.Constants.EXTRA_ID_SELLER;
+
 public class ChatActivity extends AppCompatActivity implements View.OnClickListener {
-    private static final String EXTRA_ID_SELLER = "seller";
-    private static final String EXTRA_ID_CUSTOMER = "customer";
-    private static final String EXTRA_ID_PRODUCT = "product";
+
+
     @BindView(R.id.txtSeller)
     FontTextView mSeller;
     @BindView(R.id.txtName)
@@ -200,7 +203,7 @@ public class ChatActivity extends AppCompatActivity implements View.OnClickListe
                 break;
             case R.id.btnSent:
                 if(edtChat.getText().toString()!=null){
-                    sendMessageConversation(idCustomer,edtChat.getText().toString());
+                    sendMessageConversation(edtChat.getText().toString());
                 }
                 break;
             case R.id.btnBuyNow:
@@ -269,11 +272,11 @@ public class ChatActivity extends AppCompatActivity implements View.OnClickListe
         }));
 
     }
-    private void sendMessageConversation(final int idUser, final String message){
+    private void sendMessageConversation( final String message){
         edtChat.setText("");
         final DialogLoading loading = new DialogLoading(ChatActivity.this);
         loading.showDialog();
-        mDisposable.add(mConversationDataRepository.setMessageConversation(idConversation,idUser,message)
+        mDisposable.add(mConversationDataRepository.setMessageConversation(idConversation,mUserSession.getUserDetail().getId(),message)
                 .subscribeOn(Schedulers.newThread()).observeOn(AndroidSchedulers.mainThread())
                 .subscribeWith(new DisposableObserver<MessageResponse>() {
                     @Override
@@ -289,7 +292,7 @@ public class ChatActivity extends AppCompatActivity implements View.OnClickListe
 
                     @Override
                     public void onError(Throwable e) {
-
+                        Toast.makeText(ChatActivity.this, "Error "+e.getMessage(),Toast.LENGTH_LONG).show();
                     }
 
                     @Override

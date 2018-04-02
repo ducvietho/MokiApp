@@ -13,6 +13,16 @@ public class Comment {
     private String content;
     @SerializedName("poster")
     private User mUser;
+    @SerializedName("created_at")
+    private String mTime;
+
+    public String getTime() {
+        return mTime;
+    }
+
+    public void setTime(String time) {
+        mTime = time;
+    }
 
     public int getId() {
         return id;

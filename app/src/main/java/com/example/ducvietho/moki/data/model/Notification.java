@@ -23,6 +23,26 @@ public class Notification {
     private String mCreated;
     @SerializedName("image")
     private String mImage;
+    @SerializedName("is_seller")
+    private int mIsSeller;
+    @SerializedName("type")
+    private int mType;
+
+    public int getType() {
+        return mType;
+    }
+
+    public void setType(int type) {
+        mType = type;
+    }
+
+    public int getIsSeller() {
+        return mIsSeller;
+    }
+
+    public void setIsSeller(int isSeller) {
+        mIsSeller = isSeller;
+    }
 
     public int getId() {
         return mId;

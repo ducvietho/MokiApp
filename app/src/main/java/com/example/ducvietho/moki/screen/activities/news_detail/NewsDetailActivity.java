@@ -15,6 +15,11 @@ import com.example.ducvietho.moki.data.resource.remote.api.service.MokiServiceCl
 import com.example.ducvietho.moki.utils.customview.FontTextView;
 import com.example.ducvietho.moki.utils.dialog.DialogLoading;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import de.hdodenhof.circleimageview.CircleImageView;
@@ -30,7 +35,7 @@ public class NewsDetailActivity extends AppCompatActivity implements View.OnClic
     @BindView(R.id.tv_title)
     FontTextView tvTitle;
     @BindView(R.id.tv_time)
-    FontTextView tvTime;
+    FontTextView mTime;
     @BindView(R.id.tv_described)
     FontTextView tvDescribed;
     int idNews;
@@ -60,7 +65,55 @@ public class NewsDetailActivity extends AppCompatActivity implements View.OnClic
                 (AndroidSchedulers.mainThread()).subscribeWith(new DisposableObserver<News>() {
             @Override
             public void onNext(News value) {
-                tvTime.setText(value.getDay());
+                Date date;
+                Date current = Calendar.getInstance().getTime();
+                SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+                try {
+                    date = df.parse(value.getDay());
+
+                } catch (ParseException e) {
+                    throw new RuntimeException("Failed to parse date: ", e);
+                }
+                long minute = (current.getTime() - date.getTime())
+                        / ( 60 * 1000);
+                long hours = (current.getTime() - date.getTime())
+                        / ( 3600 * 1000);
+                long days = hours/24;
+                long weeks = days/7;
+                long months = days/30;
+                long years = months/12;
+                if(years>0){
+                    mTime.setText(String.valueOf(years)+" "+getResources().getString(R.string.years_ago));
+                }else{
+                    if(months>0){
+                        mTime.setText(String.valueOf(months)+" "+getResources().getString(R.string
+                                .months_ago));
+                    }else {
+                        if(weeks>0){
+                            mTime.setText(String.valueOf(weeks)+" "
+                                    +getResources().getString(R.string.weeks_ago));
+                        }else {
+                            if(days>0){
+                                mTime.setText(String.valueOf(days)+" "
+                                        +getResources().getString(R.string.days_ago));
+                            }else {
+                                if(hours>0){
+                                    mTime.setText(String.valueOf(hours)+" "
+                                            +getResources().getString(R.string.hours_ago));
+                                }else {
+                                    if(minute>0){
+                                        mTime.setText(String.valueOf(minute)+" "
+                                                +getResources().getString(R.string.minutes_ago));
+                                    }else {
+                                        mTime.setText(getResources().getString(R.string.just_now));
+                                    }
+
+                                }
+
+                            }
+                        }
+                    }
+                }
                 tvTitle.setText(value.getTitle());
                 tvDescribed.setText(value.getDescribed());
                 loading.cancelDialog();

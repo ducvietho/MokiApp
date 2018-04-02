@@ -10,6 +10,7 @@ import com.example.ducvietho.moki.data.model.MessageResponse;
 import com.example.ducvietho.moki.data.model.NewsResponse;
 import com.example.ducvietho.moki.data.model.Notification;
 import com.example.ducvietho.moki.data.model.NotificationResponse;
+import com.example.ducvietho.moki.data.model.NotificationUnread;
 import com.example.ducvietho.moki.data.model.OrderAddressResponse;
 import com.example.ducvietho.moki.data.model.ProductDetail;
 import com.example.ducvietho.moki.data.model.ProductResponse;
@@ -145,6 +146,18 @@ public interface MokiApi {
     @POST("notification")
     Observable<NotificationResponse> getNotification(@Field("user_id") int idUser);
     @FormUrlEncoded
-    @POST("notification")
+    @POST("notification/message")
     Observable<NotificationResponse> getMessageNotification(@Field("user_id") int idUser);
+    @FormUrlEncoded
+    @POST("notification/message/unread")
+    Observable<NotificationUnread> getMessageNotificationUnread(@Field("user_id") int idUser);
+    @FormUrlEncoded
+    @POST("notification/unread")
+    Observable<NotificationUnread> getNotificationUnread(@Field("user_id") int idUser);
+    @FormUrlEncoded
+    @POST("notification/set_read")
+    Observable<BaseResponse> setNotificationRead(@Field("user_id") int idUser);
+    @FormUrlEncoded
+    @POST("notification/message/set_read")
+    Observable<BaseResponse> setMessageNotificationRead(@Field("notification_id") int idNotifi);
 }

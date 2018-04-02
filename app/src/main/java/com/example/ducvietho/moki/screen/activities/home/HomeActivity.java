@@ -23,8 +23,13 @@ import android.widget.RelativeLayout;
 
 
 import com.example.ducvietho.moki.R;
+import com.example.ducvietho.moki.data.model.BaseResponse;
 import com.example.ducvietho.moki.data.model.Menu;
+import com.example.ducvietho.moki.data.model.NotificationUnread;
 import com.example.ducvietho.moki.data.model.User;
+import com.example.ducvietho.moki.data.resource.remote.NotificationDataRepository;
+import com.example.ducvietho.moki.data.resource.remote.api.NotificationRemoteDataResource;
+import com.example.ducvietho.moki.data.resource.remote.api.service.MokiServiceClient;
 import com.example.ducvietho.moki.screen.activities.notification.NotificationActivity;
 import com.example.ducvietho.moki.screen.activities.product_seller.ProductSellerActivity;
 import com.example.ducvietho.moki.screen.activities.search.SearchActivity;
@@ -46,6 +51,10 @@ import java.util.ArrayList;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import de.hdodenhof.circleimageview.CircleImageView;
+import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.disposables.CompositeDisposable;
+import io.reactivex.observers.DisposableObserver;
+import io.reactivex.schedulers.Schedulers;
 
 public class HomeActivity extends AppCompatActivity implements MenuAdapter.OnItemMenuClick, View.OnClickListener {
     @BindView(R.id.drawer_layout)
@@ -76,6 +85,10 @@ public class HomeActivity extends AppCompatActivity implements MenuAdapter.OnIte
     CircleImageView mImgAvatar;
     @BindView(R.id.imgAppName)
     ImageView imgApp;
+    @BindView(R.id.tvBadgeNotification)
+    FontTextView tvBadgeNotification;
+    @BindView(R.id.tvBadgeMessage)
+    FontTextView tvBadgeMessage;
     private ActionBarDrawerToggle drawerToggle;
     private UserSession session;
     private float lastTranslate = 0.0f;
@@ -83,6 +96,9 @@ public class HomeActivity extends AppCompatActivity implements MenuAdapter.OnIte
     private ArrayList<Menu> menus;
     private FrameLayout mainContent;
     private MenuAdapter adapter;
+    private NotificationDataRepository mRepository;
+    private CompositeDisposable mDisposable;
+
     public static DialogLoading mDialogLoading;
 
     public static Intent getIntent(Context context) {
@@ -95,10 +111,14 @@ public class HomeActivity extends AppCompatActivity implements MenuAdapter.OnIte
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
         ButterKnife.bind(HomeActivity.this);
+        mRepository = new NotificationDataRepository(new NotificationRemoteDataResource(MokiServiceClient.getInstance()));
+        mDisposable = new CompositeDisposable();
+
         mDialogLoading = new DialogLoading(HomeActivity.this);
         mDialogLoading.showDialog();
         session = new UserSession(HomeActivity.this);
         User user = session.getUserDetail();
+        getNotificationUnread();
         if (user.getName() != null) {
             mUserName.setText(user.getName());
         } else {
@@ -108,6 +128,7 @@ public class HomeActivity extends AppCompatActivity implements MenuAdapter.OnIte
         mImgAvatar.setOnClickListener(this);
         imgSearch.setOnClickListener(this);
         imgNotify.setOnClickListener(this);
+        imgMessage.setOnClickListener(this);
         rcvMenuOption.setHasFixedSize(true);
         rcvMenuOption.setNestedScrollingEnabled(false);
         rcvMenuOption.setLayoutManager(new LinearLayoutManager(this));
@@ -196,7 +217,12 @@ public class HomeActivity extends AppCompatActivity implements MenuAdapter.OnIte
                 startActivity(new SearchActivity().getIntent(HomeActivity.this));
                 break;
             case R.id.imgNotify:
-                startActivity(new NotificationActivity().getIntent(HomeActivity.this));
+                tvBadgeNotification.setVisibility(View.GONE);
+                setNotificationRead();
+                startActivity(new NotificationActivity().getIntent(HomeActivity.this,0));
+                break;
+            case R.id.imgMessage:
+                startActivity(new NotificationActivity().getIntent(HomeActivity.this,1));
                 break;
         }
     }
@@ -286,7 +312,77 @@ public class HomeActivity extends AppCompatActivity implements MenuAdapter.OnIte
         }, 200);
 
     }
+    private void getNotificationUnread(){
+        User user = session.getUserDetail();
+        if(user.getToken()!=null){
+            mDisposable.add(mRepository.getNotificationUnread(session.getUserDetail().getId()).subscribeOn(Schedulers.newThread())
+                    .observeOn(AndroidSchedulers.mainThread()).subscribeWith(new DisposableObserver<NotificationUnread>() {
+                        @Override
+                        public void onNext(NotificationUnread value) {
+                            if(value.getUnread()>0){
+                                tvBadgeNotification.setVisibility(View.VISIBLE);
+                                tvBadgeNotification.setText(String.valueOf(value.getUnread()));
+                            }
 
+                        }
+
+                        @Override
+                        public void onError(Throwable e) {
+
+                        }
+
+                        @Override
+                        public void onComplete() {
+
+                        }
+                    }));
+            mDisposable.add(mRepository.getMessageNotificationUnread(session.getUserDetail().getId()).subscribeOn(Schedulers
+                    .newThread())
+                    .observeOn(AndroidSchedulers.mainThread()).subscribeWith(new DisposableObserver<NotificationUnread>() {
+                        @Override
+                        public void onNext(NotificationUnread value) {
+                            if(value.getUnread()>0){
+                                tvBadgeMessage.setVisibility(View.VISIBLE);
+                                tvBadgeMessage.setText(String.valueOf(value.getUnread()));
+                            }
+
+                        }
+
+                        @Override
+                        public void onError(Throwable e) {
+
+                        }
+
+                        @Override
+                        public void onComplete() {
+
+                        }
+                    }));
+        }
+
+    }
+    private void setNotificationRead(){
+        if(session.getUserDetail().getToken()!=null){
+            mDisposable.add(mRepository.setNotificationRead(session.getUserDetail().getId())
+                    .subscribeOn(Schedulers.newThread()).observeOn(AndroidSchedulers.mainThread())
+                    .subscribeWith(new DisposableObserver<BaseResponse>() {
+                        @Override
+                        public void onNext(BaseResponse value) {
+
+                        }
+
+                        @Override
+                        public void onError(Throwable e) {
+
+                        }
+
+                        @Override
+                        public void onComplete() {
+
+                        }
+                    }));
+        }
+    }
     private void setSelectedItemMenu(int position) {
         Menu newmenu = menus.get(position);
         newmenu.setSelect(true);
@@ -381,6 +477,7 @@ public class HomeActivity extends AppCompatActivity implements MenuAdapter.OnIte
             ft.commit();
         }
     }
+
 
 
 }
