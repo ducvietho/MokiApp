@@ -38,9 +38,11 @@ Giảm thiểu rủi ro lừa đảo."</string>
     Tất cả các bình luận của bạn đều đang được theo dõi</string>
     <string name="message">Tin nhắn</string>
     <string name="just_now">Vừa xong</string>
+    <string name="price">Giá</string>
     <string name="minutes_ago">phút trước</string>
     <string name="a_hour_ago">1 tiếng trước</string>
     <string name="hours_ago">tiếng trước</string>
+    <string name="buyer">Người mua</string>
     <string name="yesterday">hôm qua</string>
     <string name="days_ago">ngày trước</string>
     <string name="week_ago">1 tuần trước</string>

@@ -6,6 +6,7 @@
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="android.permission.CALL_PHONE"/>
 
     <uses-feature
         android:name="android.hardware.camera"
@@ -23,6 +24,10 @@
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <meta-data
+            android:name="com.google.android.gms.version"
+            android:value="@integer/google_play_services_version" />
+
         <activity
             android:name=".screen.activities.login.LoginActivity"
             android:screenOrientation="portrait">
@@ -51,36 +56,65 @@
             android:name=".screen.activities.productimage.DetailZoomActivity"
             android:screenOrientation="portrait">
         </activity>
-        <activity android:name=".screen.activities.comment.CommentActivity">
+        <activity
+            android:name=".screen.activities.comment.CommentActivity"
+            android:screenOrientation="portrait">
         </activity>
-        <activity android:name=".screen.activities.chat.ChatActivity">
+        <activity
+            android:name=".screen.activities.chat.ChatActivity"
+            android:screenOrientation="portrait">
         </activity>
-        <activity android:name=".screen.activities.product_seller.ProductSellerActivity">
+        <activity
+            android:name=".screen.activities.product_seller.ProductSellerActivity"
+            android:screenOrientation="portrait">
         </activity>
-
-        <meta-data
-            android:name="com.google.android.gms.version"
-            android:value="@integer/google_play_services_version" />
-
-        <activity android:name=".screen.activities.category.CategoryActivity">
+        <activity
+            android:name=".screen.activities.category.CategoryActivity"
+            android:screenOrientation="portrait">
         </activity>
-        <activity android:name=".screen.activities.status.StatusActivity">
+        <activity
+            android:name=".screen.activities.status.StatusActivity"
+            android:screenOrientation="portrait">
         </activity>
-        <activity android:name=".screen.activities.address.AddressActivity">
+        <activity
+            android:name=".screen.activities.address.AddressActivity"
+            android:screenOrientation="portrait">
         </activity>
-        <activity android:name=".screen.activities.insert_address.InsertAddressActivity">
+        <activity
+            android:name=".screen.activities.insert_address.InsertAddressActivity"
+            android:screenOrientation="portrait">
         </activity>
-        <activity android:name=".screen.activities.district.DistrictActivity">
+        <activity
+            android:name=".screen.activities.district.DistrictActivity"
+            android:screenOrientation="portrait">
         </activity>
-        <activity android:name=".screen.activities.village.VillageActivity">
+        <activity
+            android:name=".screen.activities.village.VillageActivity"
+            android:screenOrientation="portrait">
         </activity>
-        <activity android:name=".screen.activities.buy.BuyActivity">
+        <activity
+            android:name=".screen.activities.buy.BuyActivity"
+            android:screenOrientation="portrait">
         </activity>
-        <activity android:name=".screen.activities.news_detail.NewsDetailActivity">
+        <activity
+            android:name=".screen.activities.news_detail.NewsDetailActivity"
+            android:screenOrientation="portrait">
         </activity>
-        <activity android:name=".screen.activities.search.SearchActivity">
+        <activity
+            android:name=".screen.activities.search.SearchActivity"
+            android:screenOrientation="portrait">
         </activity>
-        <activity android:name=".screen.activities.search_result.SearchResultActivity">
+        <activity
+            android:name=".screen.activities.search_result.SearchResultActivity"
+            android:screenOrientation="portrait">
+        </activity>
+        <activity
+            android:name=".screen.activities.notification.NotificationActivity"
+            android:screenOrientation="portrait">
+        </activity>
+        <activity
+            android:name=".screen.activities.sell_detail.SellDetailActivity"
+            android:screenOrientation="portrait">
         </activity>
 
         <service android:name=".utils.notification.MyFirebaseInstanceIDService">
@@ -94,9 +128,7 @@
             </intent-filter>
         </service>
 
-        <activity android:name=".screen.activities.notification.NotificationActivity">
-        </activity>
-        <activity android:name=".screen.activities.sell_detail.SellDetailActivity">
+        <activity android:name=".screen.activities.order_detail.OrderDetailActivity">
         </activity>
     </application>
 

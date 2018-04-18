@@ -15,6 +15,7 @@ import com.example.ducvietho.moki.data.model.Product;
 import com.example.ducvietho.moki.data.resource.remote.ProductDataRepository;
 import com.example.ducvietho.moki.data.resource.remote.api.ProductRemoteDataResource;
 import com.example.ducvietho.moki.data.resource.remote.api.service.MokiServiceClient;
+import com.example.ducvietho.moki.screen.activities.order_detail.OrderDetailActivity;
 import com.example.ducvietho.moki.screen.activities.productdetail.ProductDetailActivity;
 import com.example.ducvietho.moki.screen.fragments.product_buy.ProductBuyAdapter;
 import com.example.ducvietho.moki.utils.OnClickItemProduct;
@@ -36,7 +37,7 @@ import io.reactivex.schedulers.Schedulers;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class ProductSellFragment extends Fragment implements OnClickItemProduct,OnClickProcessProduct {
+public class ProductSellFragment extends Fragment implements OnClickItemProduct, OnClickProcessProduct {
 
     private static final String BUNDLE_STAGE = "state";
     @BindView(R.id.rec_product_sell)
@@ -61,8 +62,8 @@ public class ProductSellFragment extends Fragment implements OnClickItemProduct,
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        v =  inflater.inflate(R.layout.fragment_product_sell, container, false);
-        ButterKnife.bind(this,v);
+        v = inflater.inflate(R.layout.fragment_product_sell, container, false);
+        ButterKnife.bind(this, v);
         state = getArguments().getInt(BUNDLE_STAGE);
         mRepository = new ProductDataRepository(new ProductRemoteDataResource(MokiServiceClient.getInstance()));
         mDisposable = new CompositeDisposable();
@@ -70,10 +71,20 @@ public class ProductSellFragment extends Fragment implements OnClickItemProduct,
         getProductsSell();
         return v;
     }
+
     @Override
     public void onClick(Product product) {
-        startActivity(new ProductDetailActivity().getIntent(v.getContext(), product.getId()));
+        switch (state) {
+            case 1:
+                startActivity(new ProductDetailActivity().getIntent(v.getContext(), product.getId()));
+                break;
+            case 2:
+                startActivity(new OrderDetailActivity().getIntent(v.getContext(), product.getId()));
+                break;
+        }
+
     }
+
     @Override
     public void acceptSell(Product product) {
         acceptSellProduct(product);
@@ -83,94 +94,93 @@ public class ProductSellFragment extends Fragment implements OnClickItemProduct,
     public void cancelSell(Product product) {
         cancelSellProduct(product);
     }
-    private void getProductsSell(){
+
+    private void getProductsSell() {
         Observable<List<Product>> observable = null;
-        if(state==1){
+        if (state == 1) {
             observable = mRepository.getProductSellProcessing(mUserSession.getUserDetail().getId());
-        }else {
-            if(state==2){
+        } else {
+            if (state == 2) {
                 observable = mRepository.getProductSellSuccess(mUserSession.getUserDetail().getId());
             }
 
         }
-        final DialogLoading loading  = new DialogLoading(v.getContext());
+        final DialogLoading loading = new DialogLoading(v.getContext());
         loading.showDialog();
-        mDisposable.add(observable.subscribeOn(Schedulers.newThread()).observeOn(AndroidSchedulers.mainThread())
-                .subscribeWith(new DisposableObserver<List<Product>>() {
-                    @Override
-                    public void onNext(List<Product> value) {
-                        loading.cancelDialog();
-                        GridLayoutManager manager = new GridLayoutManager(v.getContext(),1);
-                        mRecyclerView.setLayoutManager(manager);
-                        mProducts = value;
-                        if(state==1){
+        mDisposable.add(observable.subscribeOn(Schedulers.newThread()).observeOn(AndroidSchedulers.mainThread()).subscribeWith(new DisposableObserver<List<Product>>() {
+            @Override
+            public void onNext(List<Product> value) {
+                loading.cancelDialog();
+                GridLayoutManager manager = new GridLayoutManager(v.getContext(), 1);
+                mRecyclerView.setLayoutManager(manager);
+                mProducts = value;
+                if (state == 1) {
 
-                             adapterProccessing = new ProductSellProccessingAdapter(mProducts, ProductSellFragment.this);
-                            mRecyclerView.setAdapter(adapterProccessing);
-                        }else {
-                            if(state==2){
-                                ProductBuyAdapter adapter = new ProductBuyAdapter(mProducts,ProductSellFragment.this);
-                                mRecyclerView.setAdapter(adapter);
-                            }
-                        }
+                    adapterProccessing = new ProductSellProccessingAdapter(mProducts, ProductSellFragment.this);
+                    mRecyclerView.setAdapter(adapterProccessing);
+                } else {
+                    if (state == 2) {
+                        ProductBuyAdapter adapter = new ProductBuyAdapter(mProducts, ProductSellFragment.this);
+                        mRecyclerView.setAdapter(adapter);
                     }
+                }
+            }
 
-                    @Override
-                    public void onError(Throwable e) {
+            @Override
+            public void onError(Throwable e) {
 
-                    }
+            }
 
-                    @Override
-                    public void onComplete() {
+            @Override
+            public void onComplete() {
 
-                    }
-                }));
+            }
+        }));
     }
 
-    private void acceptSellProduct(final Product product){
-        final DialogLoading loading  = new DialogLoading(v.getContext());
+    private void acceptSellProduct(final Product product) {
+        final DialogLoading loading = new DialogLoading(v.getContext());
         loading.showDialog();
-        mDisposable.add(mRepository.acceptSellProduct(product.getId()).subscribeOn(Schedulers.newThread())
-                .observeOn(AndroidSchedulers.mainThread()).subscribeWith(new DisposableObserver<BaseResponse>() {
-                    @Override
-                    public void onNext(BaseResponse value) {
-                        loading.cancelDialog();
-                        mProducts.remove(product);
-                        adapterProccessing.notifyDataSetChanged();
-                    }
+        mDisposable.add(mRepository.acceptSellProduct(product.getId()).subscribeOn(Schedulers.newThread()).observeOn(AndroidSchedulers.mainThread()).subscribeWith(new DisposableObserver<BaseResponse>() {
+            @Override
+            public void onNext(BaseResponse value) {
+                loading.cancelDialog();
+                mProducts.remove(product);
+                adapterProccessing.notifyDataSetChanged();
+            }
 
-                    @Override
-                    public void onError(Throwable e) {
+            @Override
+            public void onError(Throwable e) {
 
-                    }
+            }
 
-                    @Override
-                    public void onComplete() {
+            @Override
+            public void onComplete() {
 
-                    }
-                }));
+            }
+        }));
     }
-    private void cancelSellProduct(final Product product){
-        final DialogLoading loading  = new DialogLoading(v.getContext());
+
+    private void cancelSellProduct(final Product product) {
+        final DialogLoading loading = new DialogLoading(v.getContext());
         loading.showDialog();
-        mDisposable.add(mRepository.cancelSellProduct(product.getId()).subscribeOn(Schedulers.newThread())
-                .observeOn(AndroidSchedulers.mainThread()).subscribeWith(new DisposableObserver<BaseResponse>() {
-                    @Override
-                    public void onNext(BaseResponse value) {
-                        loading.cancelDialog();
-                        mProducts.remove(product);
-                        adapterProccessing.notifyDataSetChanged();
-                    }
+        mDisposable.add(mRepository.cancelSellProduct(product.getId()).subscribeOn(Schedulers.newThread()).observeOn(AndroidSchedulers.mainThread()).subscribeWith(new DisposableObserver<BaseResponse>() {
+            @Override
+            public void onNext(BaseResponse value) {
+                loading.cancelDialog();
+                mProducts.remove(product);
+                adapterProccessing.notifyDataSetChanged();
+            }
 
-                    @Override
-                    public void onError(Throwable e) {
+            @Override
+            public void onError(Throwable e) {
 
-                    }
+            }
 
-                    @Override
-                    public void onComplete() {
+            @Override
+            public void onComplete() {
 
-                    }
-                }));
+            }
+        }));
     }
 }

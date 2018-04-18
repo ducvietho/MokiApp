@@ -1,6 +1,7 @@
 package com.example.ducvietho.moki.data.resource.remote;
 
 import com.example.ducvietho.moki.data.model.BaseResponse;
+import com.example.ducvietho.moki.data.model.OrderDetail;
 import com.example.ducvietho.moki.data.model.Product;
 import com.example.ducvietho.moki.data.model.ProductResponse;
 
@@ -28,4 +29,5 @@ public interface ProductDataResource {
     Observable<BaseResponse> buyProduct(int idProduct,int idCustomer,String shipAddress);
     Observable<BaseResponse> cancelSellProduct(int idProduct);
     Observable<List<Product>> searchProducts(int idUser,String nameProduct,String price);
+    Observable<OrderDetail> getOrderDetail(int idProduct);
 }

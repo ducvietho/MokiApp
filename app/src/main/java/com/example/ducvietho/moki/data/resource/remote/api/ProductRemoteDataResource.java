@@ -1,6 +1,8 @@
 package com.example.ducvietho.moki.data.resource.remote.api;
 
 import com.example.ducvietho.moki.data.model.BaseResponse;
+import com.example.ducvietho.moki.data.model.OrderDetail;
+import com.example.ducvietho.moki.data.model.OrderDetailResponse;
 import com.example.ducvietho.moki.data.model.Product;
 import com.example.ducvietho.moki.data.model.ProductDetail;
 import com.example.ducvietho.moki.data.model.ProductResponse;
@@ -130,6 +132,16 @@ public class ProductRemoteDataResource extends BaseRemoteDataResource implements
             @Override
             public List<Product> apply(ProductResponse productResponse) throws Exception {
                 return productResponse.getProducts().getmProducts();
+            }
+        });
+    }
+
+    @Override
+    public Observable<OrderDetail> getOrderDetail(int idProduct) {
+        return mApi.getOrderDetail(idProduct).map(new Function<OrderDetailResponse, OrderDetail>() {
+            @Override
+            public OrderDetail apply(OrderDetailResponse orderDetailResponse) throws Exception {
+                return orderDetailResponse.getOrderDetail();
             }
         });
     }
