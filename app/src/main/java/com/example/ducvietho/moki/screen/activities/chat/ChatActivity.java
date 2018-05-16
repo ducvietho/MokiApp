@@ -179,7 +179,6 @@ public class ChatActivity extends AppCompatActivity implements View.OnClickListe
             ChatActivity.this.runOnUiThread(new Runnable() {
                 @Override
                 public void run() {
-                    //Toast.makeText(ChatActivity.this,"Resposne :"+args[0].toString(),Toast.LENGTH_LONG).show();
                     Message message = new Gson().fromJson(args[0].toString(),Message.class);
                     if(message.getIdConversation()==idConversation){
                         mList.add(message);

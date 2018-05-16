@@ -4,6 +4,7 @@ import android.app.Dialog;
 import android.content.Context;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
+import android.os.Handler;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
@@ -43,5 +44,11 @@ public class DialogNoInternet {
             }
         });
         d.show();
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                d.dismiss();
+            }
+        },3000);
     }
 }

@@ -19,9 +19,13 @@ import com.example.ducvietho.moki.data.resource.remote.ProductDataRepository;
 import com.example.ducvietho.moki.data.resource.remote.api.ProductRemoteDataResource;
 import com.example.ducvietho.moki.data.resource.remote.api.service.MokiServiceClient;
 import com.example.ducvietho.moki.screen.activities.home.HomeActivity;
+import com.example.ducvietho.moki.utils.CacheData;
+import com.example.ducvietho.moki.utils.CheckInternetConnection;
 import com.example.ducvietho.moki.utils.UserSession;
 import com.example.ducvietho.moki.utils.dialog.DialogLoading;
+import com.example.ducvietho.moki.utils.dialog.DialogNoInternet;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -73,7 +77,23 @@ public class CategoryFragment extends Fragment {
         mSession = new UserSession(v.getContext());
         mDisposable = new CompositeDisposable();
         final int idCate = getArguments().getInt(EXTRA_POS);
-        getListProduct(idCate, mSession.getUserDetail().getId(), 1);
+        CheckInternetConnection checkInternetConnection = new CheckInternetConnection(v.getContext());
+        if(checkInternetConnection.isConnected()){
+            getListProduct(idCate, mSession.getUserDetail().getId(), 1);
+        }else{
+            HomeActivity.mDialogLoading.cancelDialog();
+            try {
+                List<Product> products = (List<Product>) CacheData.readObject(v.getContext());
+                adapter = new ProductRecycleAdapter(products,v.getContext());
+                mRecyclerView.setAdapter(adapter);
+            } catch (IOException e) {
+                e.printStackTrace();
+            } catch (ClassNotFoundException e) {
+                e.printStackTrace();
+            } DialogNoInternet dialog_nointernet = new DialogNoInternet(v.getContext());
+            dialog_nointernet.showdialog();
+        }
+
         mRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
@@ -90,6 +110,11 @@ public class CategoryFragment extends Fragment {
             public void onNext(final ProductResponse value) {
 
                 HomeActivity.mDialogLoading.cancelDialog();
+                try {
+                    CacheData.writeObject(v.getContext(),value.getProducts().getmProducts());
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
                 mProducts = value.getProducts().getmProducts();
                 GridLayoutManager manager = new GridLayoutManager(v.getContext(), 2);
                 mRecyclerView.setLayoutManager(manager);
@@ -169,6 +194,11 @@ public class CategoryFragment extends Fragment {
         mDisposable.add(mRepository.getProductByCatePages(idCate, iduser, pageNumber, lastId).subscribeOn(Schedulers.newThread()).observeOn(AndroidSchedulers.mainThread()).subscribeWith(new DisposableObserver<ProductResponse>() {
             @Override
             public void onNext(ProductResponse value) {
+                try {
+                    CacheData.writeObject(v.getContext(),value.getProducts().getmProducts());
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
                 mProducts.remove(mProducts.size() - 1);
                 if (value.getProducts().getmProducts().size() < 20) {
                     adapter.setMoreDataAvailable(false);

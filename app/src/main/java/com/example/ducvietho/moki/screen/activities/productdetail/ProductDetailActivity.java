@@ -184,6 +184,11 @@ public class ProductDetailActivity extends AppCompatActivity implements View.OnC
     public void onClick(Comment comment) {
         startActivity(new ProductSellerActivity().getIntent(ProductDetailActivity.this,comment.getUser().getId()));
     }
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        overridePendingTransition(R.anim.no_change, R.anim.slide_down_info);
+    }
     private void likeProduct(int idProduct,int idUser){
         final DialogLoading loading = new DialogLoading(ProductDetailActivity.this);
         loading.showDialog();
@@ -336,6 +341,7 @@ public class ProductDetailActivity extends AppCompatActivity implements View.OnC
             @Override
             public void onClick(View v) {
                 finish();
+                overridePendingTransition(R.anim.no_change, R.anim.slide_down_info);
             }
         });
         if (product.getIs_liked() == 0) {

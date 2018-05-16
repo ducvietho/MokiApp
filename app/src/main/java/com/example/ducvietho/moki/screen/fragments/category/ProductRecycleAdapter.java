@@ -1,5 +1,6 @@
 package com.example.ducvietho.moki.screen.fragments.category;
 
+import android.app.Activity;
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -101,6 +102,7 @@ public class ProductRecycleAdapter extends RecyclerView.Adapter<RecyclerView.Vie
                 @Override
                 public void onClick(View v) {
                     itemView.getContext().startActivity(new ProductDetailActivity().getIntent(itemView.getContext(), product.getId()));
+                    ((Activity)itemView.getContext()).overridePendingTransition(R.anim.slide_up_info,R.anim.no_change);
                 }
             });
         }

@@ -10,7 +10,11 @@ import android.support.v4.app.NotificationCompat;
 import android.util.Log;
 
 import com.example.ducvietho.moki.R;
+import com.example.ducvietho.moki.data.model.BaseResponse;
 import com.example.ducvietho.moki.data.model.NotificationData;
+import com.example.ducvietho.moki.data.resource.remote.NotificationDataRepository;
+import com.example.ducvietho.moki.data.resource.remote.api.NotificationRemoteDataResource;
+import com.example.ducvietho.moki.data.resource.remote.api.service.MokiServiceClient;
 import com.example.ducvietho.moki.screen.activities.chat.ChatActivity;
 import com.example.ducvietho.moki.screen.activities.comment.CommentActivity;
 import com.example.ducvietho.moki.screen.activities.productdetail.ProductDetailActivity;
@@ -21,6 +25,11 @@ import com.google.firebase.messaging.RemoteMessage;
 import com.google.gson.Gson;
 
 import java.util.Map;
+
+import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.disposables.CompositeDisposable;
+import io.reactivex.observers.DisposableObserver;
+import io.reactivex.schedulers.Schedulers;
 
 /**
  * @ducvietho
@@ -52,7 +61,27 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
     private void sendNotification(final NotificationData notificationData, final com.example.ducvietho.moki.data.model.Notification notification) {
         Intent intent = new Intent();
         PendingIntent pendingIntent = null;
+        NotificationDataRepository repository = new NotificationDataRepository(new NotificationRemoteDataResource
+                (MokiServiceClient.getInstance()));
+        CompositeDisposable disposable = new CompositeDisposable();
+        disposable.add(repository.setMessageNotificationRead(notification.getId()).subscribeOn(Schedulers.newThread())
+                .observeOn
+                (AndroidSchedulers.mainThread()).subscribeWith(new DisposableObserver<BaseResponse>() {
+            @Override
+            public void onNext(BaseResponse value) {
 
+            }
+
+            @Override
+            public void onError(Throwable e) {
+
+            }
+
+            @Override
+            public void onComplete() {
+
+            }
+        }));
         switch (notification.getType()) {
             case 0:
 

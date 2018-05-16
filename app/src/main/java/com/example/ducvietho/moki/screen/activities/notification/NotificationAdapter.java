@@ -8,6 +8,7 @@ import android.widget.ImageView;
 
 import com.example.ducvietho.moki.R;
 import com.example.ducvietho.moki.data.model.Notification;
+import com.example.ducvietho.moki.utils.Constants;
 import com.example.ducvietho.moki.utils.OnItemtClick;
 import com.example.ducvietho.moki.utils.customview.FontTextView;
 import com.squareup.picasso.Picasso;
@@ -65,6 +66,7 @@ public class NotificationAdapter extends RecyclerView.Adapter<NotificationAdapte
             String [] images = notification.getImage().split(",");
             Picasso.with(itemView.getContext()).load(images[0]).into(mImgProduct);
             mName.setText(notification.getTitle());
+
             Date date;
             Date current = Calendar.getInstance().getTime();
             SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
@@ -113,6 +115,9 @@ public class NotificationAdapter extends RecyclerView.Adapter<NotificationAdapte
                         }
                     }
                 }
+            }if(notification.getRead()==0){
+                mName.setFontName(Constants.ROBOTO_BOLD);
+                mTime.setFontName(Constants.ROBOTO_BOLD);
             }
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override

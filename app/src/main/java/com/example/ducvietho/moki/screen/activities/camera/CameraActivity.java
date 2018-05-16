@@ -91,7 +91,11 @@ public class CameraActivity extends AppCompatActivity implements View.OnClickLis
 		checkPermissionCamera();
 	}
 
-
+	@Override
+	public void onBackPressed() {
+		super.onBackPressed();
+		overridePendingTransition(R.anim.no_change, R.anim.slide_down_info);
+	}
 	@Override
 	public void onPictureTaken(byte[] bytes, Camera camera) {
 		File outputFile = new File(getCacheDir(), "photo_" + SystemClock.currentThreadTimeMillis() + ".jpg");
@@ -203,6 +207,7 @@ public class CameraActivity extends AppCompatActivity implements View.OnClickLis
 		switch (view.getId()) {
 			case R.id.btnCancel:
 				finish();
+				overridePendingTransition(R.anim.no_change, R.anim.slide_down_info);
 				break;
 			case R.id.btnFlashOn:
 				flashLightOff();

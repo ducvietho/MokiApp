@@ -1,5 +1,6 @@
 package com.example.ducvietho.moki.screen.fragments.home;
 
+import android.app.Activity;
 import android.os.Bundle;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
@@ -56,6 +57,7 @@ public class HomeFragment extends Fragment {
                 }
                 else{
                     v.getContext().startActivity(new CameraActivity().getIntent(v.getContext(),1));
+                    getActivity().overridePendingTransition(R.anim.slide_up_info,R.anim.no_change);
                 }
 
             }

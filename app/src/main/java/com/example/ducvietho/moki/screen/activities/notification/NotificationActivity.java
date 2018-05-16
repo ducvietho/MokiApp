@@ -23,6 +23,7 @@ import com.example.ducvietho.moki.utils.UserSession;
 import com.example.ducvietho.moki.utils.customview.FontTextView;
 import com.example.ducvietho.moki.utils.dialog.DialogLoading;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
@@ -43,6 +44,8 @@ public class NotificationActivity extends AppCompatActivity implements View.OnCl
     private NotificationDataRepository mRepository;
     private CompositeDisposable mDisposable;
     private UserSession mUserSession;
+    NotificationAdapter adapter;
+    List<Notification> mList = new ArrayList<>();
     int type;
 
     public static Intent getIntent(Context context, int type) {
@@ -83,21 +86,20 @@ public class NotificationActivity extends AppCompatActivity implements View.OnCl
 
     @Override
     public void onClick(Notification notification) {
-        switch (notification.getType()){
+
+        switch (notification.getType()) {
             case 0:
                 startActivity(new CommentActivity().getIntent(NotificationActivity.this, notification.getProductId()));
                 break;
             case 1:
-                startActivity(new ProductDetailActivity().getIntent(NotificationActivity.this,notification.getProductId()));
+                startActivity(new ProductDetailActivity().getIntent(NotificationActivity.this, notification.getProductId()));
                 break;
             case 2:
                 setMessageRead(notification.getId());
-                if(notification.getIsSeller()==1){
-                    startActivity(new ChatActivity().getIntent(NotificationActivity.this,notification.getToId(),
-                            notification.getFromId(),notification.getProductId()));
-                }else {
-                    startActivity(new ChatActivity().getIntent(NotificationActivity.this,notification.getFromId(),
-                            notification.getToId(),notification.getProductId()));
+                if (notification.getIsSeller() == 1) {
+                    startActivity(new ChatActivity().getIntent(NotificationActivity.this, notification.getToId(), notification.getFromId(), notification.getProductId()));
+                } else {
+                    startActivity(new ChatActivity().getIntent(NotificationActivity.this, notification.getFromId(), notification.getToId(), notification.getProductId()));
                 }
                 break;
         }
@@ -111,10 +113,11 @@ public class NotificationActivity extends AppCompatActivity implements View.OnCl
             @Override
             public void onNext(List<Notification> value) {
                 loading.cancelDialog();
+                mList = value;
                 mTitle.setText("Thông báo");
                 GridLayoutManager manager = new GridLayoutManager(NotificationActivity.this, 1);
                 mRecyclerView.setLayoutManager(manager);
-                NotificationAdapter adapter = new NotificationAdapter(value, NotificationActivity.this);
+                adapter = new NotificationAdapter(mList, NotificationActivity.this);
                 mRecyclerView.setAdapter(adapter);
             }
 
@@ -130,18 +133,19 @@ public class NotificationActivity extends AppCompatActivity implements View.OnCl
         }));
 
     }
+
     private void getMessageNotification() {
         final DialogLoading loading = new DialogLoading(NotificationActivity.this);
         loading.showDialog();
-        mDisposable.add(mRepository.getMessageNotification(mUserSession.getUserDetail().getId()).subscribeOn(Schedulers
-                .newThread()).observeOn(AndroidSchedulers.mainThread()).subscribeWith(new DisposableObserver<List<Notification>>() {
+        mDisposable.add(mRepository.getMessageNotification(mUserSession.getUserDetail().getId()).subscribeOn(Schedulers.newThread()).observeOn(AndroidSchedulers.mainThread()).subscribeWith(new DisposableObserver<List<Notification>>() {
             @Override
             public void onNext(List<Notification> value) {
                 loading.cancelDialog();
+                mList = value;
                 mTitle.setText("Tin nhắn");
                 GridLayoutManager manager = new GridLayoutManager(NotificationActivity.this, 1);
                 mRecyclerView.setLayoutManager(manager);
-                NotificationAdapter adapter = new NotificationAdapter(value, NotificationActivity.this);
+                adapter = new NotificationAdapter(mList, NotificationActivity.this);
                 mRecyclerView.setAdapter(adapter);
             }
 
@@ -157,24 +161,23 @@ public class NotificationActivity extends AppCompatActivity implements View.OnCl
         }));
 
     }
-    private void setMessageRead(int idNotifi){
-        mDisposable.add(mRepository.setMessageNotificationRead(idNotifi).subscribeOn(Schedulers.newThread())
-                    .observeOn(AndroidSchedulers.mainThread())
-                    .subscribeWith(new DisposableObserver<BaseResponse>() {
-                        @Override
-                        public void onNext(BaseResponse value) {
 
-                        }
+    private void setMessageRead(int idNotifi) {
+        mDisposable.add(mRepository.setMessageNotificationRead(idNotifi).subscribeOn(Schedulers.newThread()).observeOn(AndroidSchedulers.mainThread()).subscribeWith(new DisposableObserver<BaseResponse>() {
+            @Override
+            public void onNext(BaseResponse value) {
 
-                        @Override
-                        public void onError(Throwable e) {
+            }
 
-                        }
+            @Override
+            public void onError(Throwable e) {
 
-                        @Override
-                        public void onComplete() {
+            }
 
-                        }
-                    }));
+            @Override
+            public void onComplete() {
+
+            }
+        }));
     }
 }
