@@ -35,12 +35,7 @@
                     android:textSize="@dimen/ts_16"/>
 
             </LinearLayout>
-
-
-
-
         <include layout="@layout/view_line_red"/>
-
         <include layout="@layout/content_detail_item" />
     </LinearLayout>
 </android.support.design.widget.CoordinatorLayout>

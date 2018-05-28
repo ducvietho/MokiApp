@@ -8,6 +8,10 @@ import android.widget.TextView;
 
 
 import com.example.ducvietho.moki.R;
+import com.example.ducvietho.moki.data.model.Category;
+import com.example.ducvietho.moki.screen.activities.product_category.ProductCategoryActivity;
+import com.example.ducvietho.moki.utils.OncClickItemCate;
+import com.google.gson.Gson;
 
 import java.util.List;
 
@@ -20,9 +24,10 @@ import butterknife.ButterKnife;
 
 public class CateRecycleAdapter extends RecyclerView.Adapter<CateRecycleAdapter.ViewHolder> {
     List<String> cateList;
-
-    public CateRecycleAdapter(List<String> cateList) {
+    private OncClickItemCate mOncClick;
+    public CateRecycleAdapter(List<String> cateList,OncClickItemCate oncClick) {
         this.cateList = cateList;
+        mOncClick = oncClick;
     }
 
     @Override
@@ -33,7 +38,7 @@ public class CateRecycleAdapter extends RecyclerView.Adapter<CateRecycleAdapter.
 
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
-        holder.txtView.setText(cateList.get(position));
+        holder.bind(cateList.get(position));
     }
 
     @Override
@@ -48,6 +53,15 @@ public class CateRecycleAdapter extends RecyclerView.Adapter<CateRecycleAdapter.
         public ViewHolder(View itemView) {
             super(itemView);
             ButterKnife.bind(this,itemView);
+        }
+        public void bind(final String string){
+            txtView.setText(string);
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    mOncClick.onClick(string);
+                }
+            });
         }
     }
 }

@@ -127,7 +127,7 @@ public class ProductRecycleAdapter extends RecyclerView.Adapter<RecyclerView.Vie
     }
 
 
-    interface OnLoadMoreListener {
+    public interface OnLoadMoreListener {
         void onLoadMore();
     }
 

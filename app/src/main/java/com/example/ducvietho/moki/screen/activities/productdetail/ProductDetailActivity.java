@@ -5,6 +5,9 @@ import android.animation.TimeInterpolator;
 import android.animation.ValueAnimator;
 import android.content.Context;
 import android.content.Intent;
+import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
+import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -33,10 +36,12 @@ import com.example.ducvietho.moki.data.resource.remote.api.service.MokiServiceCl
 import com.example.ducvietho.moki.screen.activities.chat.ChatActivity;
 import com.example.ducvietho.moki.screen.activities.comment.CommentActivity;
 import com.example.ducvietho.moki.screen.activities.comment.CommentRecyclerAdapter;
+import com.example.ducvietho.moki.screen.activities.product_category.ProductCategoryActivity;
 import com.example.ducvietho.moki.screen.activities.product_seller.ProductSellerActivity;
 import com.example.ducvietho.moki.screen.fragments.home.ViewPagerAdapter;
 import com.example.ducvietho.moki.screen.fragments.image_product.ImageProductFragment;
 import com.example.ducvietho.moki.utils.OnItemtClick;
+import com.example.ducvietho.moki.utils.OncClickItemCate;
 import com.example.ducvietho.moki.utils.PullOverListen;
 import com.example.ducvietho.moki.utils.ShareProcess;
 import com.example.ducvietho.moki.utils.UserSession;
@@ -62,7 +67,7 @@ import io.reactivex.schedulers.Schedulers;
 
 import static com.example.ducvietho.moki.utils.Constants.EXTRA_ID_PRODUCT;
 
-public class ProductDetailActivity extends AppCompatActivity implements View.OnClickListener ,OnItemtClick<Comment> {
+public class ProductDetailActivity extends AppCompatActivity implements View.OnClickListener ,OnItemtClick<Comment>,OncClickItemCate{
 
     @BindView(R.id.product_scroll)
     ParallaxScrollView productScroll;
@@ -130,6 +135,7 @@ public class ProductDetailActivity extends AppCompatActivity implements View.OnC
     private LikeDataRepository mLikeDataRepository;
     private CompositeDisposable mDisposable;
     int idProduct;
+    int idCate;
     public static Intent getIntent(Context context, int idProduct) {
         Intent intent = new Intent(context, ProductDetailActivity.class);
 //        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
@@ -188,6 +194,10 @@ public class ProductDetailActivity extends AppCompatActivity implements View.OnC
     public void onBackPressed() {
         super.onBackPressed();
         overridePendingTransition(R.anim.no_change, R.anim.slide_down_info);
+    }
+    @Override
+    public void onClick(String string) {
+        startActivity(new ProductCategoryActivity().getIntent(ProductDetailActivity.this,string,idCate));
     }
     private void likeProduct(int idProduct,int idUser){
         final DialogLoading loading = new DialogLoading(ProductDetailActivity.this);
@@ -262,6 +272,7 @@ public class ProductDetailActivity extends AppCompatActivity implements View.OnC
     }
 
     private void initProduct(final Product product) {
+        idCate = product.getIdCate();
         Date date;
         Date current = Calendar.getInstance().getTime();
         SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
@@ -312,8 +323,7 @@ public class ProductDetailActivity extends AppCompatActivity implements View.OnC
             }
         }
         if (product.getUser().getId() == mUserSession.getUserDetail().getId()) {
-            mBuy.setVisibility(View.GONE);
-            mEdit.setVisibility(View.VISIBLE);
+            mLayout.setVisibility(View.GONE);
         }else{
             if(product.getIsSold()>0){
                 mLayout.setVisibility(View.GONE);
@@ -370,6 +380,35 @@ public class ProductDetailActivity extends AppCompatActivity implements View.OnC
         if (viewPager.getAdapter().getCount() == 1) {
             mViewRight.setVisibility(View.GONE);
         }
+        viewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+            @Override
+            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+
+            }
+
+            @Override
+            public void onPageSelected(int position) {
+                if (position== 0) {
+                    mViewLeft.setVisibility(View.GONE);
+                    mViewRight.setVisibility(View.VISIBLE);
+
+                } else {
+                    if (position > 0 && position < viewPager.getAdapter().getCount() - 1) {
+                        mViewRight.setVisibility(View.VISIBLE);
+                        mViewLeft.setVisibility(View.VISIBLE);
+                    }
+                    if (position == (viewPager.getAdapter().getCount() - 1)) {
+                        mViewRight.setVisibility(View.GONE);
+                        mViewLeft.setVisibility(View.VISIBLE);
+                    }
+                }
+            }
+
+            @Override
+            public void onPageScrollStateChanged(int state) {
+
+            }
+        });
         mViewLeft.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -440,7 +479,7 @@ public class ProductDetailActivity extends AppCompatActivity implements View.OnC
         GridLayoutManager manager = new GridLayoutManager(ProductDetailActivity.this, 1);
         mCate.setLayoutManager(manager);
         mStringList.add(product.getCategory());
-        mAdapter = new CateRecycleAdapter(mStringList);
+        mAdapter = new CateRecycleAdapter(mStringList,this);
         mCate.setAdapter(mAdapter);
     }
 

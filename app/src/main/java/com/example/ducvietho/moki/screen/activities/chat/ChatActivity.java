@@ -183,6 +183,7 @@ public class ChatActivity extends AppCompatActivity implements View.OnClickListe
                     if(message.getIdConversation()==idConversation){
                         mList.add(message);
                         adapter.notifyDataSetChanged();
+                        mRecyclerView.smoothScrollToPosition(mList.size());
                     }
 
                 }
@@ -254,6 +255,7 @@ public class ChatActivity extends AppCompatActivity implements View.OnClickListe
                     mList = value.getList();
                     adapter = new ChatRecyclerAdapter(mList,ChatActivity.this);
                     mRecyclerView.setAdapter(adapter);
+                    mRecyclerView.smoothScrollToPosition(mList.size());
                 }else {
 
                 }

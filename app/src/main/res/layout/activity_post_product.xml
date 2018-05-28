@@ -26,11 +26,7 @@
                 android:gravity="center"
                 android:textColor="@color/red"
                 android:textSize="@dimen/ts_16"/>
-            <ImageView
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:src="@drawable/btn_delete"/>
+            
         </LinearLayout>
 
     <include layout="@layout/view_line_red"/>
@@ -101,70 +97,7 @@
 
             <include layout="@layout/view_line_gray" />
 
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:padding="@dimen/spacing_medium">
 
-                <Switch
-                    android:id="@+id/swSellFast"
-                    android:layout_width="70dp"
-                    android:layout_height="50dp"
-                    android:layout_alignParentRight="true"
-                    android:layout_centerVertical="true"
-                    android:checked="true"
-                    android:theme="@style/CustomSwitch" />
-
-                <com.example.ducvietho.moki.utils.customview.FontTextView
-                    android:id="@+id/tvSellFast"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Bán nhanh"
-                    android:textColor="@color/black"
-                    android:textStyle="bold" />
-
-                <com.example.ducvietho.moki.utils.customview.FontTextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@id/tvSellFast"
-                    android:layout_toLeftOf="@id/swSellFast"
-                    android:text="Tự động bán khi có yêu cầu mua hoặc không" />
-            </RelativeLayout>
-
-            <include layout="@layout/view_line_gray" />
-
-            <RelativeLayout
-                android:id="@+id/layoutBargain"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:padding="@dimen/spacing_medium">
-
-                <Switch
-                    android:id="@+id/swBargain"
-                    android:layout_width="70dp"
-                    android:layout_height="50dp"
-                    android:layout_alignParentRight="true"
-                    android:layout_centerVertical="true"
-                    android:checked="false"
-                    android:theme="@style/CustomSwitch" />
-
-                <com.example.ducvietho.moki.utils.customview.FontTextView
-                    android:id="@+id/tvBargain"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Mặc cả"
-                    android:textColor="@color/black"
-                    android:textStyle="bold" />
-
-                <com.example.ducvietho.moki.utils.customview.FontTextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@id/tvBargain"
-                    android:layout_toLeftOf="@id/swBargain"
-                    android:text="Cho phép người mua mặc cả giá hoặc không" />
-            </RelativeLayout>
-
-            <include layout="@layout/view_line_gray" />
 
             <com.example.ducvietho.moki.utils.customview.FontTextView
                 android:layout_width="match_parent"

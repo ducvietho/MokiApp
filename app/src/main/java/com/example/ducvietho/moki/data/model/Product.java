@@ -17,7 +17,6 @@ public class Product {
     private String described;
     @SerializedName("address")
     private String address;
-
     @SerializedName("condition")
     private int condition;
     @SerializedName("created_at")
@@ -30,17 +29,10 @@ public class Product {
     private String image;
     @SerializedName("is_liked")
     private int is_liked;
-
-    @SerializedName("size")
-    private Size size;
-    @SerializedName("brand")
-    private Brand brand;
     @SerializedName("seller")
     private User user;
     @SerializedName("category_name")
     private String category;
-    @SerializedName("is_blocked")
-    private int is_blocked;
     @SerializedName("dimension")
     private String dimension;
     @SerializedName("weight")
@@ -49,6 +41,16 @@ public class Product {
     private String mStatus;
     @SerializedName("is_sold")
     private int isSold;
+    @SerializedName("category_id")
+    private int idCate;
+
+    public int getIdCate() {
+        return idCate;
+    }
+
+    public void setIdCate(int idCate) {
+        this.idCate = idCate;
+    }
 
     public int getIsSold() {
         return isSold;
@@ -162,21 +164,6 @@ public class Product {
         this.comment = comment;
     }
 
-    public Size getSize() {
-        return size;
-    }
-
-    public void setSize(Size size) {
-        this.size = size;
-    }
-
-    public Brand getBrand() {
-        return brand;
-    }
-
-    public void setBrand(Brand brand) {
-        this.brand = brand;
-    }
 
     public User getUser() {
         return user;
@@ -184,15 +171,6 @@ public class Product {
 
     public void setUser(User user) {
         this.user = user;
-    }
-
-
-    public int getIs_blocked() {
-        return is_blocked;
-    }
-
-    public void setIs_blocked(int is_blocked) {
-        this.is_blocked = is_blocked;
     }
 
     public String getImage() {
