@@ -24,6 +24,7 @@ import com.example.ducvietho.moki.utils.customview.AutoHighLightTextview;
 import com.example.ducvietho.moki.utils.dialog.DialogLoading;
 import com.example.ducvietho.moki.utils.dialog.DialogLoginFail;
 import com.example.ducvietho.moki.utils.dialog.DialogNoLogin;
+import com.example.ducvietho.moki.utils.dialog.DialogNotInfor;
 import com.google.firebase.iid.FirebaseInstanceId;
 
 import butterknife.BindView;
@@ -67,8 +68,13 @@ public class LoginActivity extends AppCompatActivity {
         mBtSignIn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                if(mPhone.getText().toString().equals("")||mPass.getText().toString().equals("")){
+                    new DialogNotInfor(LoginActivity.this)
+                            .showDialog("Hãy nhập đầy đủ thông tin số điện thoại và mật khẩu");
+                }else {
+                    checkUser(mPhone.getText().toString(),mPass.getText().toString(),id);
+                }
 
-                checkUser(mPhone.getText().toString(),mPass.getText().toString(),id);
             }
         });
 

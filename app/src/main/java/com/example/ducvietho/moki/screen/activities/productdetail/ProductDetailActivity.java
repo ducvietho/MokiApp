@@ -598,6 +598,4 @@ public class ProductDetailActivity extends AppCompatActivity implements View.OnC
         };
     }
 
-
-
 }
