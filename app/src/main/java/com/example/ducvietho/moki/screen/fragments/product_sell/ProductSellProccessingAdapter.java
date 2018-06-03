@@ -59,6 +59,8 @@ public class ProductSellProccessingAdapter extends RecyclerView.Adapter<ProductS
         FontTextView mAccept;
         @BindView(R.id.tvCancel)
         FontTextView mCancel;
+        @BindView(R.id.tv_message)
+        FontTextView mMessage;
 
         public ViewHolder(View itemView) {
             super(itemView);
@@ -67,6 +69,7 @@ public class ProductSellProccessingAdapter extends RecyclerView.Adapter<ProductS
 
         public void bind(final Product product) {
             String[] images = product.getImage().split(",");
+            mMessage.setText(product.getMessage());
             Picasso.with(itemView.getContext()).load(images[0]).placeholder(R.drawable.no_image).into(mImageView);
             mTitle.setText(product.getName());
             String price = String.valueOf(product.getPrice());

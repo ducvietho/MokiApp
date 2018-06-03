@@ -7,6 +7,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import com.example.ducvietho.moki.R;
 import com.example.ducvietho.moki.data.model.Product;
@@ -14,6 +15,7 @@ import com.example.ducvietho.moki.data.resource.remote.ProductDataRepository;
 import com.example.ducvietho.moki.data.resource.remote.api.ProductRemoteDataResource;
 import com.example.ducvietho.moki.data.resource.remote.api.service.MokiServiceClient;
 import com.example.ducvietho.moki.screen.activities.productdetail.ProductDetailActivity;
+import com.example.ducvietho.moki.screen.activities.search_result.SearchResultActivity;
 import com.example.ducvietho.moki.utils.OnClickItemProduct;
 import com.example.ducvietho.moki.utils.UserSession;
 import com.example.ducvietho.moki.utils.dialog.DialogLoading;
@@ -78,7 +80,8 @@ public class FavoriteFragment extends Fragment implements OnClickItemProduct {
 
             @Override
             public void onError(Throwable e) {
-
+                mLoading.cancelDialog();
+                Toast.makeText(v.getContext(),"Lỗi kết nối !",Toast.LENGTH_LONG).show();
             }
 
             @Override

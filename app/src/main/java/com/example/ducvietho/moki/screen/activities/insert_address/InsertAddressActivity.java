@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Toast;
 
 import com.example.ducvietho.moki.R;
 import com.example.ducvietho.moki.data.model.BaseResponse;
@@ -17,6 +18,7 @@ import com.example.ducvietho.moki.data.resource.remote.api.AddressRemoteDataReso
 import com.example.ducvietho.moki.data.resource.remote.api.service.MokiServiceClient;
 import com.example.ducvietho.moki.screen.activities.address.AddressActivity;
 import com.example.ducvietho.moki.screen.activities.district.DistrictActivity;
+import com.example.ducvietho.moki.screen.activities.search_result.SearchResultActivity;
 import com.example.ducvietho.moki.screen.activities.village.VillageActivity;
 import com.example.ducvietho.moki.utils.Constants;
 import com.example.ducvietho.moki.utils.UserSession;
@@ -149,7 +151,8 @@ public class InsertAddressActivity extends AppCompatActivity implements View.OnC
 
                        @Override
                        public void onError(Throwable e) {
-
+                           loading.cancelDialog();
+                           Toast.makeText(InsertAddressActivity.this,"Lỗi kết nối !",Toast.LENGTH_LONG).show();
                        }
 
                        @Override

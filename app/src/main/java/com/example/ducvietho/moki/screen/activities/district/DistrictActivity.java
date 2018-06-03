@@ -10,12 +10,14 @@ import android.support.v7.widget.GridLayoutManager;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.View;
+import android.widget.Toast;
 
 import com.example.ducvietho.moki.R;
 import com.example.ducvietho.moki.data.model.District;
 import com.example.ducvietho.moki.data.resource.remote.AddressDataRepository;
 import com.example.ducvietho.moki.data.resource.remote.api.AddressRemoteDataResource;
 import com.example.ducvietho.moki.data.resource.remote.api.service.MokiServiceClient;
+import com.example.ducvietho.moki.screen.activities.search_result.SearchResultActivity;
 import com.example.ducvietho.moki.utils.Constants;
 import com.example.ducvietho.moki.utils.OnItemtClick;
 import com.example.ducvietho.moki.utils.customview.FontEditText;
@@ -115,7 +117,8 @@ public class DistrictActivity extends AppCompatActivity implements View.OnClickL
 
                     @Override
                     public void onError(Throwable e) {
-
+                        loading.cancelDialog();
+                        Toast.makeText(DistrictActivity.this,"Lỗi kết nối !",Toast.LENGTH_LONG).show();
                     }
 
                     @Override

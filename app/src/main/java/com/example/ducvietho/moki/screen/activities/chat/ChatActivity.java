@@ -28,6 +28,7 @@ import com.example.ducvietho.moki.data.resource.remote.api.ConversationRemoteDat
 import com.example.ducvietho.moki.data.resource.remote.api.ProductRemoteDataResource;
 import com.example.ducvietho.moki.data.resource.remote.api.service.MokiServiceClient;
 import com.example.ducvietho.moki.screen.activities.buy.BuyActivity;
+import com.example.ducvietho.moki.screen.activities.search_result.SearchResultActivity;
 import com.example.ducvietho.moki.utils.Constants;
 import com.example.ducvietho.moki.utils.UserSession;
 import com.example.ducvietho.moki.utils.customview.FontTextView;
@@ -232,7 +233,8 @@ public class ChatActivity extends AppCompatActivity implements View.OnClickListe
 
             @Override
             public void onError(Throwable e) {
-
+                mLoading.cancelDialog();
+                Toast.makeText(ChatActivity.this,"Lỗi kết nối !",Toast.LENGTH_LONG).show();
             }
 
             @Override

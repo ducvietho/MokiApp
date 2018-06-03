@@ -20,6 +20,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.ducvietho.moki.R;
 import com.example.ducvietho.moki.data.model.Comment;
@@ -38,6 +39,7 @@ import com.example.ducvietho.moki.screen.activities.comment.CommentActivity;
 import com.example.ducvietho.moki.screen.activities.comment.CommentRecyclerAdapter;
 import com.example.ducvietho.moki.screen.activities.product_category.ProductCategoryActivity;
 import com.example.ducvietho.moki.screen.activities.product_seller.ProductSellerActivity;
+import com.example.ducvietho.moki.screen.activities.search_result.SearchResultActivity;
 import com.example.ducvietho.moki.screen.fragments.home.ViewPagerAdapter;
 import com.example.ducvietho.moki.screen.fragments.image_product.ImageProductFragment;
 import com.example.ducvietho.moki.utils.OnItemtClick;
@@ -261,7 +263,8 @@ public class ProductDetailActivity extends AppCompatActivity implements View.OnC
 
             @Override
             public void onError(Throwable e) {
-
+                loading.cancelDialog();
+                Toast.makeText(ProductDetailActivity.this,"Lỗi kết nối !",Toast.LENGTH_LONG).show();
             }
 
             @Override

@@ -39,17 +39,7 @@
             android:visibility="visible"
             tools:ignore="RtlCompat" />
 
-        <ImageView
-            android:id="@+id/btnNavRight"
-            android:layout_width="@dimen/dip_40"
-            android:layout_height="@dimen/dip_40"
-            android:layout_alignParentEnd="true"
-            android:adjustViewBounds="true"
-            android:background="@android:color/white"
-            android:scaleType="fitXY"
-            android:src="@drawable/btn_delete"
-            android:visibility="visible"
-            tools:ignore="RtlCompat" />
+
 
         <View
             android:id="@+id/separatorLine"
@@ -94,7 +84,7 @@
                 android:textColorHint="@color/gray_hint"
                 android:textSize="@dimen/ts_16" />
 
-            <ImageButton
+            <ImageView
                 android:id="@+id/btnSearchVoice"
                 android:layout_width="@dimen/dip_40"
                 android:layout_height="match_parent"

@@ -10,6 +10,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.example.ducvietho.moki.R;
@@ -24,6 +25,7 @@ import com.example.ducvietho.moki.utils.CheckInternetConnection;
 import com.example.ducvietho.moki.utils.UserSession;
 import com.example.ducvietho.moki.utils.dialog.DialogLoading;
 import com.example.ducvietho.moki.utils.dialog.DialogNoInternet;
+import com.example.ducvietho.moki.utils.dialog.DialogNotInfor;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -49,6 +51,8 @@ public class CategoryFragment extends Fragment {
     SwipeRefreshLayout mRefreshLayout;
     @BindView(R.id.layout_no_product)
     LinearLayout mLayout;
+    @BindView(R.id.pro_load)
+    ProgressBar mProgressBar;
     private List<Product> mProducts = new ArrayList<>();
     private View v;
     private UserSession mSession;
@@ -81,7 +85,7 @@ public class CategoryFragment extends Fragment {
         if(checkInternetConnection.isConnected()){
             getListProduct(idCate, mSession.getUserDetail().getId(), 1);
         }else{
-            HomeActivity.mDialogLoading.cancelDialog();
+
             try {
                 List<Product> products = (List<Product>) CacheData.readObject(v.getContext());
                 adapter = new ProductRecycleAdapter(products,v.getContext());
@@ -108,8 +112,7 @@ public class CategoryFragment extends Fragment {
         mDisposable.add(mRepository.getProductByCateOnePage(idCate, idUser, page).subscribeOn(Schedulers.newThread()).observeOn(AndroidSchedulers.mainThread()).subscribeWith(new DisposableObserver<ProductResponse>() {
             @Override
             public void onNext(final ProductResponse value) {
-
-                HomeActivity.mDialogLoading.cancelDialog();
+                mProgressBar.setVisibility(View.GONE);
                 try {
                     CacheData.writeObject(v.getContext(),value.getProducts().getmProducts());
                 } catch (IOException e) {
@@ -138,7 +141,8 @@ public class CategoryFragment extends Fragment {
 
             @Override
             public void onError(Throwable e) {
-
+                mProgressBar.setVisibility(View.GONE);
+                Toast.makeText(v.getContext(),"Lỗi kết nối !",Toast.LENGTH_LONG).show();
             }
 
             @Override
@@ -178,7 +182,8 @@ public class CategoryFragment extends Fragment {
 
             @Override
             public void onError(Throwable e) {
-
+                Toast.makeText(v.getContext(),"Lỗi kết nối !",Toast.LENGTH_LONG).show();
+                mRefreshLayout.setRefreshing(false);
             }
 
             @Override

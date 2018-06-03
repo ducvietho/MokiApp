@@ -12,6 +12,7 @@ import android.text.TextWatcher;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import com.example.ducvietho.moki.R;
 import com.example.ducvietho.moki.data.model.Comment;
@@ -20,6 +21,7 @@ import com.example.ducvietho.moki.data.resource.remote.CommentDataRepository;
 import com.example.ducvietho.moki.data.resource.remote.api.CommentRemoteDataResource;
 import com.example.ducvietho.moki.data.resource.remote.api.service.MokiServiceClient;
 import com.example.ducvietho.moki.screen.activities.product_seller.ProductSellerActivity;
+import com.example.ducvietho.moki.screen.activities.search_result.SearchResultActivity;
 import com.example.ducvietho.moki.utils.OnItemtClick;
 import com.example.ducvietho.moki.utils.UserSession;
 import com.example.ducvietho.moki.utils.dialog.DialogLoading;
@@ -127,7 +129,8 @@ public class CommentActivity extends AppCompatActivity implements View.OnClickLi
 
             @Override
             public void onError(Throwable e) {
-
+                loading.cancelDialog();
+                Toast.makeText(CommentActivity.this,"Lỗi kết nối !",Toast.LENGTH_LONG).show();
             }
 
             @Override

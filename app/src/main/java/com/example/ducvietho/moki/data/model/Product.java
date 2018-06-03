@@ -43,6 +43,16 @@ public class Product {
     private int isSold;
     @SerializedName("category_id")
     private int idCate;
+    @SerializedName("message")
+    private String mMessage;
+
+    public String getMessage() {
+        return mMessage;
+    }
+
+    public void setMessage(String message) {
+        mMessage = message;
+    }
 
     public int getIdCate() {
         return idCate;

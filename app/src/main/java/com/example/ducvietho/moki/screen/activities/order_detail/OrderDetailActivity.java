@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 import com.example.ducvietho.moki.R;
 import com.example.ducvietho.moki.data.model.OrderAddress;
@@ -18,6 +19,7 @@ import com.example.ducvietho.moki.data.resource.remote.api.service.MokiServiceCl
 import com.example.ducvietho.moki.screen.activities.buy.BuyActivity;
 import com.example.ducvietho.moki.screen.activities.chat.ChatActivity;
 import com.example.ducvietho.moki.screen.activities.notification.NotificationActivity;
+import com.example.ducvietho.moki.screen.activities.search_result.SearchResultActivity;
 import com.example.ducvietho.moki.utils.customview.FontTextView;
 import com.example.ducvietho.moki.utils.dialog.DialogLoading;
 import com.squareup.picasso.Picasso;
@@ -117,7 +119,8 @@ public class OrderDetailActivity extends AppCompatActivity implements View.OnCli
 
             @Override
             public void onError(Throwable e) {
-
+                loading.cancelDialog();
+                Toast.makeText(OrderDetailActivity.this,"Lỗi kết nối !",Toast.LENGTH_LONG).show();
             }
 
             @Override

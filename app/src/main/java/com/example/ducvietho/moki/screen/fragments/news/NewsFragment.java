@@ -8,6 +8,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import com.example.ducvietho.moki.R;
 import com.example.ducvietho.moki.data.model.News;
@@ -83,7 +84,8 @@ public class NewsFragment extends Fragment implements OnItemtClick<News> {
 
             @Override
             public void onError(Throwable e) {
-
+                loading.cancelDialog();
+                Toast.makeText(v.getContext(),"Lỗi kết nối !",Toast.LENGTH_LONG).show();
             }
 
             @Override

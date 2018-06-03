@@ -95,7 +95,8 @@ public class ProductFragment extends Fragment implements OnClickItemProduct {
 
             @Override
             public void onError(Throwable e) {
-                Toast.makeText(v.getContext(),"Error :"+e.getMessage(),Toast.LENGTH_LONG).show();
+                mLoading.cancelDialog();
+                Toast.makeText(v.getContext(),"Lỗi kết nối !",Toast.LENGTH_LONG).show();
 
             }
 

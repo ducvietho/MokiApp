@@ -6,12 +6,14 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 import com.example.ducvietho.moki.R;
 import com.example.ducvietho.moki.data.model.News;
 import com.example.ducvietho.moki.data.resource.remote.NewsDataRespository;
 import com.example.ducvietho.moki.data.resource.remote.api.NewsRemoteDataResource;
 import com.example.ducvietho.moki.data.resource.remote.api.service.MokiServiceClient;
+import com.example.ducvietho.moki.screen.activities.search_result.SearchResultActivity;
 import com.example.ducvietho.moki.utils.customview.FontTextView;
 import com.example.ducvietho.moki.utils.dialog.DialogLoading;
 
@@ -121,7 +123,8 @@ public class NewsDetailActivity extends AppCompatActivity implements View.OnClic
 
             @Override
             public void onError(Throwable e) {
-
+                loading.cancelDialog();
+                Toast.makeText(NewsDetailActivity.this,"Lỗi kết nối !",Toast.LENGTH_LONG).show();
             }
 
             @Override

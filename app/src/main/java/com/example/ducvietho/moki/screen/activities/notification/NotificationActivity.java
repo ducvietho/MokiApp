@@ -8,6 +8,7 @@ import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 import com.example.ducvietho.moki.R;
 import com.example.ducvietho.moki.data.model.BaseResponse;
@@ -18,6 +19,7 @@ import com.example.ducvietho.moki.data.resource.remote.api.service.MokiServiceCl
 import com.example.ducvietho.moki.screen.activities.chat.ChatActivity;
 import com.example.ducvietho.moki.screen.activities.comment.CommentActivity;
 import com.example.ducvietho.moki.screen.activities.productdetail.ProductDetailActivity;
+import com.example.ducvietho.moki.screen.activities.search_result.SearchResultActivity;
 import com.example.ducvietho.moki.utils.OnItemtClick;
 import com.example.ducvietho.moki.utils.UserSession;
 import com.example.ducvietho.moki.utils.customview.FontTextView;
@@ -123,7 +125,8 @@ public class NotificationActivity extends AppCompatActivity implements View.OnCl
 
             @Override
             public void onError(Throwable e) {
-
+                loading.cancelDialog();
+                Toast.makeText(NotificationActivity.this,"Lỗi kết nối !",Toast.LENGTH_LONG).show();
             }
 
             @Override

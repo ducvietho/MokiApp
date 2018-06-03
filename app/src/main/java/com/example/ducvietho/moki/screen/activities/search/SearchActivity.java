@@ -8,7 +8,6 @@ import android.view.View;
 import android.widget.ImageView;
 
 import com.example.ducvietho.moki.R;
-import com.example.ducvietho.moki.screen.activities.buy.BuyActivity;
 import com.example.ducvietho.moki.screen.activities.search_result.SearchResultActivity;
 import com.example.ducvietho.moki.utils.customview.FontEditText;
 import com.example.ducvietho.moki.utils.customview.FontTextView;
@@ -21,14 +20,14 @@ import butterknife.ButterKnife;
 public class SearchActivity extends AppCompatActivity implements View.OnClickListener{
     @BindView(R.id.btnNavLeft)
     ImageView mback;
-    @BindView(R.id.btnNavRight)
-    ImageView btDelete;
     @BindView(R.id.edtKeyword)
     FontEditText edKeyWord;
     @BindView(R.id.txtPrice)
     FontTextView tvPrice;
     @BindView(R.id.btn_search)
     FontTextView tvSearch;
+    @BindView(R.id.btnSearchVoice)
+    ImageView mView;
     public static Intent getIntent(Context context) {
         Intent intent = new Intent(context, SearchActivity.class);
         return intent;
@@ -39,9 +38,9 @@ public class SearchActivity extends AppCompatActivity implements View.OnClickLis
         setContentView(R.layout.activity_search);
         ButterKnife.bind(this);
         mback.setOnClickListener(this);
-        btDelete.setOnClickListener(this);
         tvSearch.setOnClickListener(this);
         tvPrice.setOnClickListener(this);
+        mView.setOnClickListener(this);
     }
 
     @Override
@@ -64,6 +63,9 @@ public class SearchActivity extends AppCompatActivity implements View.OnClickLis
                     startActivity(new SearchResultActivity().getIntent(SearchActivity.this,edKeyWord.getText().toString()
                             ,tvPrice.getText().toString()));
                 }
+
+                break;
+            case R.id.btnSearchVoice:
 
                 break;
         }

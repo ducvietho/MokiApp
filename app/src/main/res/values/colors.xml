@@ -12,6 +12,7 @@
     <!-- App Theme -->
     <color name="zk_black">#000000</color>
     <color name="zk_white">#ffffff</color>
+    <color name="white_1">#2Fffffff</color>
     <color name="zk_blue">#51bbeb</color>
     <color name="zk_main">#2b7bfc</color>
     <color name="primary_dark">#ffdddddd</color>

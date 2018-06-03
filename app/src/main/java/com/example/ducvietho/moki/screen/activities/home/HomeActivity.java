@@ -98,10 +98,7 @@ public class HomeActivity extends AppCompatActivity implements MenuAdapter.OnIte
     private MenuAdapter adapter;
     private NotificationDataRepository mRepository;
     private CompositeDisposable mDisposable;
-
-    public static DialogLoading mDialogLoading;
-
-    public static Intent getIntent(Context context) {
+        public static Intent getIntent(Context context) {
         Intent intent = new Intent(context, HomeActivity.class);
         return intent;
     }
@@ -113,9 +110,6 @@ public class HomeActivity extends AppCompatActivity implements MenuAdapter.OnIte
         ButterKnife.bind(HomeActivity.this);
         mRepository = new NotificationDataRepository(new NotificationRemoteDataResource(MokiServiceClient.getInstance()));
         mDisposable = new CompositeDisposable();
-
-        mDialogLoading = new DialogLoading(HomeActivity.this);
-        mDialogLoading.showDialog();
         session = new UserSession(HomeActivity.this);
         User user = session.getUserDetail();
         getNotificationUnread();

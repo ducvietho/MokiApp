@@ -17,6 +17,7 @@ import com.example.ducvietho.moki.data.resource.remote.api.NotificationRemoteDat
 import com.example.ducvietho.moki.data.resource.remote.api.service.MokiServiceClient;
 import com.example.ducvietho.moki.screen.activities.chat.ChatActivity;
 import com.example.ducvietho.moki.screen.activities.comment.CommentActivity;
+import com.example.ducvietho.moki.screen.activities.deal.DealActivity;
 import com.example.ducvietho.moki.screen.activities.productdetail.ProductDetailActivity;
 import com.example.ducvietho.moki.utils.Constants;
 import com.example.ducvietho.moki.utils.UserSession;
@@ -109,6 +110,12 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
                     intent.putExtra(Constants.EXTRA_ID_PRODUCT,notification.getProductId());      }
 
                 pendingIntent = PendingIntent.getActivity(this, 0, intent, PendingIntent.FLAG_ONE_SHOT);
+                break;
+            case 3:
+                intent = new Intent(this, DealActivity.class);
+                pendingIntent = PendingIntent.getActivity(this, 0, intent, PendingIntent.FLAG_ONE_SHOT);
+                break;
+            default:
                 break;
 
         }

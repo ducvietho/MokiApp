@@ -131,7 +131,8 @@ public class LoginActivity extends AppCompatActivity {
 
                         @Override
                         public void onError(Throwable e) {
-                            Toast.makeText(LoginActivity.this, e.getMessage(), Toast.LENGTH_SHORT).show();
+                            loading.cancelDialog();
+                            new DialogNotInfor(LoginActivity.this).showDialog("Lỗi kết nối !");
                         }
 
                         @Override

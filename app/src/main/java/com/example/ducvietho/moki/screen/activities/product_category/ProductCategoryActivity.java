@@ -23,6 +23,7 @@ import com.example.ducvietho.moki.data.resource.remote.api.ProductRemoteDataReso
 import com.example.ducvietho.moki.data.resource.remote.api.service.MokiServiceClient;
 import com.example.ducvietho.moki.screen.activities.home.HomeActivity;
 import com.example.ducvietho.moki.screen.activities.postproduct.PostProductActivity;
+import com.example.ducvietho.moki.screen.activities.search_result.SearchResultActivity;
 import com.example.ducvietho.moki.screen.fragments.category.ProductRecycleAdapter;
 import com.example.ducvietho.moki.utils.CacheData;
 import com.example.ducvietho.moki.utils.UserSession;
@@ -128,7 +129,8 @@ public class ProductCategoryActivity extends AppCompatActivity implements View.O
 
             @Override
             public void onError(Throwable e) {
-
+                mDialogLoading.cancelDialog();
+                Toast.makeText(ProductCategoryActivity.this,"Lỗi kết nối !",Toast.LENGTH_LONG).show();
             }
 
             @Override

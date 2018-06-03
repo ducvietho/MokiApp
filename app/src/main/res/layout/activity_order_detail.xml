@@ -40,17 +40,6 @@
             android:visibility="visible"
             tools:ignore="RtlCompat" />
 
-        <ImageButton
-            android:id="@+id/btnNavRight"
-            android:layout_width="@dimen/navi_bar_height"
-            android:layout_height="@dimen/navi_bar_height"
-            android:layout_alignParentEnd="true"
-            android:adjustViewBounds="true"
-            android:background="@android:color/white"
-            android:src="@drawable/ic_menu_horiz_more"
-            android:visibility="visible"
-            tools:ignore="RtlCompat" />
-
         <View
             android:id="@+id/separatorLine"
             android:layout_width="match_parent"
@@ -102,16 +91,7 @@
                 android:textColor="@android:color/white" />
         </LinearLayout>
     </LinearLayout>
-    <com.example.ducvietho.moki.utils.customview.FontTextView
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/dip_40"
-        android:text="@string/buyer"
-        android:gravity="center_vertical"
-        android:layout_marginLeft="@dimen/dip_10"
-        android:layout_marginTop="@dimen/dip_10"
-        android:textSize="@dimen/ts_18"
-        android:textColor="@android:color/black"
-        android:textStyle="bold"/>
+
     <View
         android:layout_width="match_parent"
         android:layout_height="1dp"
@@ -150,17 +130,17 @@
         android:layout_marginLeft="@dimen/dip_10"/>
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="@dimen/dip_30"
+        android:layout_height="wrap_content"
         android:orientation="horizontal"
         android:layout_marginTop="@dimen/dip_5"
         android:layout_marginLeft="@dimen/dip_15">
         <com.example.ducvietho.moki.utils.customview.FontTextView
-            android:layout_width="wrap_content"
+            android:layout_width="@dimen/dip_60"
             android:layout_height="match_parent"
             android:text="Địa chỉ "
             android:gravity="center_vertical"
             android:textColor="@android:color/black"
-
+            android:layout_gravity="center_vertical"
             android:textSize="@dimen/ts_14"/>
         <com.example.ducvietho.moki.utils.customview.FontTextView
             android:layout_width="match_parent"

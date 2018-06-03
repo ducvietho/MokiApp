@@ -31,6 +31,7 @@ import com.example.ducvietho.moki.screen.activities.address.AddressActivity;
 import com.example.ducvietho.moki.screen.activities.camera.CameraActivity;
 import com.example.ducvietho.moki.screen.activities.category.CategoryActivity;
 import com.example.ducvietho.moki.screen.activities.home.HomeActivity;
+import com.example.ducvietho.moki.screen.activities.search_result.SearchResultActivity;
 import com.example.ducvietho.moki.screen.activities.status.StatusActivity;
 import com.example.ducvietho.moki.utils.Constants;
 import com.example.ducvietho.moki.utils.UserSession;
@@ -346,7 +347,8 @@ public class PostProductActivity extends AppCompatActivity implements View.OnCli
 
                                                     @Override
                                                     public void onError(Throwable e) {
-
+                                                        loading.cancelDialog();
+                                                        Toast.makeText(PostProductActivity.this,"Lỗi kết nối !",Toast.LENGTH_LONG).show();
                                                     }
 
                                                     @Override

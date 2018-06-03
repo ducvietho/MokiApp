@@ -8,6 +8,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import com.example.ducvietho.moki.R;
 import com.example.ducvietho.moki.data.model.BaseResponse;
@@ -76,7 +77,7 @@ public class ProductSellFragment extends Fragment implements OnClickItemProduct,
     public void onClick(Product product) {
         switch (state) {
             case 1:
-                startActivity(new ProductDetailActivity().getIntent(v.getContext(), product.getId()));
+                startActivity(new OrderDetailActivity().getIntent(v.getContext(), product.getId()));
                 break;
             case 2:
                 startActivity(new OrderDetailActivity().getIntent(v.getContext(), product.getId()));
@@ -128,7 +129,8 @@ public class ProductSellFragment extends Fragment implements OnClickItemProduct,
 
             @Override
             public void onError(Throwable e) {
-
+                loading.cancelDialog();
+                Toast.makeText(v.getContext(),"Lỗi kết nối !",Toast.LENGTH_LONG).show();
             }
 
             @Override

@@ -9,6 +9,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.Toast;
 
 import com.example.ducvietho.moki.R;
 import com.example.ducvietho.moki.data.model.Product;
@@ -19,6 +20,7 @@ import com.example.ducvietho.moki.screen.activities.search.SearchActivity;
 import com.example.ducvietho.moki.screen.fragments.category.ProductRecycleAdapter;
 import com.example.ducvietho.moki.utils.UserSession;
 import com.example.ducvietho.moki.utils.customview.FontTextView;
+import com.example.ducvietho.moki.utils.dialog.DialogLoading;
 
 import java.util.List;
 
@@ -74,11 +76,14 @@ public class SearchResultActivity extends AppCompatActivity implements View.OnCl
         }
     }
     public void getProductsSearch(){
+        final DialogLoading loading = new DialogLoading(SearchResultActivity.this);
+        loading.showDialog();
         mDisposable.add(mRepository.searchProducts(mUserSession.getUserDetail().getId(),nameProduct,price)
                 .subscribeOn(Schedulers.newThread()).observeOn(AndroidSchedulers.mainThread())
                 .subscribeWith(new DisposableObserver<List<Product>>() {
                     @Override
                     public void onNext(List<Product> value) {
+                        loading.cancelDialog();
                         if(value.size()>0){
 
                             GridLayoutManager manager = new GridLayoutManager(SearchResultActivity.this,2);
@@ -93,7 +98,8 @@ public class SearchResultActivity extends AppCompatActivity implements View.OnCl
 
                     @Override
                     public void onError(Throwable e) {
-
+                        loading.cancelDialog();
+                        Toast.makeText(SearchResultActivity.this,"Lỗi kết nối !",Toast.LENGTH_LONG).show();
                     }
 
                     @Override

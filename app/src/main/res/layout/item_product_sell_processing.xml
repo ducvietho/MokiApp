@@ -4,7 +4,13 @@
               android:layout_height="wrap_content"
               android:orientation="vertical"
     android:background="@android:color/white">
-
+    <com.example.ducvietho.moki.utils.customview.FontTextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/dip_10"
+        android:textSize="@dimen/ts_14"
+        android:textColor="@android:color/black"
+        android:id="@+id/tv_message"/>
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="@dimen/dip_80"

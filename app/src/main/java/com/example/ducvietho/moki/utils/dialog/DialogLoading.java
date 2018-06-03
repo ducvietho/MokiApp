@@ -33,6 +33,7 @@ public class DialogLoading {
         mDialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
         mDialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
         mDialog.setContentView(R.layout.layout_loading);
+        mDialog.setCancelable(false);
         final int [] images = new int[]{
                 R.drawable.pr0,R.drawable.pr1,R.drawable.pr2,R.drawable.pr3,R.drawable.pr4,R.drawable.pr5,
                 R.drawable.pr6,R.drawable.pr7,R.drawable.pr8,R.drawable.pr9,R.drawable.pr10,

@@ -26,7 +26,7 @@ public class DialoagBuySuccess {
     }
     public void showDialog(){
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
-        dialog.setContentView(R.layout.dialog_not_infor);
+        dialog.setContentView(R.layout.dialog_buy_success);
         dialog.setCancelable(false);
         final Window window = dialog.getWindow();
         window.setLayout(WindowManager.LayoutParams.MATCH_PARENT, WindowManager.LayoutParams.WRAP_CONTENT);

@@ -15,6 +15,7 @@ import com.example.ducvietho.moki.data.model.Product;
 import com.example.ducvietho.moki.data.resource.remote.ProductDataRepository;
 import com.example.ducvietho.moki.data.resource.remote.api.ProductRemoteDataResource;
 import com.example.ducvietho.moki.data.resource.remote.api.service.MokiServiceClient;
+import com.example.ducvietho.moki.screen.activities.order_detail.OrderDetailActivity;
 import com.example.ducvietho.moki.screen.activities.productdetail.ProductDetailActivity;
 import com.example.ducvietho.moki.utils.OnClickItemProduct;
 import com.example.ducvietho.moki.utils.UserSession;
@@ -66,7 +67,7 @@ public class ProductBuyFragment extends Fragment implements OnClickItemProduct {
 
     @Override
     public void onClick(Product product) {
-        startActivity(new ProductDetailActivity().getIntent(v.getContext(), product.getId()));
+        startActivity(new OrderDetailActivity().getIntent(v.getContext(), product.getId()));
     }
 
     private void getProductBuy() {
@@ -90,7 +91,8 @@ public class ProductBuyFragment extends Fragment implements OnClickItemProduct {
 
             @Override
             public void onError(Throwable e) {
-                Toast.makeText(v.getContext(), "Error:" + e.getMessage(), Toast.LENGTH_SHORT).show();
+                loading.cancelDialog();
+                Toast.makeText(v.getContext(),"Lỗi kết nối !",Toast.LENGTH_LONG).show();
             }
 
             @Override
