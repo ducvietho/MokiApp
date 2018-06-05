@@ -51,12 +51,14 @@ import com.google.gson.Gson;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import id.zelory.compressor.Compressor;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.CompositeDisposable;
 import io.reactivex.observers.DisposableObserver;
@@ -267,6 +269,11 @@ public class PostProductActivity extends AppCompatActivity implements View.OnCli
     }
     private void uploadImageProduct(String url){
         File file = new File(url);
+        try {
+            file = new Compressor(this).compressToFile(file);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
         if(file.exists()){
             RequestBody requestFile = RequestBody.create(MediaType.parse("image/*"), file);
             MultipartBody.Part multipartBody =MultipartBody.Part.createFormData("input_img",file.getAbsolutePath(),requestFile);

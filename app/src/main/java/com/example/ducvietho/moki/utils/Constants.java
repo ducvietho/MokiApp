@@ -5,9 +5,9 @@ package com.example.ducvietho.moki.utils;
  */
 
 public class Constants {
-    public static final String URL_ENCODE = "http://192.168.1.119/mokiserver1/";
-    public static final String URL_IMAGE = "http://192.168.1.119/mokiserver1/public/upload/product/";
-    public static final String URL_SOCKET = "http://192.168.1.119:3001";
+    public static final String URL_ENCODE = "http://192.168.100.3/mokiserver1/";
+    public static final String URL_IMAGE = "http://192.168.100.3/mokiserver1/public/upload/product/";
+    public static final String URL_SOCKET = "http://192.168.100.3:3001";
     public static final String EXTRA_DISTRICT = "district";
     public static final String EXTRA_VILLAGE = "village";
     public static final int ITEM_PROFILE = 0;

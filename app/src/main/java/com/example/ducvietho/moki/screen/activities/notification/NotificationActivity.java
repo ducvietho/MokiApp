@@ -154,7 +154,8 @@ public class NotificationActivity extends AppCompatActivity implements View.OnCl
 
             @Override
             public void onError(Throwable e) {
-
+                loading.cancelDialog();
+                Toast.makeText(NotificationActivity.this,"Lỗi kết nối !",Toast.LENGTH_LONG).show();
             }
 
             @Override
