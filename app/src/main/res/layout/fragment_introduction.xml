@@ -2,12 +2,56 @@
              xmlns:tools="http://schemas.android.com/tools"
              android:layout_width="match_parent"
              android:layout_height="match_parent"
+             android:background="@android:color/white"
              tools:context="com.example.ducvietho.moki.screen.fragments.introduction.IntroductionFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:orientation="vertical">
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/logo_login"
+            android:layout_gravity="center"
+            android:layout_marginTop="@dimen/dip_35"/>
+        <com.example.ducvietho.moki.utils.customview.FontTextView
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dip_45"
+            android:text="Giúp các mẹ trao đổi"
+            android:gravity="center"
+            android:textColor="@android:color/black"
+            android:textSize="@dimen/ts_32"
+            android:layout_marginTop="@dimen/dip_15"/>
+        <com.example.ducvietho.moki.utils.customview.FontTextView
+            android:layout_width="match_parent"
+            android:layout_marginTop="@dimen/dip_45"
+            android:text="MOKI = MOther + KIds"
+            android:textSize="@dimen/ts_16"
+            android:textColor="@android:color/black"
+            android:gravity="center"
+            android:layout_height="@dimen/dip_45"
+            android:id="@+id/tv_name"/>
+        <com.example.ducvietho.moki.utils.customview.FontTextView
+            android:layout_width="match_parent"
+            android:text="MOKI - ỨNG DỤNG GIÚP MẸ TRAO ĐỔI ĐỒ CŨ,
+            MỚI SỐ #1 VIỆT NAM"
+            android:layout_marginLeft="@dimen/dip_15"
+            android:layout_marginRight="@dimen/dip_15"
+            android:textSize="@dimen/ts_16"
+            android:textColor="@android:color/black"
+            android:gravity="center"
+            android:layout_height="@dimen/dip_45" />
+        <com.example.ducvietho.moki.utils.customview.FontTextView
+            android:layout_width="match_parent"
+            android:layout_marginTop="@dimen/dip_15"
+            android:layout_marginLeft="@dimen/dip_15"
+            android:layout_marginRight="@dimen/dip_15"
+            android:text="Phù hợp với thói quen mua bán của mẹ trong thời gian mang thai, nuôi con nhỏ."
+            android:textSize="@dimen/ts_16"
+            android:textColor="@android:color/black"
+            android:gravity="center"
+            android:layout_height="@dimen/dip_45" />
+    </LinearLayout>
 
 </FrameLayout>

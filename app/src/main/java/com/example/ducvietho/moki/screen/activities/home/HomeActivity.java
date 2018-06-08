@@ -36,6 +36,7 @@ import com.example.ducvietho.moki.screen.activities.search.SearchActivity;
 import com.example.ducvietho.moki.screen.fragments.buy.BuyFragment;
 import com.example.ducvietho.moki.screen.fragments.favorite.FavoriteFragment;
 import com.example.ducvietho.moki.screen.fragments.home.HomeFragment;
+import com.example.ducvietho.moki.screen.fragments.introduction.IntroductionFragment;
 import com.example.ducvietho.moki.screen.fragments.news.NewsFragment;
 import com.example.ducvietho.moki.screen.fragments.sell.SellFragment;
 import com.example.ducvietho.moki.utils.Constants;
@@ -293,6 +294,16 @@ public class HomeActivity extends AppCompatActivity implements MenuAdapter.OnIte
             case Constants.ITEM_LOGOUT:
                 session.logoutUser(2);
                 return;
+            case Constants.ITEM_INTRODUCTION:
+                imgChange.setVisibility(View.GONE);
+                imgMessage.setVisibility(View.GONE);
+                imgNotify.setVisibility(View.GONE);
+                imgSearch.setVisibility(View.GONE);
+                imgApp.setVisibility(View.GONE);
+                mTitle.setVisibility(View.VISIBLE);
+                mTitle.setText(getResources().getString(R.string.introduction));
+                startFragment(new IntroductionFragment());
+                break;
             default:
                 return;
         }
